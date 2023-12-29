@@ -192,6 +192,12 @@ h3 em{font-style:normal;color:#1AD779;}
 .top-menu ul li{list-style-type:none;display:inline-block;margin:0 6px;}
 .top-menu ul li a{border: 2px solid #1AD779;padding:19px 19px;color:#323739;font-size:16px;/*line-height:19px;*/line-height:1;font-weight:600;text-transform:uppercase;}
 
+#mysticky-nav .myfixed{padding-top: 10px;}
+#mysticky-nav .myfixed div#logo-cell{margin:0;}
+#mysticky-nav .myfixed .top-menu ul li a{padding:10px 0.990vw;}
+#mysticky-nav .myfixed .menu_glowne{margin-top:-3px;}
+#mysticky-nav .myfixed .menu_glowne ul li a {padding:10px 0.990vw;height:auto;min-height:auto;}
+
 /*front page*/
 .top-home{background:url('./img/top-home.jpg')no-repeat top center / contain;padding-top:16.644vw;}
 .top-home h1{font-size:64px!important;line-height:78px!important;font-weight:800!important;text-transform:unset;}
@@ -514,7 +520,9 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 .top-kursy p.inner04{background-image:url('./img/small-icon04.png');}
 .top-kursy p.inner05{background-image:url('./img/small-icon05.png');}
 .top-kursy p.inner06{background-image:url('./img/small-icon06.png');}
-.top-kursy p.inner07{background-image:url('./img/small-icon07.png');}
+.top-kursy p.inner07-jakub{background-image:url('./img/small-icon07.png');}
+.top-kursy p.inner07-patrycja{background-image:url('./img/small-icon07-patrycja.png');}
+.top-kursy p.inner07-malgorzata{background-image:url('./img/small-icon07-malgorzata.png');}
 
 .top-kursy h4{color:#1AD779;font-size:54px;line-height:66px;font-weight:800;display:inline-block;}
 .top-kursy h4.crossed{color:#777D80;font-size:28px;line-height:34px;text-decoration:line-through;margin-right:24px;font-weight:700;}
@@ -522,7 +530,7 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 .top-kursy .links{margin-top:10px;}
 .top-kursy a.more-empty{position:relative;top:1px;margin-left:20px;}
 
-.top-kursy .movie{border:2px solid #1AD779;padding:5px;display:grid;}
+.top-kursy .movie{/*border:2px solid #1AD779;padding:5px;*/display:grid;}
 
 .top-kursy .top-kursy-links{text-align:center;margin-top:50px;}
 .top-kursy .top-kursy-links a{display:block;}
@@ -534,6 +542,12 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 .kursy-why ul{padding-left:0;}
 .kursy-why ul li{background:url('./img/tick.png')no-repeat top left;min-height:54px;font-size:18px;line-height:30px;font-weight:800;padding-left:80px;list-style-type:none;margin-bottom:32px;}
 .kursy-why ul li em{color:#1AD779;font-style:normal;}
+
+.kursy-content{margin:128px auto 0!important;max-width:1200px;}
+.kursy-content h3{text-align:center;margin-bottom:69px;display:block;width:100%;}
+.kursy-content h3 p,article.post .entry-content .kursy-why h3 p{font-size:54px;line-height:56px;font-weight:800;}
+.kursy-content ul{padding-left:15px;width:100%;}
+
 
 .kursy-competences{margin-top:81px;}
 .kursy-competences h3{text-align:center;margin-bottom:37px;}
@@ -556,6 +570,9 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 .kursy-agenda h3.lower{text-align:center;margin-top:85px;margin-bottom:46px;font-size:42px!important;line-height:52px!important;}
 
 .kursy-who{background:url('./img/kursy-who.jpg')no-repeat top center;min-height:49.844vw;padding-top:5.156vw;}
+.kursy-who.kw-jakub{background:url('./img/kursy-who.jpg')no-repeat top center;}
+.kursy-who.kw-patrycja{background:url('./img/kursy-who-patrycja.jpg')no-repeat top center;}
+.kursy-who.kw-malgorzata{background:url('./img/kursy-who-malgorzata.jpg')no-repeat top center;}
 .kursy-who h3{text-align:center;/*margin-bottom:148px;*/margin-bottom:7.708vw;}
 .kursy-who h4{font-size:32px;line-height:44px;font-weight:800;/*margin-bottom:33px;*/margin-bottom:1.719vw;}
 
@@ -647,6 +664,7 @@ footer.entry-meta, footer.entry-footer{display:none;}
 
 .row-full{padding-left:15px;padding-right:15px;width:100vw;position:relative;margin-left:-50vw;left:50%;}
 
+.hidden-all{display:none!important;}
 
 .tml-register ul.tml-links{display:none;}
 .tml-lostpassword ul.tml-links{display:none;}
@@ -1036,7 +1054,7 @@ Etykiety
 }
 
 .menu_glowne {
-    padding: 0px !important;
+    padding: 0px !important;margin-top:-2px;
 }
 
 .menu_glowne li {display:inline-block;
@@ -2030,7 +2048,7 @@ transform: translateY(0);
 	.top-menu ul li a{padding:19px 0.990vw;font-size:0.833vw;/*height:3.177vw;*/height:auto;}
 	
 	.menu_glowne ul{padding:0!important;}
-	.menu_glowne ul li a{padding:19px 0.990vw;font-size:0.833vw!important;/*height:3.177vw;*/height:auto;display:inline-block;min-height:61px;}
+	.menu_glowne ul li a{padding:19px 0.990vw;font-size:0.833vw!important;/*height:3.177vw;*/height:auto;display:inline-block;min-height:61px;min-height:57px;}
 	.menu_glowne ul.sub-menu li a{height:auto;}
 	
 	.blog a.post-link{font-size:1.250vw;}
@@ -2062,6 +2080,8 @@ transform: translateY(0);
 	display: none;
 }
 
+.postep_liczba{line-height:15px;}
+
 /*
 
 @media (-webkit-device-pixel-ratio: 1.25) {
@@ -2086,10 +2106,33 @@ Dlaczego ten kurs...
 Jakie kompetencje...
 Czego dowiesz się na szkoleniu...
 */
-.kursy-why.row, .kursy-competences.row, .kursy-what.row-full { 
-	display: none;
+.kursy-agenda, .kursy-why.row, .kursy-competences.row, .kursy-what.row-full { 
+	display: none !important;
 }
 /*
 Usuniecie z acf pól
 cena, cena_przed_obnizka, cena_przekreslona
 */
+
+
+/* blok cookie */
+.page-template-login-page .cky-consent-container {
+	/* z-index: inherit !important; */
+	display: none !important;
+}
+/*
+fix wizualny contenera dla odpowiedzi z ajaxa
+*/
+.ajax-product-list {
+    overflow: hidden;
+}
+
+
+
+
+
+.lekcja_top_opis{display:none!important;}
+.product-list-categories li:last-child,
+ ul.home-category-items.product-list-categories > li:nth-child(5) > button {
+	display: none !important;
+}

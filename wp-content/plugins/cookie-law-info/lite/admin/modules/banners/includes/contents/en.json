@@ -78,7 +78,7 @@
         },
         "revisitConsent": {
             "elements": {
-                "title": "Cookie Settings"
+                "title": "Consent Preferences"
             }
         },
         "auditTable": {
@@ -178,7 +178,7 @@
         },
         "revisitConsent": {
             "elements": {
-                "title": "Cookie Settings"
+                "title": "Consent Preferences"
             }
         },
         "auditTable": {

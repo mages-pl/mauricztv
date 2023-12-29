@@ -779,7 +779,7 @@ function mjcourses($atts) {
 				$output .= "</td>";
 				$output .= "<td>";
 					$output .= get_field('czas_kursu', $product->ID);
-				$output .= "h</td>";
+				$output .= "min</td>";
 			$output .= "</tr>";
 
 				$output .= "<tr>";

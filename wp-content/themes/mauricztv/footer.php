@@ -117,12 +117,11 @@ if(is_page(48)) {
 <?php wp_footer(); ?>
 
 
-
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
 	<?php /* <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.counterup.js"></script> */ ?>
 
-
 		<script>
+
 			if(!$) var $ = jQuery;
 			jQuery(document).ready(function($) {
 				$('.counter').counterUp({
@@ -136,10 +135,6 @@ if(is_page(48)) {
 			});
 
 		</script>
-
-
-
-
 
 </body>
 </html>

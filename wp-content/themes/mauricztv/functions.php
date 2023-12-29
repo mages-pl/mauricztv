@@ -407,3 +407,17 @@ function redirectToLoginIfGuest() {
 }
 #add_action('init','redirectToLoginIfGuest');
 
+/**
+ * Import klientów mauricz
+ */
+
+function importCustomersWP() { 
+    
+}
+ /**
+  * Import zamówień mauricz
+  */
+
+  /**
+   * Powiązanie produktów przy imporcie zamówień mauricz
+   */

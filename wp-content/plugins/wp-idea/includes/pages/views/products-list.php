@@ -150,7 +150,7 @@ foreach($bestsellers_product as $product) {
 			echo "</td>";
 			echo "<td>";
 				echo get_field('czas_kursu', $product->ID);
-			echo "h</td>";
+			echo "min</td>";
 		echo "</tr>";
 
 		echo "<tr>";
@@ -289,15 +289,15 @@ foreach ($tags as $key => $tag) {
 	<form method="POST" class="mjfilter">
 		<div class="range-container">
 			<label class="left-align">
-			<?= getMinMaxRange($productTime,'min'); ?>h
+			<?= getMinMaxRange($productTime,'min'); ?>min
 			</label>
 			<label class="right-align">
-			<?= getMinMaxRange($productTime,'max'); ?>h
+			<?= getMinMaxRange($productTime,'max'); ?>min
 			</label>
 		</div>
   <input type="range" id="czas" name="czas" 
          min="<?= getMinMaxRange($productTime,'min'); ?>" max="<?= getMinMaxRange($productTime,'max'); ?>" value="<?= getMinMaxRange($productTime,'max'); ?>" step="0.5" onchange="setRangeTime(this)">
-		 <label class="czas" data-range="czas">do <?= getMinMaxRange($productTime,'max'); ?>h</label>
+		 <label class="czas" data-range="czas">do <?= getMinMaxRange($productTime,'max'); ?>min</label>
 		 
 		 <input type="hidden" name="filter_type" id="filter_type" value="<?= $filterType; ?>"/>
 		 <input type="hidden" name="id_category_tag" id="id_category_tag" value="<?= $getCategoryTag; ?>"/>
@@ -307,7 +307,7 @@ foreach ($tags as $key => $tag) {
 </form>
 		 <script type="text/javascript">
 			 function setRangeTime(obj) { 
-				 document.querySelector("."+obj.getAttribute('name')).innerHTML = "do "+obj.value+"h";
+				 document.querySelector("."+obj.getAttribute('name')).innerHTML = "do "+obj.value+"min";
 
 				
 				$.ajax({
@@ -347,7 +347,7 @@ foreach ($tags as $key => $tag) {
 
 $all_product = get_posts( $argsAll );
 
-	 foreach($all_product as $product) { 
+	 foreach($all_product as $product) {		 
 		 echo "<div class='col-sm-6 col-lg-4'>";
 		 echo "<div class='product'>";
 		 //Miniatura
@@ -388,7 +388,7 @@ $all_product = get_posts( $argsAll );
 				echo "</td>";
 				echo "<td>";
 					echo get_field('czas_kursu', $product->ID);
-				echo "h</td>";
+				echo "min</td>";
 			echo "</tr>";
 
 			echo "<tr>";
@@ -479,6 +479,7 @@ $all_product = get_posts( $argsAll );
 			Sprawdź szkolenie</a>';
 			echo "</div>";
 			echo "</div>";
+			
 	 }
 ?>
 </div>

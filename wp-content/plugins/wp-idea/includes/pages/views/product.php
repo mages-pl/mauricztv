@@ -19,8 +19,6 @@ global $post;
     $product_id = (int)$getProductByPage->id;
     $product_price = $getProductByPage->price;
     $product_access = $getProductByPage->productAccess;
-    $product_short_description = get_the_excerpt($product_id);
-    $product_description = get_the_content($product_id);
  
 } else { 
     // typ DOWNLAOD (produkt)
@@ -28,8 +26,6 @@ global $post;
     $p = new Product($product_id);
     $product_price = get_post_meta( $product_id,  'edd_price', true);
     $sale_price = get_post_meta( $product_id,  'sale_price', true);
-    $product_short_description = get_the_excerpt($product_id);//get_post_meta( $product_id,  'edd_short_description', true);
-    $product_description = get_the_content($product_id);
     $sale_price_from_date = get_post_meta( $product_id,  'sale_price_from_date', true);
     $sale_price_to_date = get_post_meta( $product_id,  'sale_price_to_date', true);
     
@@ -94,7 +90,15 @@ $show_open_padlock = false;
                     
                         <?php if ( get_field( 'nieograniczony_dostep' ) ): ?>
                             <p class="inner01"><b>Nieograniczony dostęp</b></p>
+						<?php else: ?>	
+							<p class="inner01"><b>Dostęp na 365 dni</b></p>
                         <?php endif; ?>
+						
+						
+						
+
+						
+						
                         
                         <?php if ( get_field( 'imienny_certyfikat' ) ): ?>
                             <p class="inner02"><b>Imienny certyfikat</b></p>
@@ -106,12 +110,16 @@ $show_open_padlock = false;
                         
                         <p class="inner04">Liczba lekcji: <?php the_field('liczba_lekcji'); ?></p>
                         
-                        <p class="inner05">Czas kursu: <?php the_field('czas_kursu'); ?>h</p>
+                        <p class="inner05">Czas kursu: <?php the_field('czas_kursu'); ?>min</p>
                         
                         <p class="inner06">Szkolenie kupiło aż <?php the_field('ilosc_kursantow'); ?> kursantów!</p>
                         
-                        <p class="inner07">Prowadzący: <?php the_field('prowadzacy'); ?></p>
-                        
+                        <p class="inner07<?php if (get_field('prowadzacy') == 'Jakub Mauricz') { ?>-jakub
+						<?php } elseif (get_field('prowadzacy') == 'Patrycja Szachta') { ?>-patrycja
+						<?php } elseif (get_field('prowadzacy') == 'Małgorzata Ostrowska') { ?>-malgorzata
+						<?php } ?>
+						">Szkolenie prowadzi: <?php the_field('prowadzacy'); ?></p>
+ 
                     </div>
                     
                     <h6 class="price">Cena:</h6>
@@ -175,7 +183,7 @@ if($show_open_padlock) {
 ?>
 <!-- END: PRZEJDŹ DO PANELU -->
 
-                        <a href="#kursy-why" class="more-empty">Więcej o kursie</a>
+                        <a href="#kursy-content" class="more-empty">Więcej o kursie</a>
                     </div>
 
 <!-- BEGIN: Sprawdź czy kurs dostępny -->
@@ -224,9 +232,21 @@ if($show_open_padlock) {
                 <div class="col-md-6">
                     
                     <div class="movie">
-                        <?php the_field('filmik'); ?>
+					
+						<?php if (get_field('filmik')) { ?>
+
+							<?php the_field('filmik'); ?>
+
+						<?php } ?>
+					
+						<?php if (get_field('grafika_zamiast_filmu')) { ?>
+
+							<img src="<?php the_field('grafika_zamiast_filmu'); ?>" />
+
+						<?php } ?>
+						
                     </div>	
-                
+
                 </div>
                 
                 <div class="col-md-12 top-kursy-links">
@@ -240,6 +260,14 @@ if($show_open_padlock) {
         </div>
 
     </div>
+	
+	<div class="kursy-content row" id="kursy-content">
+	
+		<h3>Opis szkolenia</h3>
+	
+		<?php the_content(); ?>
+	
+	</div>
     
     
     <div class="kursy-why row" id="kursy-why">
@@ -275,23 +303,7 @@ if($show_open_padlock) {
         </div>
         
     </div>
-
-    <div class="row-full mt-5 pt-5" style="text-align: center;">
-<h3>Opis szkolenia</h3>
-<div class="container">
-<p class="mt-5 text-left col-md-12">
-<?php 
-
-echo $product_short_description;
-?>
-</p>
-<div class="col-md-12 text-left">
-    <?php 
-    echo $product_description;
-    ?>
-</div>
-</div>
-</div>
+	
 
     <div class="kursy-agenda row-full">
     
@@ -337,20 +349,40 @@ else {
         </div>
         
     </div>	
-   
-    <div class="kursy-who row-full">
+
+    <div class="kursy-who row-full
+	
+		<?php if (get_field('prowadzacy') == 'Jakub Mauricz') { ?>kw-jakub
+		<?php } elseif (get_field('prowadzacy') == 'Patrycja Szachta') { ?>kw-patrycja
+		<?php } elseif (get_field('prowadzacy') == 'Małgorzata Ostrowska') { ?>kw-malgorzata
+		<?php } ?>
+	
+	">
     
         <div class="container">
             <div class="row">
             
                 <div class="col-md-12">
-                    <h3>Szkolenie opracował</h3>
+                    <h3>Szkolenie opracowane przez</h3>
                 </div>
                 
                 <div class="col-md-6">
-                    <h4><?php the_field('imie_i_nazwisko'); ?></h4>
+                    <h4><?php the_field('prowadzacy'); ?><?php //the_field('imie_i_nazwisko'); ?></h4>
                     
-                    <?php the_field('kto_opracowal_tresc'); ?>
+						<?php if (get_field('prowadzacy') == 'Jakub Mauricz') { ?>
+						
+							<?php the_field('kto_opracowal_tresc'); ?>
+						
+						<?php } elseif (get_field('prowadzacy') == 'Patrycja Szachta') { ?>
+						
+							<?php the_field('kto_opracowal_tresc_patrycja'); ?>
+						
+						<?php } elseif (get_field('prowadzacy') == 'Małgorzata Ostrowska') { ?>
+						
+							<?php the_field('kto_opracowal_tresc_malgorzata'); ?>
+						
+						<?php } ?>
+                    
                     
                 </div>
                 
@@ -399,25 +431,25 @@ else {
                 
                 <div class="col-md-12">
                 <?php 
-if($show_open_padlock != '1') { 
-?>
-                          <!--  BEGIN: Dodaj do koszyka -->
-<a href="<?php echo esc_attr( edd_get_checkout_uri( array(
-               'add-to-cart' => (int)$product_id,
-           ) ) ); ?>" class="more">Kup teraz</a>
-          <!--  END: Dodaj do koszyka -->  
-<?php 
-}
-else {
-?>
-<!-- BEGIN: PRZEJDZ DO KURSU -->
-<a href="<?php echo get_permalink($course_page_id); ?>" class="box_glowna_add_to_cart_link more" style=" background: #333;color: #fff;"><i
-    class="fa fa-arrow-right"></i><?php _e( 'GO TO COURSE', BPMJ_EDDCM_DOMAIN ) ?>
-</a>
-<!-- END: PRZEJDZ DO KURSU -->
-<?php 
-}
-?>
+					if($show_open_padlock != '1') { 
+					?>
+											  <!--  BEGIN: Dodaj do koszyka -->
+					<a href="<?php echo esc_attr( edd_get_checkout_uri( array(
+								   'add-to-cart' => (int)$product_id,
+							   ) ) ); ?>" class="more">Kup teraz</a>
+							  <!--  END: Dodaj do koszyka -->  
+					<?php 
+					}
+					else {
+					?>
+					<!-- BEGIN: PRZEJDZ DO KURSU -->
+					<a href="<?php echo get_permalink($course_page_id); ?>" class="box_glowna_add_to_cart_link more" style=" background: #333;color: #fff;"><i
+						class="fa fa-arrow-right"></i><?php _e( 'GO TO COURSE', BPMJ_EDDCM_DOMAIN ) ?>
+					</a>
+					<!-- END: PRZEJDZ DO KURSU -->
+					<?php 
+					}
+					?>
                 </div>
                 
             </div>
@@ -504,24 +536,29 @@ else {
         <div class="box">
             <h6><?php the_title(); ?></h6>
             
-            <?php if ( get_field( 'cena_przekreslona' ) ): ?>
-                <h4 class="crossed"><?php the_field('cena_przekreslona'); ?> PLN</h4>
-            <?php endif; ?>
+            <?php
+                    if((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
+                        ?>
+        <h4><?php echo number_format($sale_price,2,'.',''); ?> PLN</h4>
+    <?php
+    } else {?>
+        <h4><?php echo $product_price; ?> PLN</h4>
+    <?php
+    }
+    ?>
                     
-            <h4><?php the_field('cena'); ?> PLN</h4>
-                    
-            <?php if ( get_field( 'cena_przed_obnizka' ) ): ?>
-                <small>
+            
+                <small class="omniprice">
                     <!-- Najniższa cena z 30 dni: -->
                     <?= bpmj_render_lowest_price_information($product_id); ?>
                      <!-- PLN -->
                     </small>
-            <?php endif; ?>
+         
             
             <div class="row">
             
                 <div class="col-xs-6 text-right">
-                    Liczba modułów:
+                    Liczba lekcji:
                 </div>
                 <div class="col-xs-6">
                     <?php the_field('liczba_lekcji'); ?>
@@ -530,7 +567,7 @@ else {
                     Czas trwania:
                 </div>	
                 <div class="col-xs-6">
-                    <?php the_field('czas_kursu'); ?>h
+                    <?php the_field('czas_kursu'); ?>min
                 </div>	
             </div>
             

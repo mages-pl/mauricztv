@@ -78,7 +78,7 @@
         },
         "revisitConsent": {
             "elements": {
-                "title": "Ustawienia plików cookie"
+                "title": "Preferencje co do zgód"
             }
         },
         "auditTable": {
@@ -178,7 +178,7 @@
         },
         "revisitConsent": {
             "elements": {
-                "title": "Ustawienia plików cookie"
+                "title": "Preferencje co do zgód"
             }
         },
         "auditTable": {

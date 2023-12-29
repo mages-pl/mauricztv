@@ -309,15 +309,20 @@
 			<div class="box">
 				<h6><?php the_title(); ?></h6>
 				
-				<?php if ( get_field( 'cena_przekreslona' ) ): ?>
-					<h4 class="crossed"><?php the_field('cena_przekreslona'); ?> PLN</h4>
-				<?php endif; ?>
-						
-				<h4><?php the_field('cena'); ?> PLN</h4>
-						
-				<?php if ( get_field( 'cena_przed_obnizka' ) ): ?>
-					<small>Najniższa cena z 30 dni: <?php the_field('cena_przed_obnizka'); ?> PLN</small>
-				<?php endif; ?>
+				  
+            <!-- cena -->
+            <?php
+                    if((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
+                        ?>
+            <h4 class="crossed"><?php echo $product_price; ?> PLN</h4>
+        <?php
+    }
+    ?>              		
+					<small class="omniprice">
+                    <!-- Najniższa cena z 30 dni: -->
+                    <?= bpmj_render_lowest_price_information($product_id); ?>
+                     <!-- PLN -->
+                    </small>
 				
 				<div class="row">
 				
@@ -331,7 +336,7 @@
 						Czas trwania:
 					</div>	
 					<div class="col-md-6">
-						<?php the_field('czas_kursu'); ?>h
+						<?php the_field('czas_kursu'); ?>min
 					</div>	
 				</div>
 				

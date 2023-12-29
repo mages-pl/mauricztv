@@ -1179,7 +1179,11 @@ if ( ! class_exists( 'Cookie_Law_Info_Cookieyes' ) ) {
 
 		public function set_ckyes_scan_data( $option_name, $value ) {
 			$options                 = $this->get_ckyes_scan_data();
-			$options[ $option_name ] = $value;
+			if ($options !== false) {
+				$options[ $option_name ] = $value;
+			} else {
+				$options = array($option_name => $value);
+			}
 			update_option( 'wt_cli_ckyes_scan_options', $options );
 			$this->ckyes_scan_data = $options;
 		}

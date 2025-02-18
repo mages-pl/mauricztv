@@ -631,7 +631,7 @@ function set_cart_popup_cookie() {
          * Pobierz obiekt zamówienia
          */
         $args = [
-			// 'number' => '1',
+			'number' => '3000',
 			'status' => 'publish',
             // 'post__in' => [49841], // 49841 49863
 			'date_query' => array(

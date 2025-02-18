@@ -657,6 +657,7 @@ function set_cart_popup_cookie() {
          */
         foreach($orders as $key => $order)  {
             
+            try {
             $json['data']['type'] = "event";
             $json['data']['attributes']['properties']['OrderId'] = $order['id'];
 
@@ -769,6 +770,42 @@ function set_cart_popup_cookie() {
             $json['data']['attributes']['profile']['data']['type'] = 'profile';
             $json['data']['attributes']['profile']['data']['attributes']['email'] = $order['email'];
             $json['data']['attributes']['profile']['data']['attributes']['phone_number'] = $phone;
+        
+        
+                    
+
+            $json_request = json_encode($json);
+
+            $c = curl_init();
+            curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/events/');
+
+            // date revision
+            $revision = '2025-01-15';
+
+            $KlaviyoPrivateKey = 'pk_788d358870622e5f3ba8afcea7d675dd02';
+            $head[] ='Authorization: Klaviyo-API-Key '.$KlaviyoPrivateKey.'';
+            $head[] ='accept: application/json';
+            $head[] ='content-Type: application/json';
+            $head[] ='revision: '.$revision;
+            curl_setopt($c, CURLOPT_HTTPHEADER, $head);
+            curl_setopt($c, CURLOPT_POST, true);
+            curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($c, CURLOPT_POSTFIELDS, $json_request);
+                
+            //json_request
+            $result =  @json_decode(curl_exec($c),1);
+
+            echo "==";
+            // print_r($json_request);
+            echo "==";
+            print_r($result);
+
+            echo "POST";
+        
+            } catch(\Exception $e) {
+                continue;
+            }
+        
         }
 
 
@@ -884,33 +921,6 @@ function set_cart_popup_cookie() {
 // echo "<br/>";
 // exit();
 
-$json_request = json_encode($json);
-
-$c = curl_init();
-curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/events/');
-
-// date revision
-$revision = '2025-01-15';
-
-$KlaviyoPrivateKey = 'pk_788d358870622e5f3ba8afcea7d675dd02';
-$head[] ='Authorization: Klaviyo-API-Key '.$KlaviyoPrivateKey.'';
-$head[] ='accept: application/json';
-$head[] ='content-Type: application/json';
-$head[] ='revision: '.$revision;
-curl_setopt($c, CURLOPT_HTTPHEADER, $head);
-curl_setopt($c, CURLOPT_POST, true);
-curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($c, CURLOPT_POSTFIELDS, $json_request);
- 	
- //json_request
- $result =  @json_decode(curl_exec($c),1);
-
- echo "==";
- // print_r($json_request);
- echo "==";
- print_r($result);
-
- echo "POST";
     } catch(\Exception $e) {
 
     }

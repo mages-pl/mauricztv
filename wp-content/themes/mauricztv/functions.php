@@ -617,6 +617,9 @@ function set_cart_popup_cookie() {
     }
 }
 
+/**
+ * Wywyoływanie akcji Add to Cart
+ */
 
 /**
  * Wywołanie akcji przekaznia zadarzenia do Klaviyo z zdarzeniem dodania zamówienia
@@ -631,12 +634,12 @@ function set_cart_popup_cookie() {
          * Pobierz obiekt zamówienia
          */ 
         $args = [
-			'number' => '3000',
+			'number' => '200',
 			'status' => 'publish',
             // 'post__in' => [49841], // 49841 49863
 			'date_query' => array(
 				array(  
-                    'after'     => '-12 months',
+                    'after'     => '-3 months',
 					// 'before'    => '+5 years',
 				// 	'after'     => $_POST['raport_sprzedazy_option_name']['raport_data_od'],
 				// 	'before'    => $_POST['raport_sprzedazy_option_name']['raport_data_do'],

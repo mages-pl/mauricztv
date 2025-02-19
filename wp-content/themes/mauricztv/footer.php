@@ -34,9 +34,9 @@ if(is_page(48)) {
 		<h6>Bądź na bieżąco!</h6>
 		<h3>Zapisz się do newslettera!</h3>
 
-<script>var fmFCF4k4bqyzpvc=function(e){if(e.data.type==='resize'){document.getElementById('fm-fc-f-4k4bqyzpvc').style.minHeight=e.data.size+'px'}};window.addEventListener?addEventListener('message',fmFCF4k4bqyzpvc,!1):attachEvent('onmessage',fmFCF4k4bqyzpvc);
-</script><iframe id="fm-fc-f-4k4bqyzpvc" data-height="255" src="https://forms.freshmail.io/f/duaaswiwmi/4k4bqyzpvc/index.html" frameborder="0" marginheight="0" marginwidth="0" width="100%" style="min-height: 285px"></iframe>
-
+<!-- <script>var fmFCF4k4bqyzpvc=function(e){if(e.data.type==='resize'){document.getElementById('fm-fc-f-4k4bqyzpvc').style.minHeight=e.data.size+'px'}};window.addEventListener?addEventListener('message',fmFCF4k4bqyzpvc,!1):attachEvent('onmessage',fmFCF4k4bqyzpvc);
+</script><iframe id="fm-fc-f-4k4bqyzpvc" data-height="255" src="https://forms.freshmail.io/f/duaaswiwmi/4k4bqyzpvc/index.html" frameborder="0" marginheight="0" marginwidth="0" width="100%" style="min-height: 285px"></iframe> -->
+    <div class="klaviyo-form-Wixv96"></div>
 		</div>
 		</div>
 	</div>	
@@ -63,9 +63,10 @@ if(is_page(48)) {
 					<h4>Zapisz się do newslettera</h4>
 
 					<div class="nwsl">
-					
+<!-- 					
 <script>var fmFCF4k4bqyzpvc=function(e){if(e.data.type==='resize'){document.getElementById('fm-fc-f-4k4bqyzpvc').style.minHeight=e.data.size+'px'}};window.addEventListener?addEventListener('message',fmFCF4k4bqyzpvc,!1):attachEvent('onmessage',fmFCF4k4bqyzpvc);
-</script><iframe id="fm-fc-f-4k4bqyzpvc" data-height="255" src="https://forms.freshmail.io/f/duaaswiwmi/4k4bqyzpvc/index.html" frameborder="0" marginheight="0" marginwidth="0" width="100%" style="min-height: 285px"></iframe>
+</script><iframe id="fm-fc-f-4k4bqyzpvc" data-height="255" src="https://forms.freshmail.io/f/duaaswiwmi/4k4bqyzpvc/index.html" frameborder="0" marginheight="0" marginwidth="0" width="100%" style="min-height: 285px"></iframe> -->
+    <div class="klaviyo-form-Wixv96"></div>
 
 						<?php //echo do_shortcode("[contact-form-7 id='9' title='NWSL']"); ?>
 						
@@ -218,6 +219,6 @@ jQuery( document ).ready(function() {
 });
 
 		</script>
-
+<script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RAAZX9'></script>
 </body>
 </html>

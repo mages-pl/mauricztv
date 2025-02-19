@@ -2591,7 +2591,9 @@ Placeholder loading text
 	}
 
 }
-
+.kl-private-reset-css-Xuajs1 {
+    min-height: auto !important;
+}
 #customPopup {
 	background: rgb(235,249,237);
 	background: linear-gradient(38deg, rgba(235,249,237,1) 0%, rgba(255,255,255,1) 100%);

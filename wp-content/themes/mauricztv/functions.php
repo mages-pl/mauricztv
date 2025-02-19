@@ -617,14 +617,14 @@ function set_cart_popup_cookie() {
     }
 }
 
-// add_action( 'edd_insert_payment', 'klavyioSendOrder' , 99 );
 
 /**
  * Wywołanie akcji przekaznia zadarzenia do Klaviyo z zdarzeniem dodania zamówienia
+ * @param string $type ['Placed Order', ]
  * @return bool $result
  */
 
- function klavyioSendOrder() {
+ function klavyioPostEvents($type = 'Placed Order') {
     try  {
            
         /**
@@ -933,7 +933,7 @@ function set_cart_popup_cookie() {
   * Pobranie eventów klavyio
   * @return array|bool $result
   */
- function klavyioGetOrder() {
+ function klavyioGetEvents() {
     try {
 
         /**
@@ -1058,3 +1058,66 @@ function set_cart_popup_cookie() {
     }
         return (array)$data;
  }
+
+ /**
+  * Zwróć cenę regularną/po promocji dla kursu/pakietu
+  * @param int $product_id
+  * @param bool $html
+  */
+  function getPricesFromCourses($product_id, $html = true) {
+
+    $response = [];
+    if((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
+        if(!is_numeric(get_post_meta($product_id,  'sale_price', true))) {
+            if($html == true) {
+                ?>
+                    <h4 class="product-price"><?php echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); ?> PLN</h4>    
+                <?php
+            } else {
+                $response['price'] = number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); 
+            }
+        } else {
+        ?>
+        <?php 
+        if($html == true) {
+            echo "<h4 class='product-price sale'>";
+            echo number_format(get_post_meta($product_id,  'sale_price', true),2,'.','');
+            echo " PLN</h4>";
+        } else {
+            $response['price'] = number_format(get_post_meta($product_id,  'sale_price', true),2,'.','');
+        }
+    ?>
+    
+    <h4 class="crossed"><?php echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); ?> PLN</h4>
+    
+    <?php 
+     if(!$html) {
+            $response['regular_price'] = number_format(get_post_meta($product_id,  'edd_price', true),2,'.','');
+        }
+    }
+    
+    } else { 
+    if((@get_post_meta($product_id,  'edd_sale_price', true)  > 0) && (get_post_meta($product_id,  'edd_sale_price', true) != @get_post_meta($product_id,  'edd_price', true))) {
+        if($html == true) {
+        ?>
+        
+            <h4 class="product-price sale"><?php echo number_format(get_post_meta($product_id,  'edd_sale_price', true),2,'.',''); ?> PLN</h4>
+            <h4 class="crossed"><?php echo get_post_meta($product_id,  'edd_price', true); ?> PLN</h4>
+        
+        <?php 
+        } else {
+            $response['price'] = number_format(get_post_meta($product_id,  'edd_sale_price', true),2,'.','');
+            $response['regular_price'] = number_format(get_post_meta($product_id,  'edd_price', true),2,'.','');
+        }
+    } else { 
+            if($html == true) {
+                echo "<h4 class='product-price'>";
+                echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.','');
+                echo " PLN</h4>";
+            } else {
+                $response['price'] = number_format(get_post_meta($product_id,  'edd_price', true),2,'.','');
+            }
+    } 	 
+    }
+    return json_encode($response);
+  }

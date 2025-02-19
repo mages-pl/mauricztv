@@ -138,7 +138,49 @@ $show_open_padlock = false;
                     
 
                     <?php
+##
+
+if((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
+    if(!is_numeric(get_post_meta($product_id,  'sale_price', true))) {
+        ?>
+        <h4 class="product-price"><?php echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); ?> PLN</h4>
+
+        <?php
+    } else {
+    ?>
+    <?php 
+echo "<h4 class='product-price sale'>";
+echo number_format(get_post_meta($product_id,  'sale_price', true),2,'.','');
+echo " PLN</h4>";
+?>
+
+<h4 class="crossed"><?php echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); ?> PLN</h4>
+
+
+
+<?php 
+}
+
+} else { 
+if((@get_post_meta($product_id,  'edd_sale_price', true)  > 0) && (get_post_meta($product_id,  'edd_sale_price', true) != @get_post_meta($product_id,  'edd_price', true))) {
+?>
+
+<h4 class="product-price sale"><?php echo number_format(get_post_meta($product_id,  'edd_sale_price', true),2,'.',''); ?> PLN</h4>
+<h4 class="crossed"><?php echo get_post_meta($product_id,  'edd_price', true); ?> PLN</h4>
+
+<?php 
+} else { 
+echo "<h4 class='product-price'>";
+echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.','');
+echo " PLN</h4>";
+} 	 
+}
+###
+?>
+<!-- 
+<?php
                     if((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
+                        echo "##";
                         if(!is_numeric(get_post_meta($product_id,  'sale_price', true))) {
                             ?>
                             <h4 class="product-price"><?php echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); ?> PLN</h4>
@@ -160,7 +202,7 @@ $show_open_padlock = false;
     <?php
      }
     }
-    ?>
+    ?> -->
                     <!-- <h4><?php echo $product_price; ?> PLN</h4> -->
                     
                     

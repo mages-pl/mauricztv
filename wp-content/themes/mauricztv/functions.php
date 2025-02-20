@@ -803,7 +803,7 @@ function set_cart_popup_cookie() {
 
             echo "==";
             echo $order['id'];
-            // print_r($json_request);
+            print_r($json_request);
             echo "==";
             print_r($result);
 

@@ -621,6 +621,7 @@ function set_cart_popup_cookie() {
  * Wywyoływanie akcji Add to Cart
  */
 
+//  function klavyioStart
 /**
  * Wywołanie akcji przekaznia zadarzenia do Klaviyo z zdarzeniem dodania zamówienia
  * @param string $type ['Placed Order', ]
@@ -653,6 +654,8 @@ function set_cart_popup_cookie() {
         // exit();
         $orders = getOrders($getPayments);
 
+        //     print_r($orders);
+        // exit();
         $json=[];
 
         /**
@@ -811,119 +814,6 @@ function set_cart_popup_cookie() {
             }
         
         }
-
-
-// $json_request = '{
-//     "data": {
-//         "type": "event",
-//         "attributes": {
-//             "properties": {
-//                 "OrderId": "1",
-//                 "Categories": [
-//                     "Fiction",
-//                     "Classics",
-//                     "Children"
-//                 ],
-//                 "ItemNames": [
-//                     "Winnie the Pooh",
-//                     "A Tale of Two Cities"
-//                 ],
-//                 "DiscountCode": "Free Shipping",
-//                 "DiscountValue": 5,
-//                 "Brands": [
-//                     "Kids Books",
-//                     "Harcourt Classics"
-//                 ],
-//                 "Items": [
-//                     {
-//                         "ProductID": "1111",
-//                         "SKU": "WINNIEPOOH",
-//                         "ProductName": "Winnie the Pooh",
-//                         "Quantity": 1,
-//                         "ItemPrice": 9.99,
-//                         "RowTotal": 9.99,
-//                         "ProductURL": "http://www.example.com/path/to/product",
-//                         "ImageURL": "http://www.example.com/path/to/product/image.png",
-//                         "Categories": [
-//                             "Fiction",
-//                             "Children"
-//                         ],
-//                         "Brand": "Kids Books"
-//                     },
-//                     {
-//                         "ProductID": "1112",
-//                         "SKU": "TALEOFTWO",
-//                         "ProductName": "A Tale of Two Cities",
-//                         "Quantity": 1,
-//                         "ItemPrice": 19.99,
-//                         "RowTotal": 19.99,
-//                         "ProductURL": "http://www.example.com/path/to/product2",
-//                         "ImageURL": "http://www.example.com/path/to/product/image2.png",
-//                         "Categories": [
-//                             "Fiction",
-//                             "Classics"
-//                         ],
-//                         "Brand": "Harcourt Classics"
-//                     }
-//                 ],
-//                 "BillingAddress": {
-//                     "FirstName": "John",
-//                     "LastName": "Smith",
-//                     "Address1": "123 Abc St",
-//                     "City": "Boston",
-//                     "RegionCode": "MA",
-//                     "CountryCode": "US",
-//                     "Zip": "02110",
-//                     "Phone": "+15551234567"
-//                 },
-//                 "ShippingAddress": {
-//                    "FirstName": "John",
-//                     "LastName": "Smith",
-//                     "Address1": "123 Abc St",
-//                     "City": "Boston",
-//                     "RegionCode": "MA",
-//                     "CountryCode": "US",
-//                     "Zip": "02110",
-//                     "Phone": "+15551234567"
-//                 }
-//             },
-//             "time": "2022-11-08T00:00:00",
-//             "value": 29.98,
-//             "value_currency": "USD",
-            
-//             "metric": {
-//                 "data": {
-//                     "type": "metric",
-//                     "attributes": {
-//                         "name": "Placed Order"
-//                     }
-//                 }
-//             },
-//             "profile": {
-//                 "data": {
-//                     "type": "profile",
-//                     "attributes": {
-//                         "email": "sarah.mason@klaviyo-demo.com",
-//                         "phone_number": "+15005550006"
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }';
-
-// print_r($json_request);
-
-
-//"unique_id": "d47aeda5-1751-4483-a81e-6fcc8ad48711", // determinuje czy tworzyć nowy event czy nie
-
-// echo "<br/> ==== <br/> ";
-    
-// echo $json_request;
-// echo "<br/> ### <br/>";
-// echo json_encode($json);
-// echo "<br/>";
-// exit();
 
     } catch(\Exception $e) {
 

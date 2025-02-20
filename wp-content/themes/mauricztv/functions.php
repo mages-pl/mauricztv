@@ -638,6 +638,8 @@ function set_cart_popup_cookie() {
 			'number' => '200',
 			'status' => 'publish',
             // 'post__in' => [49841], // 49841 49863
+            'orderby'    => 'payment_id',
+			'order'      => 'DESC',
 			'date_query' => array(
 				array(  
                     'after'     => '-3 months',

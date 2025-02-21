@@ -2,7 +2,8 @@
 require_once("../../../wp-load.php");
  
 
-klavyioPostEvents();
+$payment    = new EDD_Payment( 49892 );
+klavyioPostEvents($payment);
 
 echo "OK";
 exit();

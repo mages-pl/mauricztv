@@ -43,6 +43,15 @@
      foreach($categories_terms as $term) {
          $cart_item_categories[] = $term->name;
      }
+
+     /**
+      * Thumbnail
+      */
+      if(!empty(get_the_post_thumbnail_url($cartItem['id']))) { 
+         $thumbnail = get_the_post_thumbnail_url($cartItem['id']);
+      } else {
+         $thumbnail =  get_template_directory_uri()."/img/logo.svg";
+      }
  
      // Cart item name 
      $cartItemNames[] =  get_the_title($cartItem['id']);
@@ -59,7 +68,7 @@
      $cartContainer[$key]['RowTotal'] =  edd_get_cart_item_final_price($key);//$cart_product_price;
      $cartContainer[$key]['ProductURL'] =  get_the_permalink($cartItem['id']);
      $cartContainer[$key]['ProductCategories'] = $cart_item_categories;
-    
+     $cartContainer[$key]['ImageURL'] = $thumbnail;
      
  }
 

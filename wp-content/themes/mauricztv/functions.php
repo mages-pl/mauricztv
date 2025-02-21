@@ -779,25 +779,25 @@ function set_cart_popup_cookie() {
             
             //BillingAddress
             $json['data']['attributes']['properties']['BillingAddress'] = [
-                "FirstName" => "first".$order['first'],
-                "LastName" =>  "first".$order['last'],
-                "Address1" => "first".$order['address1'],
-                "City" => "first".$order['city'],
+                "FirstName" => $order['first'],
+                "LastName" =>  $order['last'],
+                "Address1" => $order['address1'],
+                "City" => $order['city'],
                 "RegionCode" => "",
                 "CountryCode" => "",
-                "Zip" =>  "first".$order['zip'],
+                "Zip" =>  $order['zip'],
                 "Phone" => $phone
             ];
 
             //ShippingAddress
             $json['data']['attributes']['properties']['ShippingAddress'] = [
-                "FirstName" =>  "first".$order['first'],
-                "LastName" =>  "first".$order['last'],
-                "Address1" => "first".$order['address1'],
-                "City" => "first".$order['city'],
+                "FirstName" =>  $order['first'],
+                "LastName" =>  $order['last'],
+                "Address1" => $order['address1'],
+                "City" => $order['city'],
                 "RegionCode" => "",
                 "CountryCode" => "",
-                "Zip" => "first".$order['zip'],
+                "Zip" => $order['zip'],
                 "Phone" => $phone
             ];
 
@@ -1062,15 +1062,15 @@ function set_cart_popup_cookie() {
             // print_r($eddcm_purchase_data);
             // echo "<br/><br>===<br/><br>";
             // print_r(edd_get_payment_meta_user_info( $payment->ID ));
-            // print_r($payment_meta);
-            // exit();
+            $customerName = @explode(" ",@$payment_meta['bpmj_edd_invoice_person_name']);
+
             $data[] = array(
                 'id'       => $payment->ID,
                 'id_customer' => $payment->post_author,
                 'seq_id'   => edd_get_payment_number( $payment->ID ),
                 'email'    => $payment_meta['email'],
-                'first'    => $user_info['first_name'],
-                'last'     => $user_info['last_name'],
+                'first'    => @$customerName[0],
+                'last'     => @$customerName[1],
                 'address1' => @$payment_meta['bpmj_edd_invoice_street']. ' '.@$payment_meta['bpmj_edd_invoice_building_number'],
                 'address2' => @$payment_meta['bpmj_edd_invoice_apartment_number'], //isset( $user_info['address']['line2'] )   ? $user_info['address']['line2']   : '',
                 'city'     => @$payment_meta['bpmj_edd_invoice_city'], //isset( $payment->bpmj_edd_invoice_city )    ?  $payment->bpmj_edd_invoice_city     : '',

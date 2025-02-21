@@ -618,8 +618,39 @@ function set_cart_popup_cookie() {
 }
 
 /**
- * Wywyoływanie akcji Add to Cart
+ * Sprawdzenie czy event istnieje
  */
+
+ function klavyioGetEvent($id_event) { 
+    // curl --request GET \
+    //  --url https://a.klaviyo.com/api/events/id \
+    //  --header 'Authorization: Klaviyo-API-Key your-private-api-key' \
+    //  --header 'accept: application/vnd.api+json' \
+    //  --header 'revision: 2025-01-15'
+    try { 
+       
+            $c = curl_init();
+            curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/events/a3998200-efaa-11ef-8001-502d6aca6fca');//.trim(($id_event)));
+
+            // date revision
+            $revision = '2025-01-15';
+
+            $KlaviyoPrivateKey = 'pk_788d358870622e5f3ba8afcea7d675dd02';
+            $head[] ='Authorization: Klaviyo-API-Key '.$KlaviyoPrivateKey.'';
+            $head[] ='accept: application/json';
+            $head[] ='revision: '.$revision;
+            curl_setopt($c, CURLOPT_HTTPHEADER, $head);
+            curl_setopt($c, CURLOPT_POST, false);
+            curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+                
+            //json_request
+            $result =  @json_decode(curl_exec($c), 1);
+
+            print_r($result);
+    } catch(\Exception $e) {
+        return false;
+    }
+ }
 
 //  function klavyioStart
 /**
@@ -628,19 +659,31 @@ function set_cart_popup_cookie() {
  * @return bool $result
  */
 
- function klavyioPostEvents($type = 'Placed Order') {
+ //edd_purchase
+ //edd_checkout_before_gateway
+ //edd_update_payment_details //$data['edd_payment_id']
+ //edd_checkout_before_gateway 
+ add_action( 'edd_payment_receipt_after', 'klavyioPostEvents', 10, 2 );
+// edd_update_payment_status
+ //$type = 'Placed Order', $id_order = 0
+ function klavyioPostEvents( $payment) {
     try  {
-           
+        //    print_r($payment);
+        //    exit();
         /**
          * Pobierz obiekt zamówienia
          */ 
         $args = [
-			'number' => '200',
-			'status' => 'publish',
-            // 'post__in' => [49841], // 49841 49863
-            'orderby'    => 'payment_id',
+			'number' => '1',
+			// 'status' => 'publish',
+            'post__in' => [$payment->ID], // 49841 49841 49863
+            // 'orderby'    => 'payment_id',
+			// 'order'      => 'DESC',
+            // 'user'       => $payment['edd-user-id'],
+			'output'     => 'payments',
+			'orderby'    => 'date',
 			'order'      => 'DESC',
-			'date_query' => array(
+			/*'date_query' => array(
 				array(  
                     'after'     => '-3 months',
 					// 'before'    => '+5 years',
@@ -648,14 +691,15 @@ function set_cart_popup_cookie() {
 				// 	'before'    => $_POST['raport_sprzedazy_option_name']['raport_data_do'],
 				),
 			),
+            */
 			
 		];
-		$getPayments = edd_get_payments($args);
+        $getPayments = edd_get_payments($args);
 
-        // print_r($getPayments);
+        // print_r($getPayments[0]);
         // exit();
         $orders = getOrders($getPayments);
-
+        // echo "A";
         //     print_r($orders);
         // exit();
         $json=[];
@@ -664,7 +708,7 @@ function set_cart_popup_cookie() {
          * Ziteruj zamówienia w tablicy
          */
         foreach($orders as $key => $order)  {
-            
+
             try {
             $json['data']['type'] = "event";
             $json['data']['attributes']['properties']['OrderId'] = $order['id'];
@@ -718,6 +762,7 @@ function set_cart_popup_cookie() {
 
             $json['data']['attributes']['properties']['Brands'] = ["Mauricz"];
 
+            //bpmj_eddcm_phone_no
             if(!empty($order['phone'])) {
                 $phone = $order['phone'];
                 if (strpos($phone, "+48") === 0) {
@@ -734,25 +779,25 @@ function set_cart_popup_cookie() {
             
             //BillingAddress
             $json['data']['attributes']['properties']['BillingAddress'] = [
-                "FirstName" => $order['first'],
-                "LastName" =>  $order['last'],
-                "Address1" => $order['address1'],
-                "City" => $order['city'],
+                "FirstName" => "first".$order['first'],
+                "LastName" =>  "first".$order['last'],
+                "Address1" => "first".$order['address1'],
+                "City" => "first".$order['city'],
                 "RegionCode" => "",
                 "CountryCode" => "",
-                "Zip" =>  $order['zip'],
+                "Zip" =>  "first".$order['zip'],
                 "Phone" => $phone
             ];
 
             //ShippingAddress
             $json['data']['attributes']['properties']['ShippingAddress'] = [
-                "FirstName" =>  $order['first'],
-                "LastName" =>  $order['last'],
-                "Address1" => $order['address1'],
-                "City" => $order['city'],
+                "FirstName" =>  "first".$order['first'],
+                "LastName" =>  "first".$order['last'],
+                "Address1" => "first".$order['address1'],
+                "City" => "first".$order['city'],
                 "RegionCode" => "",
                 "CountryCode" => "",
-                "Zip" => $order['zip'],
+                "Zip" => "first".$order['zip'],
                 "Phone" => $phone
             ];
 
@@ -784,6 +829,98 @@ function set_cart_popup_cookie() {
 
             $json_request = json_encode($json);
 
+//             $json_request = '{
+//     "data": {
+//         "type": "event",
+//         "attributes": {
+//             "properties": {
+//                 "OrderId": "22",
+//                 "Categories": [
+//                     "Fiction",
+//                     "Classics",
+//                     "Children"
+//                 ],
+//                 "ItemNames": [
+//                     "Winnie the Pooh",
+//                     "A Tale of Two Cities"
+//                 ],
+//                 "DiscountCode": "Free Shipping",
+//                 "DiscountValue": 5,
+//                 "Brands": [
+//                     "Kids Books",
+//                     "Harcourt Classics"
+//                 ],
+//                 "Items": [
+//                     {
+//                         "ProductID": "1111",
+//                         "SKU": "WINNIEPOOH",
+//                         "ProductName": "Winnie the Pooh",
+//                         "Quantity": 1,
+//                         "ItemPrice": 9.99,
+//                         "RowTotal": 9.99,
+//                         "ProductURL": "http://www.example.com/path/to/product",
+//                         "ImageURL": "http://www.example.com/path/to/product/image.png",
+//                         "Categories": [
+//                             "Fiction",
+//                             "Children"
+//                         ],
+//                         "Brand": "Kids Books"
+//                     },
+//                     {
+//                         "ProductID": "1112",
+//                         "SKU": "TALEOFTWO",
+//                         "ProductName": "A Tale of Two Cities",
+//                         "Quantity": 1,
+//                         "ItemPrice": 19.99,
+//                         "RowTotal": 19.99,
+//                         "ProductURL": "http://www.example.com/path/to/product2",
+//                         "ImageURL": "http://www.example.com/path/to/product/image2.png",
+//                         "Categories": [
+//                             "Fiction",
+//                             "Classics"
+//                         ],
+//                         "Brand": "Harcourt Classics"
+//                     }
+//                 ],
+//                 "BillingAddress": {
+//                     "FirstName": "John",
+//                     "LastName": "Smith",
+//                     "Address1": "123 Abc St",
+//                     "City": "Boston",
+//                     "RegionCode": "MA",
+//                     "CountryCode": "US",
+//                     "Zip": "02110",
+//                     "Phone": "+15551234567"
+//                 },
+//                 "ShippingAddress": {
+//                     "Address1": "123 Abc St"
+//                 }
+//             },
+//             "time": "2025-02-18T00:00:00",
+//             "value": 29.98,
+//             "value_currency": "USD",
+//             "unique_id": "d47aeda5-1751-4483-a81e-6fcc8ad48711",
+//             "metric": {
+//                 "data": {
+//                     "type": "metric",
+//                     "attributes": {
+//                         "name": "Placed Order"
+//                     }
+//                 }
+//             },
+//             "profile": {
+//                 "data": {
+//                     "type": "profile",
+//                     "attributes": {
+//                         "email": "sarah.mason@klaviyo-demo.com",
+//                         "phone_number": "+15005550006"
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }';
+
             $c = curl_init();
             curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/events/');
 
@@ -803,13 +940,17 @@ function set_cart_popup_cookie() {
             //json_request
             $result =  @json_decode(curl_exec($c),1);
 
-            echo "==";
-            echo $order['id'];
-            print_r($json_request);
-            echo "==";
-            print_r($result);
-
-            echo "POST";
+            // echo $json_request2;
+            // echo "<br/>";
+            // echo "<br/>";
+            // echo $json_request;
+            // echo "<br/>";
+            // echo "<br/>";
+            // print_r($result);
+            // echo "<br/>";
+            // echo $phone;
+            // exit();
+            return true;
         
             } catch(\Exception $e) {
                 continue;
@@ -921,6 +1062,7 @@ function set_cart_popup_cookie() {
             // print_r($eddcm_purchase_data);
             // echo "<br/><br>===<br/><br>";
             // print_r(edd_get_payment_meta_user_info( $payment->ID ));
+            // print_r($payment_meta);
             // exit();
             $data[] = array(
                 'id'       => $payment->ID,
@@ -929,12 +1071,12 @@ function set_cart_popup_cookie() {
                 'email'    => $payment_meta['email'],
                 'first'    => $user_info['first_name'],
                 'last'     => $user_info['last_name'],
-                'address1' => isset( $user_info['address']['line1'] )   ? $user_info['address']['line1']   : '',
-                'address2' => isset( $user_info['address']['line2'] )   ? $user_info['address']['line2']   : '',
-                'city'     => isset( $user_info['address']['city'] )    ? $user_info['address']['city']    : '',
+                'address1' => @$payment_meta['bpmj_edd_invoice_street']. ' '.@$payment_meta['bpmj_edd_invoice_building_number'],
+                'address2' => @$payment_meta['bpmj_edd_invoice_apartment_number'], //isset( $user_info['address']['line2'] )   ? $user_info['address']['line2']   : '',
+                'city'     => @$payment_meta['bpmj_edd_invoice_city'], //isset( $payment->bpmj_edd_invoice_city )    ?  $payment->bpmj_edd_invoice_city     : '',
                 'state'    => isset( $user_info['address']['state'] )   ? $user_info['address']['state']   : '',
-                'country'  => isset( $user_info['address']['country'] ) ? $user_info['address']['country'] : '',
-                'zip'      => isset( $user_info['address']['zip'] )     ? $user_info['address']['zip']     : '',
+                'country'  => @$payment_meta['bpmj_edd_invoice_country'], //isset( $user_info['address']['country'] ) ? $user_info['address']['country'] : '',
+                'zip'      => @$payment_meta['bpmj_edd_invoice_postcode'], //isset( $user_info['address']['zip'] )     ? $user_info['address']['zip']     : '',
                 'phone' => (string)$eddcm_purchase_data['bpmj_eddcm_phone_no'],
                 'products' => $products,
                 'amount'   => html_entity_decode( edd_format_amount( $total ) ), // The non-discounted item price
@@ -943,7 +1085,7 @@ function set_cart_popup_cookie() {
                 'gateway'  => edd_get_gateway_admin_label( get_post_meta( $payment->ID, '_edd_payment_gateway', true ) ),
                 'trans_id' => edd_get_payment_transaction_id( $payment->ID ),
                 'key'      => $payment_meta['key'],
-                'date'     => $payment->post_date,
+                'date'     => @$payment_meta['date'],//$payment->post_date,
                 'user'     => $user ? $user->display_name : __( 'guest', 'easy-digital-downloads' ),
                 'status'   => edd_get_payment_status( $payment, true )
             );

@@ -617,46 +617,98 @@ function set_cart_popup_cookie() {
     }
 }
 
-// add_action( 'edd_insert_payment', 'klavyioSendOrder' , 99 );
+/**
+ * Sprawdzenie czy event istnieje
+ */
 
+ function klavyioGetEvent($id_event) { 
+    // curl --request GET \
+    //  --url https://a.klaviyo.com/api/events/id \
+    //  --header 'Authorization: Klaviyo-API-Key your-private-api-key' \
+    //  --header 'accept: application/vnd.api+json' \
+    //  --header 'revision: 2025-01-15'
+    try { 
+       
+            $c = curl_init();
+            curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/events/a3998200-efaa-11ef-8001-502d6aca6fca');//.trim(($id_event)));
+
+            // date revision
+            $revision = '2025-01-15';
+
+            $KlaviyoPrivateKey = 'pk_788d358870622e5f3ba8afcea7d675dd02';
+            $head[] ='Authorization: Klaviyo-API-Key '.$KlaviyoPrivateKey.'';
+            $head[] ='accept: application/json';
+            $head[] ='revision: '.$revision;
+            curl_setopt($c, CURLOPT_HTTPHEADER, $head);
+            curl_setopt($c, CURLOPT_POST, false);
+            curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+                
+            //json_request
+            $result =  @json_decode(curl_exec($c), 1);
+
+            print_r($result);
+    } catch(\Exception $e) {
+        return false;
+    }
+ }
+
+//  function klavyioStart
 /**
  * Wywołanie akcji przekaznia zadarzenia do Klaviyo z zdarzeniem dodania zamówienia
+ * @param string $type ['Placed Order', ]
  * @return bool $result
  */
 
- function klavyioSendOrder() {
+ //edd_purchase
+ //edd_checkout_before_gateway
+ //edd_update_payment_details //$data['edd_payment_id']
+ //edd_checkout_before_gateway 
+ add_action( 'edd_payment_receipt_after', 'klavyioPostEvents', 10, 2 );
+// edd_update_payment_status
+ //$type = 'Placed Order', $id_order = 0
+ function klavyioPostEvents( $payment) {
     try  {
-           
+        //    print_r($payment);
+        //    exit();
         /**
          * Pobierz obiekt zamówienia
          */ 
         $args = [
-			'number' => '3000',
-			'status' => 'publish',
-            // 'post__in' => [49841], // 49841 49863
-			'date_query' => array(
+			'number' => '1',
+			// 'status' => 'publish',
+            'post__in' => [$payment->ID], // 49841 49841 49863
+            // 'orderby'    => 'payment_id',
+			// 'order'      => 'DESC',
+            // 'user'       => $payment['edd-user-id'],
+			'output'     => 'payments',
+			'orderby'    => 'date',
+			'order'      => 'DESC',
+			/*'date_query' => array(
 				array(  
-                    'after'     => '-12 months',
+                    'after'     => '-3 months',
 					// 'before'    => '+5 years',
 				// 	'after'     => $_POST['raport_sprzedazy_option_name']['raport_data_od'],
 				// 	'before'    => $_POST['raport_sprzedazy_option_name']['raport_data_do'],
 				),
 			),
+            */
 			
 		];
-		$getPayments = edd_get_payments($args);
+        $getPayments = edd_get_payments($args);
 
-        // print_r($getPayments);
+        // print_r($getPayments[0]);
         // exit();
         $orders = getOrders($getPayments);
-
+        // echo "A";
+        //     print_r($orders);
+        // exit();
         $json=[];
 
         /**
          * Ziteruj zamówienia w tablicy
          */
         foreach($orders as $key => $order)  {
-            
+
             try {
             $json['data']['type'] = "event";
             $json['data']['attributes']['properties']['OrderId'] = $order['id'];
@@ -710,6 +762,7 @@ function set_cart_popup_cookie() {
 
             $json['data']['attributes']['properties']['Brands'] = ["Mauricz"];
 
+            //bpmj_eddcm_phone_no
             if(!empty($order['phone'])) {
                 $phone = $order['phone'];
                 if (strpos($phone, "+48") === 0) {
@@ -776,46 +829,12 @@ function set_cart_popup_cookie() {
 
             $json_request = json_encode($json);
 
-            $c = curl_init();
-            curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/events/');
-
-            // date revision
-            $revision = '2025-01-15';
-
-            $KlaviyoPrivateKey = 'pk_788d358870622e5f3ba8afcea7d675dd02';
-            $head[] ='Authorization: Klaviyo-API-Key '.$KlaviyoPrivateKey.'';
-            $head[] ='accept: application/json';
-            $head[] ='content-Type: application/json';
-            $head[] ='revision: '.$revision;
-            curl_setopt($c, CURLOPT_HTTPHEADER, $head);
-            curl_setopt($c, CURLOPT_POST, true);
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($c, CURLOPT_POSTFIELDS, $json_request);
-                
-            //json_request
-            $result =  @json_decode(curl_exec($c),1);
-
-            echo "==";
-            echo $order['id'];
-            // print_r($json_request);
-            echo "==";
-            print_r($result);
-
-            echo "POST";
-        
-            } catch(\Exception $e) {
-                continue;
-            }
-        
-        }
-
-
-// $json_request = '{
+//             $json_request = '{
 //     "data": {
 //         "type": "event",
 //         "attributes": {
 //             "properties": {
-//                 "OrderId": "1",
+//                 "OrderId": "22",
 //                 "Categories": [
 //                     "Fiction",
 //                     "Classics",
@@ -874,20 +893,13 @@ function set_cart_popup_cookie() {
 //                     "Phone": "+15551234567"
 //                 },
 //                 "ShippingAddress": {
-//                    "FirstName": "John",
-//                     "LastName": "Smith",
-//                     "Address1": "123 Abc St",
-//                     "City": "Boston",
-//                     "RegionCode": "MA",
-//                     "CountryCode": "US",
-//                     "Zip": "02110",
-//                     "Phone": "+15551234567"
+//                     "Address1": "123 Abc St"
 //                 }
 //             },
-//             "time": "2022-11-08T00:00:00",
+//             "time": "2025-02-18T00:00:00",
 //             "value": 29.98,
 //             "value_currency": "USD",
-            
+//             "unique_id": "d47aeda5-1751-4483-a81e-6fcc8ad48711",
 //             "metric": {
 //                 "data": {
 //                     "type": "metric",
@@ -909,18 +921,42 @@ function set_cart_popup_cookie() {
 //     }
 // }';
 
-// print_r($json_request);
+            $c = curl_init();
+            curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/events/');
 
+            // date revision
+            $revision = '2025-01-15';
 
-//"unique_id": "d47aeda5-1751-4483-a81e-6fcc8ad48711", // determinuje czy tworzyć nowy event czy nie
+            $KlaviyoPrivateKey = 'pk_788d358870622e5f3ba8afcea7d675dd02';
+            $head[] ='Authorization: Klaviyo-API-Key '.$KlaviyoPrivateKey.'';
+            $head[] ='accept: application/json';
+            $head[] ='content-Type: application/json';
+            $head[] ='revision: '.$revision;
+            curl_setopt($c, CURLOPT_HTTPHEADER, $head);
+            curl_setopt($c, CURLOPT_POST, true);
+            curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($c, CURLOPT_POSTFIELDS, $json_request);
+                
+            //json_request
+            $result =  @json_decode(curl_exec($c),1);
 
-// echo "<br/> ==== <br/> ";
-    
-// echo $json_request;
-// echo "<br/> ### <br/>";
-// echo json_encode($json);
-// echo "<br/>";
-// exit();
+            // echo $json_request2;
+            // echo "<br/>";
+            // echo "<br/>";
+            // echo $json_request;
+            // echo "<br/>";
+            // echo "<br/>";
+            // print_r($result);
+            // echo "<br/>";
+            // echo $phone;
+            // exit();
+            return true;
+        
+            } catch(\Exception $e) {
+                continue;
+            }
+        
+        }
 
     } catch(\Exception $e) {
 
@@ -933,7 +969,7 @@ function set_cart_popup_cookie() {
   * Pobranie eventów klavyio
   * @return array|bool $result
   */
- function klavyioGetOrder() {
+ function klavyioGetEvents() {
     try {
 
         /**
@@ -1026,20 +1062,21 @@ function set_cart_popup_cookie() {
             // print_r($eddcm_purchase_data);
             // echo "<br/><br>===<br/><br>";
             // print_r(edd_get_payment_meta_user_info( $payment->ID ));
-            // exit();
+            $customerName = @explode(" ",@$payment_meta['bpmj_edd_invoice_person_name']);
+
             $data[] = array(
                 'id'       => $payment->ID,
                 'id_customer' => $payment->post_author,
                 'seq_id'   => edd_get_payment_number( $payment->ID ),
                 'email'    => $payment_meta['email'],
-                'first'    => $user_info['first_name'],
-                'last'     => $user_info['last_name'],
-                'address1' => isset( $user_info['address']['line1'] )   ? $user_info['address']['line1']   : '',
-                'address2' => isset( $user_info['address']['line2'] )   ? $user_info['address']['line2']   : '',
-                'city'     => isset( $user_info['address']['city'] )    ? $user_info['address']['city']    : '',
+                'first'    => @$customerName[0],
+                'last'     => @$customerName[1],
+                'address1' => @$payment_meta['bpmj_edd_invoice_street']. ' '.@$payment_meta['bpmj_edd_invoice_building_number'],
+                'address2' => @$payment_meta['bpmj_edd_invoice_apartment_number'], //isset( $user_info['address']['line2'] )   ? $user_info['address']['line2']   : '',
+                'city'     => @$payment_meta['bpmj_edd_invoice_city'], //isset( $payment->bpmj_edd_invoice_city )    ?  $payment->bpmj_edd_invoice_city     : '',
                 'state'    => isset( $user_info['address']['state'] )   ? $user_info['address']['state']   : '',
-                'country'  => isset( $user_info['address']['country'] ) ? $user_info['address']['country'] : '',
-                'zip'      => isset( $user_info['address']['zip'] )     ? $user_info['address']['zip']     : '',
+                'country'  => @$payment_meta['bpmj_edd_invoice_country'], //isset( $user_info['address']['country'] ) ? $user_info['address']['country'] : '',
+                'zip'      => @$payment_meta['bpmj_edd_invoice_postcode'], //isset( $user_info['address']['zip'] )     ? $user_info['address']['zip']     : '',
                 'phone' => (string)$eddcm_purchase_data['bpmj_eddcm_phone_no'],
                 'products' => $products,
                 'amount'   => html_entity_decode( edd_format_amount( $total ) ), // The non-discounted item price
@@ -1048,7 +1085,7 @@ function set_cart_popup_cookie() {
                 'gateway'  => edd_get_gateway_admin_label( get_post_meta( $payment->ID, '_edd_payment_gateway', true ) ),
                 'trans_id' => edd_get_payment_transaction_id( $payment->ID ),
                 'key'      => $payment_meta['key'],
-                'date'     => $payment->post_date,
+                'date'     => @$payment_meta['date'],//$payment->post_date,
                 'user'     => $user ? $user->display_name : __( 'guest', 'easy-digital-downloads' ),
                 'status'   => edd_get_payment_status( $payment, true )
             );
@@ -1058,3 +1095,66 @@ function set_cart_popup_cookie() {
     }
         return (array)$data;
  }
+
+ /**
+  * Zwróć cenę regularną/po promocji dla kursu/pakietu
+  * @param int $product_id
+  * @param bool $html
+  */
+  function getPricesFromCourses($product_id, $html = true) {
+
+    $response = [];
+    if((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
+        if(!is_numeric(get_post_meta($product_id,  'sale_price', true))) {
+            if($html == true) {
+                ?>
+                    <h4 class="product-price"><?php echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); ?> PLN</h4>    
+                <?php
+            } else {
+                $response['price'] = number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); 
+            }
+        } else {
+        ?>
+        <?php 
+        if($html == true) {
+            echo "<h4 class='product-price sale'>";
+            echo number_format(get_post_meta($product_id,  'sale_price', true),2,'.','');
+            echo " PLN</h4>";
+        } else {
+            $response['price'] = number_format(get_post_meta($product_id,  'sale_price', true),2,'.','');
+        }
+    ?>
+    
+    <h4 class="crossed"><?php echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); ?> PLN</h4>
+    
+    <?php 
+     if(!$html) {
+            $response['regular_price'] = number_format(get_post_meta($product_id,  'edd_price', true),2,'.','');
+        }
+    }
+    
+    } else { 
+    if((@get_post_meta($product_id,  'edd_sale_price', true)  > 0) && (get_post_meta($product_id,  'edd_sale_price', true) != @get_post_meta($product_id,  'edd_price', true))) {
+        if($html == true) {
+        ?>
+        
+            <h4 class="product-price sale"><?php echo number_format(get_post_meta($product_id,  'edd_sale_price', true),2,'.',''); ?> PLN</h4>
+            <h4 class="crossed"><?php echo get_post_meta($product_id,  'edd_price', true); ?> PLN</h4>
+        
+        <?php 
+        } else {
+            $response['price'] = number_format(get_post_meta($product_id,  'edd_sale_price', true),2,'.','');
+            $response['regular_price'] = number_format(get_post_meta($product_id,  'edd_price', true),2,'.','');
+        }
+    } else { 
+            if($html == true) {
+                echo "<h4 class='product-price'>";
+                echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.','');
+                echo " PLN</h4>";
+            } else {
+                $response['price'] = number_format(get_post_meta($product_id,  'edd_price', true),2,'.','');
+            }
+    } 	 
+    }
+    return json_encode($response);
+  }

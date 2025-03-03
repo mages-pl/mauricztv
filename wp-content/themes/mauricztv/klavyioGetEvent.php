@@ -2,6 +2,7 @@
 require_once("../../../wp-load.php");
  
 
-klavyioGetOrder();
+klavyioGetEvent((string)$_GET['id_event']);
+
 echo "OK";
 exit();

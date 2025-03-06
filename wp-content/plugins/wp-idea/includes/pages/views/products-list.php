@@ -297,10 +297,11 @@ Szczegóły</a>';
 			<?php
 			// Zwrócenie wszystkich kategorii
 		
-				$categories = get_terms( array(
-					'taxonomy' => 'download_category',
-					'hide_empty' => true
-					) );
+                $categories = get_terms( array(
+                    'taxonomy' => 'download_category',
+                    'hide_empty' => true,
+                    'exclude' => 29
+                ) );
 		
 				
 			foreach ($categories as $key => $category) {

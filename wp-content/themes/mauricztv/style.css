@@ -324,6 +324,7 @@ textarea.form-control{max-height:188px;}
 .contact-boxes .inner h6{font-size:22px;line-height:32px;font-weight:600;margin-top:43px;margin-bottom:22px;}
 .contact-boxes .inner p{font-size:20px;line-height:32px;}
 .contact-boxes .inner p a{color:#000;}
+.contact-boxes .inner p a:hover {color: #1AD779;}
 
 .contact-bottom h3{margin-top:0;}
 

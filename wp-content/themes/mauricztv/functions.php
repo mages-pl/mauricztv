@@ -1158,3 +1158,29 @@ function set_cart_popup_cookie() {
     }
     return json_encode($response);
   }
+
+  function add_gdpr_checkbox_to_tml_register_form() {
+	tml_add_form_field( 'register', 'accept_terms', array(
+		'type' => 'checkbox',
+		'label' => 'Zapoznałem/-łam się z <a href="/regulamin">Regulaminem</a> serwisu i akceptuję jego treść.',
+		'value' => '1',
+		'checked' => tml_get_request_value( 'accept_terms', 'post' ),
+		'priority' => 30,
+	) );
+}
+add_action( 'init', 'add_gdpr_checkbox_to_tml_register_form' );
+
+function validate_gdpr_checkbox_on_registration( $errors ) {
+	if ( ! tml_get_request_value( 'accept_terms', 'post' ) ) {
+		$errors->add( 'accept_terms', '<strong>Błąd</strong>: Musisz zaakceptować Regulamin serwisu' );
+	}
+	return $errors;
+}
+add_filter( 'registration_errors', 'validate_gdpr_checkbox_on_registration' );
+
+function save_gdpr_checkbox_on_registration( $user_id ) {
+	if ( tml_get_request_value( 'accept_terms', 'post' ) ) {
+		update_user_meta( $user_id, 'accepted_terms', 1 );
+	}
+}
+add_action( 'user_register', 'save_gdpr_checkbox_on_registration' );

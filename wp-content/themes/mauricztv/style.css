@@ -691,8 +691,13 @@ footer.entry-meta, footer.entry-footer{display:none;}
 
 .tml-register ul.tml-links{display:none;}
 .tml-lostpassword ul.tml-links{display:none;}
-
-
+.tml-accept_terms-wrap {
+    display: flex;
+    gap: 1rem;
+}
+.tml-accept_terms-wrap .tml-checkbox {
+    width: fit-content;
+}
 
 
 #post-57 fieldset {

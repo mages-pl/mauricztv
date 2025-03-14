@@ -132,7 +132,7 @@ button.more-green:hover{background:#1AD779;color:#323739;}
 
 /*global*/
 h1,h2,h3,h4,h5,h6{margin:0;}
-h1,h2,h3,h4,h5,h6 span {
+h1 span,h2 span,h3 span,h4 span,h5 span,h6 span {
     color: #1AD779;
 }
 .top-all h1{font-size:28px!important;line-height:44px!important;color:#323739!important;font-weight:700!important;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:22px!important;}

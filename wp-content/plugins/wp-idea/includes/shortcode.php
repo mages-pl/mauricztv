@@ -648,7 +648,6 @@ function mjcourses($atts) {
 	$quantityProduct = (int)$atts['quantity'];
 	$categoryLabels = (int)$atts['category-labels'];
 	$tagLabels = (int)$atts['tag-labels'];
-
 	$output = '';
 
 	$outputCategories = '';
@@ -672,7 +671,7 @@ function mjcourses($atts) {
 
 		$categories = get_terms( array(
 			'taxonomy' => 'download_category',
-			'hide_empty' => false
+			'hide_empty' => true
 			) );
 
 		foreach ($categories as $key => $category) {
@@ -721,8 +720,17 @@ function mjcourses($atts) {
 				'post_type'      => 'download',
 				'post_status' => 'publish',
 				'posts_per_page' => $quantityProduct,
-				'meta_key' => 'sales_disabled',
-				'meta_value' => 'off',	
+				'meta_query'     => array(
+                'relation' => 'AND', // Dodajemy relację, aby obsługiwać wiele meta_query
+                    array(
+                        'key'     => 'sales_disabled',
+                        'value'   => 'off',
+                    ),
+                    array(
+                        'key'     => 'hide_from_lists',
+                        'value'   => 'off',
+                    ),
+                ),
 				'tax_query'      => array(
 					array(
 						'taxonomy' => 'download_category',
@@ -736,19 +744,43 @@ function mjcourses($atts) {
 				'post_type'      => 'download',
 				'post_status' => 'publish',
 				'posts_per_page' => $quantityProduct,
-				'meta_key' => 'sales_disabled',
-				'meta_value' => 'off',		
+				'meta_query'     => array(
+                'relation' => 'AND', // Dodajemy relację, aby obsługiwać wiele meta_query
+                    array(
+                        'key'     => 'sales_disabled',
+                        'value'   => 'off',
+                    ),
+                    array(
+                        'key'     => 'hide_from_lists',
+                        'value'   => 'off',
+                    ),
+                ),	
 			);
 		}
 
 
 	$all_product = get_posts( $args );
-
+        // print_r($all_product);
 	 foreach($all_product as $product) { 
+        $course = WPI()->courses->get_course_by_product( $product->ID );
+        // print_r($course);
+        $course_page_id = get_post_meta( $course->ID, 'course_id', true );
+        $restricted_to  = array( array( 'download' => $product->ID ) );
+        $user_id = get_current_user_id();
+        
+        if($user_id !== 0) {
+            $access = bpmj_eddpc_user_can_access( $user_id, $restricted_to, $course_page_id );
+        } 
+        if ( 'valid' === $access[ 'status' ] || 'waiting' === $access[ 'status' ] ) {
+        $show_open_padlock = true;
+        } else   { 
+        $show_open_padlock = false;
+        }
+        // print_r($product);
 		$output .= "<div class='col-md-6 col-lg-3'>";
 		$output .= "<div class='product'>";
 		 //Miniatura
-		 $output .= "<div class='product-thumbnail'>";
+        $output .= "<div class='product-thumbnail'>";
 
 		// Sprawdz czy jest promocja lub bestseller
 		$output .= getProductLabel($product->ID);
@@ -833,10 +865,30 @@ function mjcourses($atts) {
 		// $output .= ' PLN';
 	#endif;
 	$output .= '</small>';
- 
+    if($show_open_padlock != '1') {
+        $output .= '<a onclick="eventKlaviyoAddedToCart(this)" href="' . esc_attr( edd_get_checkout_uri( array(
+                'add-to-cart' => (int)$product->ID,
+                ) ) ) . '" class="more-green">Kup teraz</a>';
+    }
+    if($show_open_padlock) { 
+        $course_url = get_permalink($course_page_id);
+        $home_url = home_url('/');
+
+        if($course_url && $course_url !== $home_url) {
+            // It's a subpage URL
+            $output .= '<a href="'. $course_url .'" class="box_glowna_add_to_cart_link more-green" style=" background: #333;color: #fff;"><i
+                class="fa fa-arrow-right"></i>' . __('GO TO COURSE', BPMJ_EDDCM_DOMAIN) . '</a>';
+        } else {
+            // Either $course_url is empty or it's the home page URL, use the fallback
+            $fallback_url = get_permalink(3778);
+            $output .= '<a href="'. $fallback_url .'" class="box_glowna_add_to_cart_link more-green" style=" background: #333;color: #fff;"><i
+                class="fa fa-arrow-right"></i>' . __('GO TO COURSE', BPMJ_EDDCM_DOMAIN) . '</a>';
+        }
+    }
+    // echo 'text: '.  get_permalink($course_page_id);
 	// Dodaj do koszyka
-	$output .= '<a href="'.get_permalink($product->ID).'" class="more-green">
-			Szczegóły</a>';
+	// $output .= '<a href="'.get_permalink($product->ID).'" class="more-green">
+	// 		Szczegóły</a>';
 	$output .= "</div>";
 	$output .= "</div>";
 	}
@@ -878,6 +930,7 @@ function mjcourses($atts) {
 		   success: function(data) {
 			   $(".ajax-product-list").css("opacity", "1");
 			   $(".ajax-product-list").html(data);
+               console.log(data);
 		   },
 		   error: function(xhr) {
 			   $(".ajax-product-list").css("opacity", "1");

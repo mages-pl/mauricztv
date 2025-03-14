@@ -33,7 +33,7 @@ global $post;
     $product_access = $p->productAccess;
 
    // echo "IMG".get_post_meta($product_id,  'edd_featured_image', true);
-//     print_r($post);
+    // print_r($post);
 //     print_r($sale_price);
 // echo "#";
 //     print_r($sale_price_from_date);
@@ -124,85 +124,77 @@ $show_open_padlock = false;
                     
                     <h6 class="price">Cena:</h6>
 
-                    <?php
-                    if((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
-                        ?>
-            <!-- <h4 class="crossed"><?php echo $product_price; ?> PLN</h4> -->
-        <?php
-    }
-    ?>
-
-                    <!-- <?php if ( get_field( 'cena_przekreslona' ) ): ?>
-                        <h4 class="crossed"><?php the_field('cena_przekreslona'); ?> PLN</h4>
-                    <?php endif; ?> -->
-                    
-
-                    <?php
-##
-
-if((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
-    if(!is_numeric(get_post_meta($product_id,  'sale_price', true))) {
+<?php
+// Check if we're in an active sale period based on dates
+if ((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
+    // Check if sale price is numeric
+    if (!is_numeric(get_post_meta($product_id, 'sale_price', true))) {
+        // If sale price is not numeric, show regular price
         ?>
-        <h4 class="product-price"><?php echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); ?> PLN</h4>
-
+        <h4 class="product-price"><?php echo number_format(get_post_meta($product_id, 'edd_price', true), 2, '.', ''); ?> PLN</h4>
         <?php
     } else {
-    ?>
-    <?php 
-echo "<h4 class='product-price sale'>";
-echo number_format(get_post_meta($product_id,  'sale_price', true),2,'.','');
-echo " PLN</h4>";
-?>
-
-<h4 class="crossed"><?php echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); ?> PLN</h4>
-
-
-
-<?php 
+        // Show sale price with regular price crossed out
+        ?>
+        <h4 class="product-price sale">
+            <?php echo number_format(get_post_meta($product_id, 'sale_price', true), 2, '.', ''); ?> PLN
+        </h4>
+        <h4 class="crossed">
+            <?php echo number_format(get_post_meta($product_id, 'edd_price', true), 2, '.', ''); ?> PLN
+        </h4>
+        <?php 
+    }
+} else {
+    // Not in sale period - check if there's a general sale price set
+    $edd_sale_price = get_post_meta($product_id, 'edd_sale_price', true);
+    $edd_price = get_post_meta($product_id, 'edd_price', true);
+    
+    if (($edd_sale_price > 0) && ($edd_sale_price != $edd_price)) {
+        // Show sale price with regular price crossed out
+        ?>
+        <h4 class="product-price sale">
+            <?php echo number_format($edd_sale_price, 2, '.', ''); ?> PLN
+        </h4>
+        <h4 class="crossed">
+            <?php echo $edd_price; ?> PLN
+        </h4>
+        <?php 
+    } else {
+        // Show regular price
+        ?>
+        <h4 class="product-price">
+            <?php echo number_format($edd_price, 2, '.', ''); ?> PLN
+        </h4>
+        <?php
+    }
 }
-
-} else { 
-if((@get_post_meta($product_id,  'edd_sale_price', true)  > 0) && (get_post_meta($product_id,  'edd_sale_price', true) != @get_post_meta($product_id,  'edd_price', true))) {
-?>
-
-<h4 class="product-price sale"><?php echo number_format(get_post_meta($product_id,  'edd_sale_price', true),2,'.',''); ?> PLN</h4>
-<h4 class="crossed"><?php echo get_post_meta($product_id,  'edd_price', true); ?> PLN</h4>
-
-<?php 
-} else { 
-echo "<h4 class='product-price'>";
-echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.','');
-echo " PLN</h4>";
-} 	 
-}
-###
 ?>
 <!-- 
 <?php
-                    if((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
-                        echo "##";
-                        if(!is_numeric(get_post_meta($product_id,  'sale_price', true))) {
-                            ?>
-                            <h4 class="product-price"><?php echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); ?> PLN</h4>
-        
-                            <?php } else {
-                        ?>
-        <h4><?php echo number_format($sale_price,2,'.',''); ?> PLN</h4>
-    <?php
-        }
-    } else {?>
-    <?php 
-      if(((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) && (!is_numeric(get_post_meta($product_id,  'sale_price', true)))) {
-        ?>
-        <h4 class="crossed"><?php echo $product_price; ?> PLN</h4>
-  <h4><?php echo number_format($sale_price,2,'.',''); ?> PLN</h4>
-        <?php 
-     } else { ?>
-        <h4><?php echo $product_price; ?> PLN</h4>
-    <?php
-     }
-    }
-    ?> -->
+if((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
+echo "##";
+if(!is_numeric(get_post_meta($product_id,  'sale_price', true))) {
+?>
+<h4 class="product-price"><?php echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); ?> PLN</h4>
+
+<?php } else {
+?>
+<h4><?php echo number_format($sale_price,2,'.',''); ?> PLN</h4>
+<?php
+}
+} else {?>
+<?php 
+if(((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) && (!is_numeric(get_post_meta($product_id,  'sale_price', true)))) {
+?>
+<h4 class="crossed"><?php echo $product_price; ?> PLN</h4>
+<h4><?php echo number_format($sale_price,2,'.',''); ?> PLN</h4>
+<?php 
+} else { ?>
+<h4><?php echo $product_price; ?> PLN</h4>
+<?php
+}
+}
+?> -->
                     <!-- <h4><?php echo $product_price; ?> PLN</h4> -->
                     
                     
@@ -214,29 +206,42 @@ echo " PLN</h4>";
                     
                     
                     <div class="links">
-        <!--  BEGIN: Dodaj do koszyka -->
-        <?php 
-            if($show_open_padlock != '1') { 
-        ?>
-        <a onclick="eventKlaviyoAddedToCart(this)" href="<?php echo esc_attr( edd_get_checkout_uri( array(
-               'add-to-cart' => (int)$product_id,
-           ) ) ); ?>" class="more">Kup teraz</a>
-       <?php 
+<!--  BEGIN: Dodaj do koszyka -->
+    <?php 
+        if($show_open_padlock != '1') { 
+            ?>
+                <a onclick="eventKlaviyoAddedToCart(this)" href="<?php echo esc_attr( edd_get_checkout_uri( array(
+                'add-to-cart' => (int)$product_id,
+                ) ) ); ?>" class="more">Kup teraz</a>
+            <?php 
         }
-       ?>
-        <!--  END: Dodaj do koszyka -->      
-        <!-- BEGIN: PRZEJDŹ DO PANELU  -->
-<?php 
-if($show_open_padlock) { 
-?>
-<a href="<?php echo get_permalink($course_page_id); ?>" class="box_glowna_add_to_cart_link more" style=" background: #333;color: #fff;"><i
-    class="fa fa-arrow-right"></i><?php _e( 'GO TO COURSE', BPMJ_EDDCM_DOMAIN ) ?>
-</a>
-<?php 
-}
-?>
-<?php 
-?>
+    ?>
+<!--  END: Dodaj do koszyka -->      
+<!-- BEGIN: PRZEJDŹ DO PANELU  -->
+    <?php 
+        if($show_open_padlock) { 
+            $course_url = get_permalink($course_page_id);
+            // echo get_permalink( $product->ID );
+            // echo $course_url;
+            // echo $product->ID;
+            $home_url = home_url('/');
+            $productlist_url = get_permalink( 56 );
+
+                if($course_url && $course_url !== $home_url && $course_url !== get_permalink( $product->ID )) : ?>
+                    <a href="<?= $course_url ?>" class="box_glowna_add_to_cart_link more-green" style=" background: #333;color: #fff;"><i
+                        class="fa fa-arrow-right"></i><?php _e('GO TO COURSE', BPMJ_EDDCM_DOMAIN) ?></a>
+                <?php else: 
+                    // Either $course_url is empty or it's the home page URL, use the fallback
+                    $fallback_url = get_permalink(3778); ?>
+                
+                    <a href="<?php echo $fallback_url ?>" class="box_glowna_add_to_cart_link more-green" style=" background: #333;color: #fff;"><i
+                    class="fa fa-arrow-right"></i><?php _e( 'GO TO COURSE', BPMJ_EDDCM_DOMAIN ) ?>
+                    </a>
+                <?php endif; ?>
+                
+            <?php 
+        }
+    ?>
 <!-- END: PRZEJDŹ DO PANELU -->
 
                         <a href="#kursy-content" class="more-empty">Więcej o kursie</a>
@@ -650,8 +655,6 @@ $jsonResponseAddedToCart = json_encode($jsonOutputAddedToCart);
     </div>
 	
     <?php 
-                   $getBundledProducts = edd_get_bundled_products($product_id);
-
                    if(count($getBundledProducts) == 0) { 
                             ?>
     <div class="kursy-agenda row-full">
@@ -803,11 +806,11 @@ var dx = 0;
                 <?php 
 					if($show_open_padlock != '1') { 
 					?>
-											  <!--  BEGIN: Dodaj do koszyka -->
+                    <!--  BEGIN: Dodaj do koszyka -->
 					<a onclick="eventKlaviyoAddedToCart(this)" href="<?php echo esc_attr( edd_get_checkout_uri( array(
-								   'add-to-cart' => (int)$product_id,
-							   ) ) ); ?>" class="more">Kup teraz</a>
-							  <!--  END: Dodaj do koszyka -->  
+                        'add-to-cart' => (int)$product_id,
+                    ) ) ); ?>" class="more">Kup teraz</a>
+                    <!--  END: Dodaj do koszyka -->  
 					<?php 
 					}
 					else {
@@ -847,15 +850,15 @@ var dx = 0;
 
 
     <div class="kursy-cert row-full">
-    
         <div class="container">
             <div class="row">
-    
                 <div class="col-md-6">
-                
-                    <h5>Po ukończeniu kursu otrzymasz</h5>
-                    <h6>certyfikat</h6>
-                
+                    <?php if(count($getBundledProducts) == 0) : ?>
+                        <h5>Po ukończeniu kursu otrzymasz</h5>
+                        <h6>certyfikat</h6>
+                    <?php else : ?>
+                        <h5>Do każdego szkolenia z tego pakietu otrzymasz certyfikat po jego ukończeniu</h5>
+                    <?php endif; ?>
                 </div>
                 <div class="col-md-6">
                 
@@ -907,29 +910,50 @@ var dx = 0;
             <h6><?php the_title(); ?></h6>
             
             <?php
-                    if((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
-                        if(!is_numeric(get_post_meta($product_id,  'sale_price', true))) {
-                            ?>
-                            <h4 class="product-price"><?php echo number_format(get_post_meta($product_id,  'edd_price', true),2,'.',''); ?> PLN</h4>
-        
-                            <?php } else {
-                        ?>
-        <h4><?php echo number_format($sale_price,2,'.',''); ?> PLN</h4>
-    <?php
-        }
-    } else {?>
-    <?php 
-      if(((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) && (!is_numeric(get_post_meta($product_id,  'sale_price', true)))) {
+// Check if we're in an active sale period based on dates
+if ((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
+    // Check if sale price is numeric
+    if (!is_numeric(get_post_meta($product_id, 'sale_price', true))) {
+        // If sale price is not numeric, show regular price
         ?>
-        <h4 class="crossed"><?php echo $product_price; ?> PLN</h4>
-  <h4><?php echo number_format($sale_price,2,'.',''); ?> PLN</h4>
+        <h4 class="product-price"><?php echo number_format(get_post_meta($product_id, 'edd_price', true), 2, '.', ''); ?> PLN</h4>
+        <?php
+    } else {
+        // Show sale price with regular price crossed out
+        ?>
+        <h4 class="product-price sale">
+            <?php echo number_format(get_post_meta($product_id, 'sale_price', true), 2, '.', ''); ?> PLN
+        </h4>
+        <h4 class="crossed">
+            <?php echo number_format(get_post_meta($product_id, 'edd_price', true), 2, '.', ''); ?> PLN
+        </h4>
         <?php 
-     } else { ?>
-        <h4><?php echo $product_price; ?> PLN</h4>
-    <?php
-     }
     }
-    ?>
+} else {
+    // Not in sale period - check if there's a general sale price set
+    $edd_sale_price = get_post_meta($product_id, 'edd_sale_price', true);
+    $edd_price = get_post_meta($product_id, 'edd_price', true);
+    
+    if (($edd_sale_price > 0) && ($edd_sale_price != $edd_price)) {
+        // Show sale price with regular price crossed out
+        ?>
+        <h4 class="product-price sale">
+            <?php echo number_format($edd_sale_price, 2, '.', ''); ?> PLN
+        </h4>
+        <h4 class="crossed">
+            <?php echo $edd_price; ?> PLN
+        </h4>
+        <?php 
+    } else {
+        // Show regular price
+        ?>
+        <h4 class="product-price">
+            <?php echo number_format($edd_price, 2, '.', ''); ?> PLN
+        </h4>
+        <?php
+    }
+}
+?>
                     
             
                 <small class="omniprice">

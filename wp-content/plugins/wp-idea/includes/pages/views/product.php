@@ -583,7 +583,9 @@ $jsonResponseAddedToCart = json_encode($jsonOutputAddedToCart);
     if(count($getBundledProducts) > 0) { 
         echo "<table class='table responsive'>";
         echo "<tr><th>Ten pakiet zawiera kursy</th></tr>";
+        // print_r($getBundledProducts);
         foreach($getBundledProducts as $bundleProduct) { 
+            // print_r($bundleProduct);
             echo "<tr>";
             echo "<td>";
             echo "<a href='".get_the_permalink($bundleProduct)."'>";

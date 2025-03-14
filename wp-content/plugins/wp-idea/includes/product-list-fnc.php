@@ -72,13 +72,15 @@ function getMauriczCategoryTagID($category = null, $tag = null){
  */
 function getMauriczSectionName($category = null, $tag = null) {
 	
-	if(is_tax('download_category')) { 
-		if(is_array($category)) { 
-			foreach ($category as $c) {
-				return $c->name;
-			}
-		}
-	}
+    if(is_tax('download_category')) { 
+        if($category instanceof WP_Term) {
+            return $category->name;
+        } elseif(is_array($category)) { 
+            foreach ($category as $c) {
+                return $c->name;
+            }
+        }
+    }
 	if(is_tax('download_tag')) {
 		if(is_array($tag)) { 
 			foreach ($tag as $t) {

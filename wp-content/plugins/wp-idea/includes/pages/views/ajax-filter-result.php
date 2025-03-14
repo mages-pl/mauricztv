@@ -18,7 +18,6 @@ if(!empty($_POST['cols'])) {
 } else { 
     $cols = 4;
 }
-
 if(!empty($_POST['czas-range-from'])) {
     $filterArgs[] =  array(
         'key' => 'czas_kursu',
@@ -33,59 +32,88 @@ if(!empty($_POST['czas-range-from'])) {
         'type'      => 'NUMERIC',
         'compare' => '<='
     );
-
-   
 }
 
+// Base meta query that must always be applied
+$baseMetaQuery = array(
+    'relation' => 'AND',
+    array(
+        'key'     => 'sales_disabled',
+        'value'   => 'off',
+    ),
+    array(
+        'key'     => 'hide_from_lists',
+        'value'   => 'off',
+    )
+);
+
+// Combine with any existing filter args
+$metaQuery = $baseMetaQuery;
+if (!empty($filterArgs)) {
+    $metaQuery = array_merge(array('relation' => 'AND'), $baseMetaQuery, $filterArgs);
+}
+
+
+
 if($getCategoryTag != null) { 
-	if($_POST['filter_type'] == 'category') {
-		$argsAll = array(
-			'post_type'  => 'download',
-			'post_status' => 'publish',
-			'posts_per_page' => -1,
-			'tax_query'  => array(
-				array(
-					'taxonomy' => 'download_category',
-					'field'    => 'term_id',
-					'terms'    => $getCategoryTag,
-				)
-			),
-            'meta_key' => 'sales_disabled',
-		    'meta_value' => 'off',
-            'meta_query' => $filterArgs
-		);
-	} else { 
-		$argsAll = array(
-			'post_type'      => 'download',
-			'post_status' => 'publish',
-			'posts_per_page' => -1,
-			'tax_query'      => array(
-				array(
-					'taxonomy' => 'download_tag',
-					'field'    => 'term_id',
-					'terms'    => $getCategoryTag,
-				)
-			),
-            'meta_key' => 'sales_disabled',
-            'meta_value' => 'off',
-            'meta_query' => $filterArgs
-		);
-	}
-	
+    if($_POST['filter_type'] == 'category') {
+        $argsAll = array(
+            'post_type'  => 'download',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'tax_query'  => array(
+                array(
+                    'taxonomy' => 'download_category',
+                    'field'    => 'term_id',
+                    'terms'    => $getCategoryTag,
+                )
+            ),
+            'meta_query' => $metaQuery
+        );
+    } else { 
+        $argsAll = array(
+            'post_type'      => 'download',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'tax_query'      => array(
+                array(
+                    'taxonomy' => 'download_tag',
+                    'field'    => 'term_id',
+                    'terms'    => $getCategoryTag,
+                )
+            ),
+            'meta_query' => $metaQuery
+        );
+    }
+    
 } else { 
-	$argsAll = array(
-		'post_type'      => 'download',
-		'post_status' => 'publish',
-		'posts_per_page' => -1,
-		'meta_key' => 'sales_disabled',
-		'meta_value' => 'off',
-        'meta_query' => $filterArgs
-	);
+    $argsAll = array(
+        'post_type'      => 'download',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'meta_query' => $metaQuery
+    );
 }
 
 	$getProducts = get_posts( $argsAll );
 
     foreach($getProducts as $product) { 
+        // print_r($product);
+        $course = WPI()->courses->get_course_by_product( $product->ID );
+        // print_r($course);
+        $course_page_id = get_post_meta( $course->ID, 'course_id', true );
+        $restricted_to  = array( array( 'download' => $product_id ) );
+        $user_id = get_current_user_id();
+        // echo $course_page_id;
+        if($user_id !== 0) {
+            $access = bpmj_eddpc_user_can_access( $user_id, $restricted_to, $course_page_id );
+        }
+        if ( 'valid' === $access[ 'status' ] || 'waiting' === $access[ 'status' ] ) {
+        $show_open_padlock = true;
+        } else   { 
+        $show_open_padlock = false;
+        }
+
         echo "<div class='col-md-".$cols."'>";
 
 		
@@ -182,11 +210,47 @@ if($getCategoryTag != null) {
         <?= bpmj_render_lowest_price_information($product->ID); ?>
         <!-- PLN     -->
     </small>
-    
+ <!-- BEGIN: Dodaj do koszyka -->
+    <?php 
+        if($show_open_padlock != '1') { 
+            ?>
+                <a onclick="eventKlaviyoAddedToCart(this)" href="<?php echo esc_attr( edd_get_checkout_uri( array(
+                'add-to-cart' => (int)$product->ID,
+                ) ) ); ?>" class="more-green">Kup teraz</a>
+            <?php 
+        }
+    ?>
+<!--  END: Dodaj do koszyka -->      
+<!-- BEGIN: PRZEJDŹ DO PANELU  -->
+    <?php 
+        if($show_open_padlock) { 
+            $course_url = get_permalink($course_page_id);
+            // echo get_permalink( $product->ID );
+            // echo $course_url;
+            // echo $product->ID;
+            $home_url = home_url('/');
+            $productlist_url = get_permalink( 56 );
+
+                if($course_url && $course_url !== $home_url && $course_url !== get_permalink( $product->ID )) : ?>
+                    <a href="<?= $course_url ?>" class="box_glowna_add_to_cart_link more-green" style=" background: #333;color: #fff;"><i
+                        class="fa fa-arrow-right"></i><?php _e('GO TO COURSE', BPMJ_EDDCM_DOMAIN) ?></a>
+                <?php else: 
+                    // Either $course_url is empty or it's the home page URL, use the fallback
+                    $fallback_url = get_permalink(3778); ?>
+                
+                    <a href="<?php echo $fallback_url ?>" class="box_glowna_add_to_cart_link more-green" style=" background: #333;color: #fff;"><i
+                    class="fa fa-arrow-right"></i><?php _e( 'GO TO COURSE', BPMJ_EDDCM_DOMAIN ) ?>
+                    </a>
+                <?php endif; ?>
+                
+            <?php 
+        }
+    ?>
+<!-- END: PRZEJDŹ DO PANELU -->
     <?php
     // Dodaj do koszyka
-    echo '<a href="'.get_permalink($product->ID).'" class="more-green">
-    Szczegóły</a>';
+    // echo '<a href="'.get_permalink($product->ID).'" class="more-green">
+    // Szczegóły</a>';
     
         echo "</div>";
         echo "</div>";

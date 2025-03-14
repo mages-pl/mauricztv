@@ -13,6 +13,13 @@ use bpmj\wpidea\admin\categories\Categories;
 //require __DIR__.'/../../product-list-fnc.php';
 //require __DIR__.'/../../product-list-fnc.php';
 global $post;
+// print_r($post);
+
+// Pobranie kategorii aktualnie wyswietlanej na sklepie
+$mscategory = get_queried_object();
+// $cat_id = $catemscategorygory->term_id;
+// echo print_r($category);
+// echo $cat_id;
 
 $productTime = [];
 $filterType='';
@@ -20,7 +27,7 @@ $sale_price = "";
 $product_price = "";
 
 $getCategoryTag = getMauriczCategoryTagID(get_the_terms(get_the_ID(), 'download_category'), get_the_terms(get_the_ID(), 'download_tag'));
-//echo "cat ID ".$getCategory;
+// echo "cat ID " . $getCategoryTag;
 if ($getCategoryTag != null) { 
     if (is_tax('download_category')) {
         $filterType = 'category';
@@ -159,6 +166,18 @@ $args = array(
 $bestsellers_product = get_posts( $args );
 
 foreach($bestsellers_product as $product) { 
+    $product_id = $product->ID;
+    $course = WPI()->courses->get_course_by_product( $product_id );
+    $course_page_id = get_post_meta( $course->ID, 'course_id', true );
+    $restricted_to  = array( array( 'download' => $product_id ) );
+    $user_id = get_current_user_id();
+    $access         = bpmj_eddpc_user_can_access( $user_id, $restricted_to, $course_page_id );
+    if ( 'valid' === $access[ 'status' ] || 'waiting' === $access[ 'status' ] ) {
+    $show_open_padlock = true;
+    } else   { 
+    $show_open_padlock = false;
+    }
+
 	echo "<div class='col-sm-6 col-lg-4'>";
 	echo "<div class='product'>";
 	
@@ -257,11 +276,45 @@ echo " PLN</h4>";
 	<?= bpmj_render_lowest_price_information($product->ID); ?>
 	<!-- PLN -->
 </small>
+<!--  BEGIN: Dodaj do koszyka -->
+<?php 
+        if($show_open_padlock != '1') { 
+            ?>
+                <a onclick="eventKlaviyoAddedToCart(this)" href="<?php echo esc_attr( edd_get_checkout_uri( array(
+                'add-to-cart' => (int)$product->ID,
+                ) ) ); ?>" class="more-green">Kup teraz</a>
+            <?php 
+        }
+    ?>
+<!--  END: Dodaj do koszyka -->      
+<!-- BEGIN: PRZEJDŹ DO PANELU  -->
+    <?php 
+        if($show_open_padlock) { 
+            $course_url = get_permalink($course_page_id);
+            // echo get_permalink( $product->ID );
+            // echo $product->ID;
+            $home_url = home_url('/');
 
+                if($course_url && $course_url !== $home_url && $course_url !== get_permalink( $product->ID )) : ?>
+                    <a href="<?= $course_url ?>" class="box_glowna_add_to_cart_link more-green" style=" background: #333;color: #fff;"><i
+                        class="fa fa-arrow-right"></i><?php _e('GO TO COURSE', BPMJ_EDDCM_DOMAIN) ?></a>
+                <?php else: 
+                    // Either $course_url is empty or it's the home page URL, use the fallback
+                    $fallback_url = get_permalink(3778); ?>
+                
+                    <a href="<?php echo $fallback_url ?>" class="box_glowna_add_to_cart_link more-green" style=" background: #333;color: #fff;"><i
+                    class="fa fa-arrow-right"></i><?php _e( 'GO TO COURSE', BPMJ_EDDCM_DOMAIN ) ?>
+                    </a>
+                <?php endif; ?>
+                
+            <?php 
+        }
+    ?>
+<!-- END: PRZEJDŹ DO PANELU -->
 <?php
 // Dodaj do koszyka
-echo '<a href="'.get_permalink($product->ID).'" class="more-green">
-Szczegóły</a>';
+// echo '<a href="'.get_permalink($product->ID).'" class="more-green">
+// Szczegóły</a>';
 
 	echo "</div>";
 	echo "</div>";
@@ -499,8 +552,13 @@ range:true,
 <div class="col-sm-9 products-list">
 <!-- BEGIN: Lista kursów -->
 
-
-<h1 class="title-section"><?php echo getMauriczSectionName(get_the_terms(get_the_ID(), 'download_category'), get_the_terms(get_the_ID(), 'download_tag')); ?></h1>
+<?php
+$term = get_the_terms(get_the_ID(), 'download_category');
+// print_r($term);
+// echo "<br><br><br>";
+// print_r($category);
+?>
+<h1 class="title-section"><?php echo getMauriczSectionName($mscategory, get_the_terms(get_the_ID(), 'download_tag')); ?></h1>
 <div class="row ajax-product-list">
 <?php
 // Zwrócenie wszystkich kursów
@@ -509,7 +567,18 @@ range:true,
 
 $all_product = get_posts( $argsAll );
 
-	 foreach($all_product as $product) {		 
+	 foreach($all_product as $product) {	
+        $product_id = $product->ID;
+        $course = WPI()->courses->get_course_by_product( $product->ID );
+        $course_page_id = get_post_meta( $course->ID, 'course_id', true );
+        $restricted_to  = array( array( 'download' => $product->ID ) );
+        $user_id = get_current_user_id();
+        $access         = bpmj_eddpc_user_can_access( $user_id, $restricted_to, $course_page_id );
+        if ( 'valid' === $access[ 'status' ] || 'waiting' === $access[ 'status' ] ) {
+        $show_open_padlock = true;
+        } else   { 
+        $show_open_padlock = false;
+        }	 
 		 echo "<div class='col-sm-6 col-lg-4'>";
 		 echo '<div class="product product-id-' . $product->ID . '">';
 		 //Miniatura
@@ -617,6 +686,43 @@ $all_product = get_posts( $argsAll );
 		<?= bpmj_render_lowest_price_information($product->ID); ?>
 		<!-- PLN -->
 	</small>
+    <!--  BEGIN: Dodaj do koszyka -->
+<?php 
+        if($show_open_padlock != '1') { 
+            ?>
+                <a onclick="eventKlaviyoAddedToCart(this)" href="<?php echo esc_attr( edd_get_checkout_uri( array(
+                'add-to-cart' => (int)$product->ID,
+                ) ) ); ?>" class="more-green">Kup teraz</a>
+            <?php 
+        }
+    ?>
+<!--  END: Dodaj do koszyka -->      
+<!-- BEGIN: PRZEJDŹ DO PANELU  -->
+    <?php 
+        if($show_open_padlock) { 
+            $course_url = get_permalink($course_page_id);
+            // echo get_permalink( $product->ID );
+            // echo $course_url;
+            // echo $product->ID;
+            $home_url = home_url('/');
+            $productlist_url = get_permalink( 56 );
+
+                if($course_url && $course_url !== $home_url && $course_url !== $productlist_url) : ?>
+                    <a href="<?= $course_url ?>" class="box_glowna_add_to_cart_link more-green" style=" background: #333;color: #fff;"><i
+                        class="fa fa-arrow-right"></i><?php _e('GO TO COURSE', BPMJ_EDDCM_DOMAIN) ?></a>
+                <?php else: 
+                    // Either $course_url is empty or it's the home page URL, use the fallback
+                    $fallback_url = get_permalink(3778); ?>
+                
+                    <a href="<?php echo $fallback_url ?>" class="box_glowna_add_to_cart_link more-green" style=" background: #333;color: #fff;"><i
+                    class="fa fa-arrow-right"></i><?php _e( 'GO TO COURSE', BPMJ_EDDCM_DOMAIN ) ?>
+                    </a>
+                <?php endif; ?>
+                
+            <?php 
+        }
+    ?>
+<!-- END: PRZEJDŹ DO PANELU -->
  <?php
 	
 	/*
@@ -652,8 +758,8 @@ $all_product = get_posts( $argsAll );
 
 		  
 	// Dodaj do koszyka
-			echo '<a href="'.get_permalink($product->ID).'" class="more-green">
-			Szczegóły</a>';
+			// echo '<a href="'.get_permalink($product->ID).'" class="more-green">
+			// Szczegóły</a>';
 			echo "</div>";
 			echo "</div>";
 			

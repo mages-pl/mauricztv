@@ -132,6 +132,9 @@ button.more-green:hover{background:#1AD779;color:#323739;}
 
 /*global*/
 h1,h2,h3,h4,h5,h6{margin:0;}
+h1,h2,h3,h4,h5,h6 span {
+    color: #1AD779;
+}
 .top-all h1{font-size:28px!important;line-height:44px!important;color:#323739!important;font-weight:700!important;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:22px!important;}
 .top-all h2{margin:0!important;/*font-size:64px;line-height:78px;*/font-size:3.333vw!important;line-height:4.063vw!important;color:#323739;font-weight:800!important;max-width:660px;}
 .top-all h2 em{color:#1AD779;font-style:normal;}

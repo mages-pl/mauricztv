@@ -552,7 +552,8 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 .top-kursy .links{margin-top:10px;}
 .top-kursy a.more-empty{position:relative;top:1px;margin-left:20px;}
 
-.top-kursy .movie{/*border:2px solid #1AD779;padding:5px;*/display:grid;}
+.top-kursy .movie{/*border:2px solid #1AD779;padding:5px;*/display:grid;aspect-ratio: 16 / 9;}
+.top-kursy .movie img{width:100%;height:auto; object-fit: cover;}
 
 .top-kursy .top-kursy-links{text-align:center;margin-top:50px;}
 .top-kursy .top-kursy-links a{display:block;}

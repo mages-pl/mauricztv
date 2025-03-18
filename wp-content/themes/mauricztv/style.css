@@ -131,8 +131,8 @@ button.more-green{height:84px;padding:32px 84px 0;color:#fff;border:0;border-rad
 button.more-green:hover{background:#1AD779;color:#323739;}
 
 /*global*/
-h1,h2,h3,h4,h5,h6{margin:0;}
-h1 span,h2 span,h3 span,h4 span,h5 span,h6 span {
+h1,h2,h2,h4,h5,h6{margin:0;}
+h1 span,h2 span,h2 span,h4 span,h5 span,h6 span {
     color: #1AD779;
 }
 .top-all h1{font-size:28px!important;line-height:44px!important;color:#323739!important;font-weight:700!important;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:22px!important;}
@@ -140,8 +140,8 @@ h1 span,h2 span,h3 span,h4 span,h5 span,h6 span {
 .top-all h2 em{color:#1AD779;font-style:normal;}
 .top-all h6{font-size:22px;line-height:34px;color:#777D80;font-weight:600!important;}
 .top-all h6 strong{color:#1E2123;font-weight:700!important;}
-h3{font-size:54px!important;line-height:56px!important;color:#323739!important;font-weight:800!important;}
-h3 em{font-style:normal;color:#1AD779;}
+h2, h3{font-size:54px!important;line-height:56px!important;color:#323739!important;font-weight:800!important;}
+h2 em, h3 em{font-style:normal;color:#1AD779;}
 .container,.container-fluid{padding-bottom:0;max-width:1640px;}
 
 .top-all{margin-top:-137px;/*background:url('./img/top-empty.jpg')no-repeat top center / contain;min-height:1076px;padding-top:333px;*/min-height:56.042vw;padding-top:17.344vw;}
@@ -223,8 +223,8 @@ h3 em{font-style:normal;color:#1AD779;}
 
 .hp-first{text-align:center;margin-top:123px;background:url('./img/hp-first.png')no-repeat bottom left -380px;padding-bottom:146px;}
 .hp-first .upper{margin:0 auto 60px;max-width:830px;}
-.hp-first h3{line-height:66px;margin-bottom:44px;}
-.hp-first h3 em{font-style:normal;color:#1AD779;}
+.hp-first h2{line-height:66px;margin-bottom:44px;}
+.hp-first h2 em{font-style:normal;color:#1AD779;}
 .hp-first .upper p{font-size:20px;line-height:32px;}
 .hp-first .inner{background:#E7FBF0;padding:64px 15px 0;min-height:290px;}
 .hp-first .inner span{font-size:54px;line-height:66px;font-weight:800;color:#1AD779;}
@@ -233,12 +233,12 @@ h3 em{font-style:normal;color:#1AD779;}
 .hp-courses{margin-bottom:90px;}
 .hp-courses .upper{text-align:center;}
 .hp-courses .upper h6{font-size:28px;line-height:44px;text-transform:uppercase;letter-spacing:1.4px;font-weight:700;margin-bottom:17px;}
-.hp-courses .upper h3{font-size:54px;line-height:56px;color:#323739;font-weight:800;line-height:66px;margin-top: 0;margin-bottom:40px;}
+.hp-courses .upper h2{font-size:54px;line-height:56px;color:#323739;font-weight:800;line-height:66px;margin-top: 0;margin-bottom:40px;}
 .hp-courses .products-list{background:transparent;padding:0;}
 
 .hp-info{/*background:url('./img/hp-info.jpg')no-repeat left bottom;*/margin:0 auto;max-width:1100px;}
-.hp-info h3{margin:0 auto 23px;max-width:900px;line-height:66px;}
-.hp-info h3 em{color:#013317;font-style:normal;}
+.hp-info h2{margin:0 auto 23px;max-width:900px;line-height:66px;}
+.hp-info h2 em{color:#013317;font-style:normal;}
 .hp-info .text-center{margin:0 auto;max-width:990px;}
 .hp-info .text-center p{font-size:22px;line-height:34px;color:#777D80;font-weight:500;margin-bottom:88px;}
 .hp-info .text-center p strong{color:#323739;}
@@ -252,21 +252,21 @@ h3 em{font-style:normal;color:#1AD779;}
 .hp-info .sixth{background-image:url('./img/icon06-hpinfo.png');}
 
 .hp-diet{text-align:center;background:#F6F6F6 url('./img/little-cross.png')no-repeat top 5px left 18%;padding-top:122px;margin-top:90px;margin-bottom:148px;padding-bottom:130px;}
-.hp-diet h3{margin-bottom:47px;}
+.hp-diet h2{margin-bottom:47px;}
 .hp-diet h6{color:#777D80;font-size:22px;line-height:34px;font-weight:600;margin-bottom:75px;}
 .hp-diet a{color:#323739;font-size:22px;line-height:34px;font-weight:600;background:#DFF3E9;text-align:center;display:block;min-height:290px;padding-top:35px;}
 .hp-diet a:hover{background:#013316;color:#fff;}
 .hp-diet a img{margin-bottom:16px;}
 
 .hp-steps{text-align:center;margin-bottom:66px;}
-.hp-steps h3{margin:0 auto 74px;max-width:960px;line-height:66px!important;}
+.hp-steps h2{margin:0 auto 74px;max-width:960px;line-height:66px!important;}
 .hp-steps h6{color:#323739;font-size:22px;line-height:34px;font-weight:600;margin-top:18px;margin-bottom:18px;}
 .hp-steps .inner{background:#F6F6F6;padding:48px 32px 48px;position:relative;}
 .hp-steps .inner:after{content: url('./img/hp-steps-arrow.png');position:absolute;right:-60px;top:230px;z-index:9;}
 .hp-steps .last .inner:after{content:'';}
 
 .hp-opinion{background:url('./img/circle-cross.jpg')no-repeat top right;text-align:center;padding-top:76px;margin-bottom:160px;}
-.hp-opinion h3{margin:0 auto 22px;max-width:900px;line-height:66px;}
+.hp-opinion h2{margin:0 auto 22px;max-width:900px;line-height:66px;}
 .hp-opinion h6{color:#777D80;font-size:22px;line-height:34px;font-weight:600;}
 .hp-opinion h6 em{color:#1E2123;font-weight:800;font-style:normal;}
 .hp-opinion .row{margin:56px auto 0;max-width:1500px;}
@@ -278,7 +278,7 @@ h3 em{font-style:normal;color:#1AD779;}
 .hp-opinion a{color:#1AD779;}
 .hp-opinion a.more-open[aria-expanded="true"]{visibility:hidden;height:0;line-height:0;}
 
-h3.edd_download_title a{color:#323739;font-size:24px;line-height:34px;}
+h2.edd_download_title a{color:#323739;font-size:24px;line-height:34px;}
 
 .edd-submit.button.orange{width:100%;height:auto;padding:25px;color:#fff;border:0;border-radius:0;font-size:14px;line-height:18px;letter-spacing:1.4px;background:#013317;text-align:center;text-transform:uppercase;font-weight:600;display:inline-block;}
 .edd-submit.button.orange:hover{background:#1AD779;color:#323739;}
@@ -294,7 +294,7 @@ h3.edd_download_title a{color:#323739;font-size:24px;line-height:34px;}
 
 .hp-contact{}
 .hp-contact h6{text-align:center;font-size:28px;line-height:44px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;}
-.hp-contact h3{text-align:center;max-width:600px;margin:29px auto 38px;line-height:66px;}
+.hp-contact h2{text-align:center;max-width:600px;margin:29px auto 38px;line-height:66px;}
 
 .hp-contact .wpcf7{max-width:636px;margin:0 auto;}
 .hp-contact .form-control{padding:29px 0;margin-bottom:27px;}
@@ -319,7 +319,7 @@ textarea.form-control{max-height:188px;}
 .top-contact{background:url('./img/top-contact.jpg')no-repeat top center / contain;}
 
 .contact-first{text-align:center;max-width:980px;margin:128px auto 0;}
-.contact-first h3{line-height:66px;margin-bottom:23px;}
+.contact-first h2{line-height:66px;margin-bottom:23px;}
 .contact-first p{color:#777D80;font-weight:600;font-size:22px;line-height:34px;}
 
 .contact-boxes{text-align:center;margin-top:60px;margin-bottom:151px;}
@@ -329,7 +329,7 @@ textarea.form-control{max-height:188px;}
 .contact-boxes .inner p a{color:#000;}
 .contact-boxes .inner p a:hover {color: #1AD779;}
 
-.contact-bottom h3{margin-top:0;}
+.contact-bottom h2{margin-top:0;}
 
 /*faq*/
 .top-faq{background:url('./img/top-faq.jpg')no-repeat top center / contain;}
@@ -347,7 +347,7 @@ textarea.form-control{max-height:188px;}
 
 .faq-top{text-align:center;max-width:980px;margin:128px auto 0;}
 .faq-bottom{text-align:center;max-width:780px;margin:0 auto;}
-.faq-bottom h3{margin-bottom:54px;}
+.faq-bottom h2{margin-bottom:54px;}
 
 /*bezplatne szkolenie*/
 .top-free{background:url('./img/top-free.jpg')no-repeat top center / contain;}
@@ -359,17 +359,17 @@ textarea.form-control{max-height:188px;}
 .free-contact .wpcf7-form .wpcf7-submit{width:auto!important;padding:0 58px;margin-top:13px;}
 
 .free-grey{background:#F6F6F6;text-align:center;padding-top:100px;padding-bottom:132px;}
-.free-grey h3{margin-bottom:62px;}
+.free-grey h2{margin-bottom:62px;}
 .free-grey .inner{background:#DFF3E9;padding:54px 15px 30px;/*min-height:418px;*/min-height:21.771vw;}
 .free-grey img{margin-bottom:36px;}
 
 .free-green{background:url('./img/free-green.jpg')no-repeat top center;min-height:989px;padding-top:109px;font-size:20px;line-height:30px;margin-bottom:116px;}
 .free-green .row{margin:0 auto;max-width:1460px;}
-.free-green h3{margin-bottom:70px;}
+.free-green h2{margin-bottom:70px;}
 .free-green p{max-width:610px;}
 
 .free-icons{margin-bottom:114px;}
-.free-icons h3{text-align:center;margin-bottom:45px;}
+.free-icons h2{text-align:center;margin-bottom:45px;}
 .free-icons h6{font-size:18px;line-height:30px;font-weight:700;max-width:270px;}
 
 .free-icons .row{margin:0 auto;max-width:1600px;}
@@ -379,7 +379,7 @@ textarea.form-control{max-height:188px;}
 
 
 .free-bottom{margin:0 auto;max-width:770px;text-align:center;}
-.free-bottom h3{margin-bottom:58px;}
+.free-bottom h2{margin-bottom:58px;}
 
 /*single*/
 .single-top{margin-bottom:120px!important;/*padding-top:247px;padding-top:12.865vw;*/color:#fff!important;margin-top:54px!important;background-image:url('./img/TMP-blog.jpg');background-repeat:no-repeat;background-position:top center;background-size:cover;/*min-height:785px;*/min-height:40.885vw;width:100%;text-align:center;}
@@ -399,7 +399,7 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 .comments-area{display:none;}
 
 .single-sidebar .ivycat-post{margin-bottom:70px;}
-.single-sidebar h3{font-size:42px;line-height:52px;margin:0 auto 85px;text-align:center;}
+.single-sidebar h2{font-size:42px;line-height:52px;margin:0 auto 85px;text-align:center;}
 .single-sidebar .post-thumbnail img{margin-top:-70px;}
 .single-sidebar .date-sidebar{position:relative;z-index:9;padding:11px 0 0 18px;background:url('./img/date-background.png')no-repeat top center;width:187px;height:70px;display:block;color:#1AD779;font-size:18px;line-height:30px;font-weight:600;}
 
@@ -419,7 +419,7 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 
 .blog .ivycat-post{margin-bottom:70px;border:2px solid transparent;transition:all .2s ease-in;}
 .blog .ivycat-post:hover{border:2px solid #1AD779;transition:all .2s ease-out;}
-.blog h3{font-size:42px;line-height:52px;margin:0 auto 85px;text-align:center;}
+.blog h2{font-size:42px;line-height:52px;margin:0 auto 85px;text-align:center;}
 .blog .post-thumbnail img{margin-top:-70px;}
 .blog .date-sidebar{position:relative;z-index:9;padding:11px 0 0 18px;background:url('./img/date-background.png')no-repeat top center;width:187px;height:70px;display:block;color:#1AD779;font-size:18px;line-height:30px;font-weight:600;}
 
@@ -451,7 +451,7 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 
 .about-team{background:url('./img/about-team.jpg')no-repeat right 20px bottom 20px;margin-bottom:98px;}
 .about-team .row{margin:110px auto 47px;max-width:1400px;}
-.about-team h3{margin-bottom:86px;}
+.about-team h2{margin-bottom:86px;}
 .about-team h5{color:#323739;font-size:32px;line-height:44px;font-weight:800;margin-bottom:33px;}
 .about-team p.big{font-size:22px;line-height:32px;font-weight:600;margin-bottom:30px;}
 .about-team p.big strong{color:#1AD779;font-weight:800;}
@@ -497,12 +497,12 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 .top-company{background:url('./img/top-company.jpg')no-repeat top center / contain;}
 
 .company-first{text-align:center;margin-top:128px;}
-.company-first h3{line-height:66px;margin:0 auto;max-width:900px;}
+.company-first h2{line-height:66px;margin:0 auto;max-width:900px;}
 .company-first p{font-size:22px;line-height:34px;color:#777D80;font-weight:500;margin:38px auto 0;max-width:930px;}
 .company-first p strong{color:#1E2123;}
 
 .company-offer{margin:104px auto 76px;max-width:1330px;}
-.company-offer h3{margin-bottom:72px;}
+.company-offer h2{margin-bottom:72px;}
 .company-offer .inner{background-repeat:no-repeat;background-position:top left;padding-left:120px;margin-bottom:54px;}
 .company-offer .inner h6{font-size:18px;line-height:30px;margin-bottom:10px;display:inline-block;font-weight:800;}
 .company-offer .inner p{max-width:404px;}
@@ -513,14 +513,14 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 
 
 .company-green{background:#E7FBF1 url('./img/company-green.jpg')no-repeat bottom center;padding-top:116px;padding-bottom:160px;}
-.company-green h3{margin-bottom:78px;}
+.company-green h2{margin-bottom:78px;}
 .company-green .row{margin:0 auto;max-width:1400px;}
 .company-green p{font-size:20px;line-height:32px;margin-bottom:30px;}
 .company-green p strong{font-size:18px;line-height:30px;}
 .company-green .right{/*padding-top:94px;padding-left:200px;*/padding-top:4.896vw;padding-left:10.417vw;}
 
 .company-bottom{text-align:center;margin-top:90px;}
-.company-bottom h3{margin:0 auto 55px;max-width:740px;line-height:66px;}
+.company-bottom h2{margin:0 auto 55px;max-width:740px;line-height:66px;}
 
 /*kursy wpisy*/
 .breadcrumbs-product{position:relative;z-index:9;color:#000;margin-top:32px;}
@@ -560,21 +560,21 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 .top-kursy .top-kursy-links a.little-mouse{margin-bottom:10px;}
 
 .kursy-why{margin-top:128px!important;}
-.kursy-why h3{text-align:center;margin-bottom:69px;}
-.kursy-why h3 p,article.post .entry-content .kursy-why h3 p{font-size:54px;line-height:56px;font-weight:800;}
+.kursy-why h2{text-align:center;margin-bottom:69px;}
+.kursy-why h2 p,article.post .entry-content .kursy-why h2 p{font-size:54px;line-height:56px;font-weight:800;}
 .kursy-why ul{padding-left:0;}
 .kursy-why ul li{background:url('./img/tick.png')no-repeat top left;min-height:54px;font-size:18px;line-height:30px;font-weight:800;padding-left:80px;list-style-type:none;margin-bottom:32px;}
 .kursy-why ul li em{color:#1AD779;font-style:normal;}
 
 .kursy-content{margin:128px auto 0!important;max-width:1200px;}
-.kursy-content h3{text-align:center;margin-bottom:69px;display:block;width:100%;}
-.kursy-content h3 p,article.post .entry-content .kursy-why h3 p{font-size:54px;line-height:56px;font-weight:800;}
+.kursy-content h2{text-align:center;margin-bottom:69px;display:block;width:100%;}
+.kursy-content h2 p,article.post .entry-content .kursy-why h2 p{font-size:54px;line-height:56px;font-weight:800;}
 .kursy-content ul{padding-left:15px;width:100%;}
 
 
 .kursy-competences{margin-top:81px;}
-.kursy-competences h3{text-align:center;margin-bottom:37px;}
-.kursy-competences h3 p,article.post .entry-content .kursy-competences h3 p{font-size:54px;line-height:56px;font-weight:800;}
+.kursy-competences h2{text-align:center;margin-bottom:37px;}
+.kursy-competences h2 p,article.post .entry-content .kursy-competences h2 p{font-size:54px;line-height:56px;font-weight:800;}
 .kursy-competences p,article.post .entry-content .kursy-competences p{font-size:18px;line-height:30px;font-weight:800;min-height:77px;padding-left:110px;background-position:left center;background-repeat:no-repeat;}
 .kursy-competences p em{font-style:normal;color:#1AD779;}
 
@@ -584,43 +584,43 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 .kursy-competences .first p em,.kursy-competences .second p em,.kursy-competences .third p em{display:block;}
 
 .kursy-agenda{background:#E7FBF1;margin-top:94px;padding-bottom:122px;}
-.kursy-agenda h3.upper{text-align:center;margin-top:93px;margin-bottom:46px;}
+.kursy-agenda h2.upper{text-align:center;margin-top:93px;margin-bottom:46px;}
 .kursy-agenda .sp-easy-accordion{margin:0 auto;max-width:970px;}
 .kursy-agenda .sp-ea-one.sp-easy-accordion .sp-ea-single .ea-body{padding:0 56px 22px 20px!important;}
 .kursy-agenda .sp-ea-one.sp-easy-accordion .sp-ea-single .ea-body p{font-size:16px;line-height:26px;}
 .kursy-agenda .sp-ea-one.sp-easy-accordion .sp-ea-single .ea-header a .ea-expand-icon.fa-plus{background:url('./img/faq-down-white.png')no-repeat top center;width:22px;height:12px;margin-top:10px;}
 .kursy-agenda .sp-ea-one.sp-easy-accordion .sp-ea-single .ea-header a .ea-expand-icon.fa-minus{background:url('./img/faq-up-white.png')no-repeat top center;width:22px;height:12px;margin-top:10px;}
-.kursy-agenda h3.lower{text-align:center;margin-top:85px;margin-bottom:46px;font-size:42px!important;line-height:52px!important;}
+.kursy-agenda h2.lower{text-align:center;margin-top:85px;margin-bottom:46px;font-size:42px!important;line-height:52px!important;}
 
 .kursy-who{background:url('./img/kursy-who.jpg')no-repeat top center;min-height:49.844vw;padding-top:5.156vw;}
 .kursy-who.kw-jakub{background:url('./img/kursy-who.jpg')no-repeat top center;}
 .kursy-who.kw-patrycja{background:url('./img/kursy-who-patrycja.jpg')no-repeat top center;}
 .kursy-who.kw-malgorzata{background:url('./img/kursy-who-malgorzata.jpg')no-repeat top center;}
-.kursy-who h3{text-align:center;/*margin-bottom:148px;*/margin-bottom:7.708vw;}
+.kursy-who h2{text-align:center;/*margin-bottom:148px;*/margin-bottom:7.708vw;}
 .kursy-who h4{font-size:32px;line-height:44px;font-weight:800;/*margin-bottom:33px;*/margin-bottom:1.719vw;}
 
 .kursy-what{background:url('./img/kursy-what.jpg')no-repeat top center;min-height:48.229vw;padding-top:103px;text-align:center;}
-.kursy-what h3{margin-bottom:60px;}
+.kursy-what h2{margin-bottom:60px;}
 .kursy-what .inner{background:#fff;padding:60px 30px 30px;min-height:425px;}
 .kursy-what .inner p,article.post .entry-content .kursy-what .inner p{font-size:16px;line-height:28px;margin-top:38px;}
 .kursy-what a.more{margin-top:70px;}
 
 .kursy-list{background:#F6F6F6 url('./img/kursy-list.jpg')no-repeat bottom left;padding-top:118px;}
-.kursy-list h3{text-align:center;}
+.kursy-list h2{text-align:center;}
 
 .kursy-cert{background:#fff url('./img/kursy-cert.jpg')no-repeat top left;padding-top:131px;}
 .kursy-cert h5{font-size:32px;line-height:44px;font-weight:800;margin-top:131px;margin-bottom:7px;}
 .kursy-cert h6{font-size:64px;line-height:78px;font-weight:800;}
 
 .kursy-opinions{text-align:center;margin-top:108px;}
-.kursy-opinions h3{margin-bottom:65px;}
+.kursy-opinions h2{margin-bottom:65px;}
 .kursy-opinions .inner{background:#E7FBF1;padding:46px 20px 44px;max-width:366px;margin:0 auto;}
 .kursy-opinions .inner h6{color:#323739;font-size:22px;line-height:32px;margin-top:32px;margin-bottom:21px;}
 .kursy-opinions .inner img{width:135px;height:135px;border-radius:50%;}
 .kursy-opinions .inner p{font-size:20px;line-height:32px;}
 
 .kursy-faq{background:#F6F6F6;margin-top:150px;padding-top:99px;padding-bottom:130px;}
-.kursy-faq h3.upper{margin-bottom:44px;text-align:center;}
+.kursy-faq h2.upper{margin-bottom:44px;text-align:center;}
 
 .kursy-faq #sp-ea-91.sp-easy-accordion > .sp-ea-single,.kursy-faq #sp-ea-91.sp-easy-accordion > .sp-ea-single > .sp-collapse > .ea-body{background:#fff!important;}
 .kursy-faq .sp-ea-one.sp-easy-accordion .sp-ea-single .ea-header a .ea-expand-icon.fa-plus{background:url('./img/faq-down-white.png')no-repeat top center;}
@@ -658,7 +658,7 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 .footer .wpcf7-acceptance .wpcf7-list-item-label{/*display:inline-block;*/width:90%;display:inherit;margin-left:15px;}
 .footer .wpcf7-acceptance input{vertical-align:top;margin-top:5px;}
 
-.footer h3{color:#013317!important;font-size:32px!important;line-height:39px!important;font-weight:800!important;margin-bottom:19px!important;}
+.footer h2{color:#013317!important;font-size:32px!important;line-height:39px!important;font-weight:800!important;margin-bottom:19px!important;}
 .footer ul{padding:0;}
 .footer ul li{list-style-type:none;padding:3px 0;}
 .footer ul li a{color:#323739;font-size:20px;line-height:32px;font-weight:500;}
@@ -1258,7 +1258,7 @@ koszyk > kody rabatowe
 .koszyk_right table { 
 	margin-bottom: 0px;
 }
-.koszyk_right h3
+.koszyk_right h2
 {
 	text-align: center;
     font-weight: bold;
@@ -1542,7 +1542,7 @@ body.checkout div#content * {
 	max-width: 75%;
     margin: auto;
 }
-.row.login-section .col-md-6:nth-child(2) h3
+.row.login-section .col-md-6:nth-child(2) h2
 {
 	font-weight: bold;
     color: #323739;
@@ -1573,7 +1573,7 @@ body.page-id-560 div#content:before {
 
 
 .site .login-section h1{font-size:42px!important;line-height:52px!important;color:#323739!important;font-weight:800!important;}
-.site .login-section h3{font-size:18px!important;line-height:30px!important;}
+.site .login-section h2{font-size:18px!important;line-height:30px!important;}
 
 form input[type="submit"], form button[type="submit"]{border-radius:0;padding:20px 35px;box-shadow:none;}
 
@@ -1623,10 +1623,10 @@ width: 100% !important;
 @media (max-width:576px){
 	.faq-top{margin:60px auto 0;}
 	.faq-middle{margin:75px auto 60px;}
-	.faq-top h3,.faq-bottom h3{font-size:23px!important;line-height:40px!important;}
-	.free-grey h3{font-size:32px!important;}
+	.faq-top h2,.faq-bottom h2{font-size:23px!important;line-height:40px!important;}
+	.free-grey h2{font-size:32px!important;}
 	.free-grey .inner{min-height:auto;margin-bottom:30px;}
-	.free-icons h3,.free-bottom h3{font-size:26px!important;line-height:45px!important;}
+	.free-icons h2,.free-bottom h2{font-size:26px!important;line-height:45px!important;}
 	
 	.single-top h1{line-height:42px!important;font-size:26px!important;}
 	
@@ -1641,8 +1641,8 @@ width: 100% !important;
 	.hp-first{margin-top:40px;padding-bottom:70px;}
 	.hp-first .inner{padding:40px 15px 40px;margin-bottom:15px;min-height:192px;}
 	.hp-courses .upper h6{font-size:16px;line-height:20px;margin-bottom:7px;}
-	.hp-courses .upper h3{font-size:30px!important;line-height:38px!important;}
-	.hp-first h3{line-height:39px !important;margin-bottom:44px;font-size:30px !important;margin-top:20px;}
+	.hp-courses .upper h2{font-size:30px!important;line-height:38px!important;}
+	.hp-first h2{line-height:39px !important;margin-bottom:44px;font-size:30px !important;margin-top:20px;}
 	.hp-first .upper p{font-size:16px;line-height:29px;}
 	.hp-first .inner span{font-size:36px;line-height:36px;}
 	.hp-first .inner h6{font-size:13px;line-height:19px;margin-top:15px;}
@@ -1663,18 +1663,18 @@ width: 100% !important;
 	
 	.hp-courses{margin-bottom:36px;}
 	.hp-info .text-center p{font-size:16px;line-height:29px;margin-bottom:40px;}
-	.hp-info h3{font-size:32px !important;line-height:36px !important;}
+	.hp-info h2{font-size:32px !important;line-height:36px !important;}
 	.hp-info .box strong{font-size:15px;line-height:26px;margin-bottom:6px;}
 	.hp-info .box p{font-size:14px;line-height:23px;}
 	.hp-diet{margin-bottom:47px;}
-	.hp-diet h3{font-size:28px!important;line-height:38px!important;margin-top:0;margin-bottom:10px;}
+	.hp-diet h2{font-size:28px!important;line-height:38px!important;margin-top:0;margin-bottom:10px;}
 	.hp-diet h6{font-size:16px;line-height:29px;margin-bottom:25px;}
 	.hp-diet a{min-height:auto;padding-top:25px;padding-bottom:25px;}
 	.hp-diet a br{display:none;}
 	.hp-steps{margin-bottom:0;}
 	.hp-steps .inner:after{content:'';}
-	.hp-steps h3{margin:0 auto 50px;line-height:50px!important;font-size:27px!important;}
-	.hp-opinion h3{font-size:25px!important;line-height:27px!important;}
+	.hp-steps h2{margin:0 auto 50px;line-height:50px!important;font-size:27px!important;}
+	.hp-opinion h2{font-size:25px!important;line-height:27px!important;}
 	.hp-steps h6{font-size:17px;line-height:25px;margin-bottom:10px;}
 	.hp-steps p{font-size:13px;line-height:21px;}
 	.hp-opinion .hentry{padding-left:0;padding-right:0;}
@@ -1684,19 +1684,19 @@ width: 100% !important;
 	.hp-opinion h6{font-size:13px;line-height:1;}
 	
 	.company-first{margin-top:60px;}
-	.company-first h3{font-size:30px!important;line-height:49px!important;}
+	.company-first h2{font-size:30px!important;line-height:49px!important;}
 	.company-first p{font-size:19px!important;}
 	.product-inner-block{margin:10px auto 54px;}
 	.products-list .title-section, .title-section{font-size:26px!important;line-height:33px!important;}
 	.product-inner-block.cart h1{font-size:23px!important;}
 	
 	.top-kursy h4{font-size:36px;}
-	.kursy-why h3 p, article.post .entry-content .kursy-why h3 p{font-size:30px;line-height:44px}
+	.kursy-why h2 p, article.post .entry-content .kursy-why h2 p{font-size:30px;line-height:44px}
 	
 	.kursy-competences p, article.post .entry-content .kursy-competences p{font-size:15px;line-height:26px;}
 	.kursy-agenda{padding-bottom:50px;}
-	.kursy-agenda h3.upper{font-size:32px!important;line-height:40px!important;}
-	.kursy-agenda h3.lower{font-size:30px!important;line-height:40px!important;}
+	.kursy-agenda h2.upper{font-size:32px!important;line-height:40px!important;}
+	.kursy-agenda h2.lower{font-size:30px!important;line-height:40px!important;}
 	
 	.kursy-who .col-md-6{padding-left:0;padding-right:0;}
 	
@@ -1708,7 +1708,7 @@ width: 100% !important;
 	.kursy-opinions .inner{margin:10px 15px 0;}
 	.kursy-opinions .inner h6{font-size:19px;line-height:18px;margin-top:15px;margin-bottom:15px;}
 	.kursy-opinions .inner p{font-size:18px;line-height:29px;}
-	.kursy-bottom h3{font-size:34px!important;line-height:43px!important;}
+	.kursy-bottom h2{font-size:34px!important;line-height:43px!important;}
 	
 	.crosseling-item{margin:0;display:block;padding:10px 10px;}
 	.crosseling-item .checkout_cart_img{width:100%;display:inline-block;vertical-align:top;padding:2px;text-align:center;}
@@ -1717,15 +1717,15 @@ width: 100% !important;
 	.crosseling-item .btn.btn-primary.more{display:block;}
 	
 	.koszyk_right{padding:15px;}
-	.koszyk_right h3{font-size:35px!important;line-height:40px!important;}
+	.koszyk_right h2{font-size:35px!important;line-height:40px!important;}
 
 }
 @media (min-width: 577px) and (max-width:767px) {
 	div#logo-cell{max-width:100%;flex:100%;}
 	
-	.faq-top h3,.faq-bottom h3{font-size:29px!important;line-height:49px!important;}
+	.faq-top h2,.faq-bottom h2{font-size:29px!important;line-height:49px!important;}
 	.free-grey .inner{min-height:361px;margin-bottom:30px;}
-	.free-icons h3,.free-bottom h3{font-size:40px!important;}
+	.free-icons h2,.free-bottom h2{font-size:40px!important;}
 	
 	.single-top h1{line-height:1!important;}
 	
@@ -1801,13 +1801,13 @@ width: 100% !important;
 	
 	.hp-contact .col-md-5{text-align:center;}
 	.hp-contact h6{font-size:17px!important;margin-top:30px!important;line-height:20px;}
-	.hp-contact h3{font-size:29px!important;line-height:39px!important;}
+	.hp-contact h2{font-size:29px!important;line-height:39px!important;}
 	
 	.contact-first{margin:60px auto 0;}
-	.contact-first h3{line-height:48px!important;font-size:28px!important;}
+	.contact-first h2{line-height:48px!important;font-size:28px!important;}
 	.contact-boxes .inner{margin:15px auto;}
 	.contact-boxes{margin-top:50px;margin-bottom:80px;}
-	.contact-bottom h3{margin-top:70px;}
+	.contact-bottom h2{margin-top:70px;}
 	
 	.sp-ea-one.sp-easy-accordion .sp-ea-single .ea-body{padding:0 26px 22px 26px!important;font-size:18px!important;}
 	
@@ -1821,7 +1821,7 @@ width: 100% !important;
 	.free-green .container{padding:0;}
 	.free-green .row{margin:0 -15px;}
 	.free-green img{margin-bottom:40px;}
-	.free-green h3{font-size:50px!important;}
+	.free-green h2{font-size:50px!important;}
 	.free-icons{text-align:center;}
 	.free-icons .first{padding-left:0;padding-top:99px;background:url('./img/free-icons01.png')no-repeat top center;margin-bottom:40px;}
 	.free-icons .second{padding-left:0;padding-top:99px;background:url('./img/free-icons02.png')no-repeat top center;margin-bottom:40px;}
@@ -1839,7 +1839,7 @@ width: 100% !important;
 	.about-first p.last{margin-bottom:0;}
 	
 	.about-team .row{margin-left:-15px;margin-right:-15px;}
-	.about-team h3{margin-bottom:43px;font-size:42px!important;}
+	.about-team h2{margin-bottom:43px;font-size:42px!important;}
 	.about-team img{margin-top:40px;margin-bottom:40px;}
 	.about-team a.more{width:100%;padding:32px 15px 0;}
 
@@ -1851,20 +1851,20 @@ width: 100% !important;
 	.about-pat a.more{width:100%;padding:32px 15px 0;}
 	
 	.company-green{padding-top:60px;padding-bottom:60px;}
-	.company-green h3{font-size:40px!important;}
+	.company-green h2{font-size:40px!important;}
 	.company-green .row{margin-left:-15px;margin-right:-15px;}
 	.company-green .right{padding-top:60px;padding-left:15px;}
 	.company-bottom{margin-top:0;}
-	.company-bottom h3{margin:0 auto 30px;line-height:41px!important;font-size:24px!important;}
+	.company-bottom h2{margin:0 auto 30px;line-height:41px!important;font-size:24px!important;}
 	.company-bottom a.more{width:100%;padding:32px 15px 0;}
 	
 	.company-offer{margin:50px auto 76px;}
-	.company-offer h3{font-size:33px!important;}
+	.company-offer h2{font-size:33px!important;}
 	
 	.single-top{/*padding-bottom:12.865vw;*/margin-bottom:60px!important;}
 	.single-top .inner{padding-bottom:12.865vw!important;}
 	
-	.single-sidebar h3{font-size:33px!important;margin:50px auto;}
+	.single-sidebar h2{font-size:33px!important;margin:50px auto;}
 	
 	.top-blog{margin-bottom:60px;padding-top:4vw;}
 	.outer-blog ul.nav-pills{margin-bottom:60px!important;}
@@ -1893,7 +1893,7 @@ width: 100% !important;
 	.kursy-why{margin-top:90px!important;margin-left:0;margin-right:0;}
 	.kursy-competences{margin-left:15px;margin-right:15px;margin-top:40px;}
 	.kursy-what{background:url('./img/kursy-what.jpg')no-repeat top center / cover;padding-bottom:40px;padding-top:56px;}
-	.kursy-competences h3 p{padding:0;font-size:29px;line-height:46px;}
+	.kursy-competences h2 p{padding:0;font-size:29px;line-height:46px;}
 	
 	/*.kursy-competences .col-md-4 p{font-size:17px;padding-left:0;background-position:top center;text-align:center;padding-top:110px!important;}
 	*/
@@ -1907,11 +1907,11 @@ width: 100% !important;
 	.kursy-agenda{padding-left:0;padding-right:0;}
 	.kursy-agenda a.more{height:auto;padding:25px;display:block;}
 	.kursy-who{padding-bottom:50px;}
-	.kursy-who h3{font-size:30px!important;line-height:44px!important;}
-	.kursy-what h3{font-size:30px!important;line-height:44px!important;}
+	.kursy-who h2{font-size:30px!important;line-height:44px!important;}
+	.kursy-what h2{font-size:30px!important;line-height:44px!important;}
 	.kursy-what a.more{margin-top:0!important;height:auto;padding:25px;display:block;}
 	.kursy-list{padding-top:60px;}
-	.kursy-list h3{font-size:40px!important;line-height:50px!important;margin-bottom:40px;}
+	.kursy-list h2{font-size:40px!important;line-height:50px!important;margin-bottom:40px;}
 	.kursy-cert h6{font-size:48px;}
 	.kursy-faq{margin-top:15px;padding-top:68px;padding-bottom:68px;padding-left:0;padding-right:0;}
 	.kursy-bottom{padding-top:60px;}
@@ -1920,7 +1920,7 @@ width: 100% !important;
 	.kursy-content{margin:128px 15px 0 !important;}
 	.kursy-opinions .inner{max-width:none;}
 	
-	.page h3{font-size:20px!important;line-height:1!important;}
+	.page h2{font-size:20px!important;line-height:1!important;}
 	
 	a.box_glowna_add_to_cart_link.more{height:auto;padding:17px;display:block;margin-top:30px!important;}
 	
@@ -1974,9 +1974,9 @@ width: 100% !important;
 	.hp-opinion .inner p{font-size:17px;}
 	
 	.hp-contact h6{font-size:23px;}
-	.hp-contact h3{font-size:36px;line-height:47px;}
+	.hp-contact h2{font-size:36px;line-height:47px;}
 	
-	.faq-top h3,.faq-bottom h3{font-size:39px;}
+	.faq-top h2,.faq-bottom h2{font-size:39px;}
 	
 	.free-contact img{clear:both;display:block;margin:0 auto;float:none;}
 	.free-contact h6{margin-top:60px;}
@@ -2006,7 +2006,7 @@ width: 100% !important;
 	
 	.single-top h1{line-height:1;}
 	
-	.single-sidebar h3{margin:40px auto 60px;}
+	.single-sidebar h2{margin:40px auto 60px;}
 	
 	.outer-blog .nav-link{padding:32px 37px 0;margin:0 10px;}
 	
@@ -2034,7 +2034,7 @@ width: 100% !important;
 	.kursy-why{margin-top:90px!important;margin-left:15px;margin-right:15px;}
 	.kursy-competences{margin-left:15px;margin-right:15px;}
 	.kursy-what{background:url('./img/kursy-what.jpg')no-repeat top center / cover;padding-bottom:40px;}
-	.kursy-competences h3 p{padding:0;}
+	.kursy-competences h2 p{padding:0;}
 	
 	.kursy-competences .col-md-4 p{font-size:17px;padding-left:0;background-position:top center;text-align:center;padding-top:110px!important;}
 	.kursy-what .inner{min-height:360px;margin-bottom:30px;}
@@ -2063,7 +2063,7 @@ width: 100% !important;
 	.hp-diet a{font-size:20px;line-height:28px;}
 	.hp-steps .inner{margin-bottom:30px;}
 	.hp-steps .third .inner:after{content:'';}
-	.hp-contact h3{font-size:47px;}
+	.hp-contact h2{font-size:47px;}
 	
 	.free-grey .inner{min-height:389px;margin-bottom:30px;}
 	.free-grey .last .inner{margin-bottom:0;min-height:auto;}
@@ -2075,7 +2075,7 @@ width: 100% !important;
 	
 	.about-first a.more{width:100%;padding:32px 15px;height:auto;}
 	
-	.footer h3{font-size:24px!important;}
+	.footer h2{font-size:24px!important;}
 	.footer .wpcf7-submit{letter-spacing:0.4px;}
 	
 	.product-list-upper{background:#DFF3E9!important;padding-bottom:40px;}
@@ -2097,7 +2097,7 @@ width: 100% !important;
 	
 }
 @media (min-width: 1201px) and (max-width:1600px) {
-	.footer h3{font-size:30px;}
+	.footer h2{font-size:30px;}
 }
 @media (min-width: 1201px) and (max-width:1360px) {
 	.top-home a{width:268px;margin-top:15px;margin-bottom:0;}
@@ -2195,12 +2195,12 @@ width: 100% !important;
 		font-size: 14px;
 	}
 
-	.kursy-content h3,
-	.kursy-who h3,
-	.kursy-list h3,
-	.kursy-opinions h3,
-	.kursy-faq h3,
-	.kursy-bottom h3 {
+	.kursy-content h2,
+	.kursy-who h2,
+	.kursy-list h2,
+	.kursy-opinions h2,
+	.kursy-faq h2,
+	.kursy-bottom h2 {
 		font-size: 30px !important;
 		margin-bottom: 50px;
 		line-height: 130% !important;
@@ -2423,7 +2423,7 @@ margin: auto;
 	border: 1px solid #bbb !important;
 	background: #eee !important;
 }
-#sp-ea-modules h3 p
+#sp-ea-modules h2 p
 {
 	font-size: 16px;
     font-weight: 500;
@@ -2561,7 +2561,7 @@ Placeholder loading text
 		margin-bottom: .5rem;
 		text-align: center;
 	}
-	h3 {
+	h2 {
 		color: #5d5e79 !important;
 		margin: 0;
 		margin-bottom: 3rem;

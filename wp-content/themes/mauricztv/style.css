@@ -1206,6 +1206,10 @@ tr.edd_cart_header_row th {
     color: var(--content-header-color) !important;
 }
 
+.page-id-59 #main h2 {
+    font-size: 28px !important;
+}
+
 .koszyk_right #edd-purchase-button { 
 	width: 100%;
     text-align: center;

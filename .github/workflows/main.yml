@@ -44,6 +44,7 @@ jobs:
           **/wp-content/plugins/page-scroll-to-id/**
           **/wp-content/plugins/posts-in-page/**
           **/wp-content/plugins/bnfw/**
+          **/wp-content/plugins/user-menus/**
           **/wp-content/plugins/classic-editor/**
           **/wp-content/plugins/classic-widgets/**
           **/wp-content/plugins/cb-change-mail-sender/**

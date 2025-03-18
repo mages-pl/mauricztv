@@ -1198,7 +1198,13 @@ tr.edd_cart_header_row th {
 .koszyk_right #edd_checkout_user_info p:not(.koszyk_right #edd_checkout_user_info .bpmj-eddcm-phone-no) {
 	display: none;
 } */
-
+.bpmj_edd_info_message__content h2 {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+    color: var(--content-header-color) !important;
+}
 
 .koszyk_right #edd-purchase-button { 
 	width: 100%;

@@ -658,7 +658,7 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 .footer .wpcf7-acceptance .wpcf7-list-item-label{/*display:inline-block;*/width:90%;display:inherit;margin-left:15px;}
 .footer .wpcf7-acceptance input{vertical-align:top;margin-top:5px;}
 
-.footer h2{color:#013317!important;font-size:32px!important;line-height:39px!important;font-weight:800!important;margin-bottom:19px!important;}
+.footer h3{color:#013317!important;font-size:32px!important;line-height:39px!important;font-weight:800!important;margin-bottom:19px!important;}
 .footer ul{padding:0;}
 .footer ul li{list-style-type:none;padding:3px 0;}
 .footer ul li a{color:#323739;font-size:20px;line-height:32px;font-weight:500;}

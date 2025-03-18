@@ -40,10 +40,8 @@
 <script type="text/javascript" async=""
 src="https://static.klaviyo.com/onsite/js/RAAZX9/klaviyo.js"></script>
 <!-- end integracja klaviyo -->
-<?php wp_head(); ?>
 
-		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-		
+<?php wp_head(); ?>
 
 </head>
 

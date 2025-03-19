@@ -16,6 +16,7 @@
 		.footer{margin-top:50px;}
 	</style>
 	<?php } ?>
+<?php wp_head(); ?>
 	
 	<?php if (in_category('dieta') || in_category('suplementacja') || in_category('trening')){ ?>
 	
@@ -41,7 +42,6 @@
 src="https://static.klaviyo.com/onsite/js/RAAZX9/klaviyo.js"></script>
 <!-- end integracja klaviyo -->
 
-<?php wp_head(); ?>
 
 </head>
 

@@ -15,6 +15,8 @@ use bpmj\wpidea\modules\app_view\api\App_View_API_Static_Helper;
 	<?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
         <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<?php endif; ?>
+	<?php wp_head(); ?>
+
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('url'); ?>/wp-content/lms-data/assets/scarlet/css/dynamic-wp-idea.min.css?v=1689846542&ver=6.2.2"/>
     
 
@@ -36,7 +38,6 @@ use bpmj\wpidea\modules\app_view\api\App_View_API_Static_Helper;
     src="https://static.klaviyo.com/onsite/js/RAAZX9/klaviyo.js"></script>
     <!-- end integracja klaviyo -->
 
-	<?php wp_head(); ?>
 
 </head>
 <body <?php body_class( array( WPI()->templates->get_body_class() ) ); ?>>

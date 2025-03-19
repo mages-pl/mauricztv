@@ -1206,7 +1206,8 @@ tr.edd_cart_header_row th {
     color: var(--content-header-color) !important;
 }
 
-.page-id-59 #main h2 {
+.page-id-59 #main h2,
+.page-id-48 #main h2 {
     font-size: 28px !important;
 }
 

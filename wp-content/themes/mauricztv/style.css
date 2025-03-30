@@ -2669,3 +2669,11 @@ Placeholder loading text
 		width: 100%;
 	}
   }
+ #checkbox_register_klavyio {
+	display: inline-block;
+	width: auto;
+  }
+.tml-checkbox_register_klavyio-wrap .tml-label {
+	font-size: 16px;
+    color: #323739;
+  }

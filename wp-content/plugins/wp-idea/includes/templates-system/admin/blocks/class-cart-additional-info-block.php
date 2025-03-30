@@ -87,7 +87,8 @@ class Cart_Additional_Info_Block extends Block
         } else {
             $content .= edd_checkout_form_without_cart();
         }
-
+        $content .= '<img src="'.get_bloginfo('url').'/wp-content/themes/mauricztv/img/cart_payments.png" style="display:block;margin:auto;"/>';
+    
         #$content .= bpmj_eddcm_scarlet_edd_discount_field();
         // if( !empty( $scarlet_cart_additional_info_1_title ) ) {
         //     $content .= '<div class="tytul_ikona">
@@ -119,6 +120,8 @@ class Cart_Additional_Info_Block extends Block
             
         $content .= '</div>';
         
+        $content .= '<img src="'.get_bloginfo('url').'/wp-content/themes/mauricztv/img/cart_benefits.png" style="display:table;margin:15px auto;"/>';
+
         return $content;
     }
 }

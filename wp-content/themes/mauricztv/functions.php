@@ -633,9 +633,9 @@ function set_cart_popup_cookie() {
             curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/events/a3998200-efaa-11ef-8001-502d6aca6fca');//.trim(($id_event)));
 
             // date revision
-            $revision = '2025-01-15';
+            $revision = get_option('mauricz_klavyio_api_revision');//'2025-01-15';
 
-            $KlaviyoPrivateKey = 'pk_788d358870622e5f3ba8afcea7d675dd02';
+            $KlaviyoPrivateKey = get_option('mauricz_klavyio_api_private_key'); //'pk_788d358870622e5f3ba8afcea7d675dd02';
             $head[] ='Authorization: Klaviyo-API-Key '.$KlaviyoPrivateKey.'';
             $head[] ='accept: application/json';
             $head[] ='revision: '.$revision;
@@ -648,7 +648,7 @@ function set_cart_popup_cookie() {
 
             print_r($result);
     } catch(\Exception $e) {
-        return false;
+        #return false;
     }
  }
 
@@ -925,9 +925,9 @@ function set_cart_popup_cookie() {
             curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/events/');
 
             // date revision
-            $revision = '2025-01-15';
+            $revision = get_option('mauricz_klavyio_api_revision');//'2025-01-15';
 
-            $KlaviyoPrivateKey = 'pk_788d358870622e5f3ba8afcea7d675dd02';
+            $KlaviyoPrivateKey = get_option('mauricz_klavyio_api_private_key');//'pk_788d358870622e5f3ba8afcea7d675dd02';
             $head[] ='Authorization: Klaviyo-API-Key '.$KlaviyoPrivateKey.'';
             $head[] ='accept: application/json';
             $head[] ='content-Type: application/json';
@@ -980,8 +980,8 @@ function set_cart_popup_cookie() {
                 // curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/events/1234');
                 curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/events');
 
-                $revision = '2025-01-15';
-                $KlaviyoPrivateKey = 'pk_788d358870622e5f3ba8afcea7d675dd02';
+                $revision = get_option('mauricz_klavyio_api_revision');//'2025-01-15';
+                $KlaviyoPrivateKey = get_option('mauricz_klavyio_api_private_key');
                 $head[] ='Authorization: Klaviyo-API-Key '.$KlaviyoPrivateKey.'';
                 $head[] ='accept: application/json';
                 $head[] ='revision: '.$revision;//.date('Y-m-d');

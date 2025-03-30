@@ -1149,6 +1149,8 @@ add_filter('get_cart_net_vat_total_price', 'calculate_the_net_vat_total_price_an
 function bpmj_eddcm_scarlet_item_price_discount_after($label, $item_id, $options)
 {
     if (edd_is_checkout()) {
+        $regularPrice = (float)($label);
+    
         /**
          * Jeśli pozycja w koszyku jest w promocji
          */
@@ -1196,6 +1198,7 @@ function bpmj_eddcm_scarlet_item_price_discount_after($label, $item_id, $options
                     $label = '<p class="podsumowanie_koszyk_price" style="text-decoration:line-through;">' . $label . '</p>';
                     //edd_get_discount_amount(10)
 
+      
                     $discounts = edd_get_cart_discounts();
 
                       foreach($discounts as $code) {
@@ -1205,6 +1208,16 @@ function bpmj_eddcm_scarlet_item_price_discount_after($label, $item_id, $options
                             $discount_type = edd_get_discount_type($discount);
 
                       }
+                      if($discount_type == 'percent') {
+                        $salePrice = (number_format(get_post_meta($item_id,  'edd_price', true)*(1-((int)$discount_value/100)),2,'.',''));
+                      } else {
+                        $salePrice = (number_format(get_post_meta($item_id,  'edd_price', true)*(1-((int)$discount_value/edd_get_cart_total( true ))),2,'.',''));
+                      }
+                      $oldValue = $regularPrice;//(float)(get_post_meta($item_id,  'edd_sale_price', true));
+                      $newValue = $salePrice;
+                      $diffValue = $oldValue -  $newValue;
+                      $label .= '<div class="discount" style="background: #1CD779;color: #fff;position: absolute;right: 0;top: 50%;padding: 0 15px;transform: translateX(50%) translateY(-50%)">Oszczędzasz '.$diffValue.' PLN</div>';
+
 
                       /**
                        * Jeśli jest to rabat procentowy przelicz

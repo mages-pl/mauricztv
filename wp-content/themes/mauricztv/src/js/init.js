@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
             clickable: true,
         },
         navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.opinie-slider-next',
+            prevEl: '.opinie-slider-prev',
         },
         breakpoints: {
             768: {

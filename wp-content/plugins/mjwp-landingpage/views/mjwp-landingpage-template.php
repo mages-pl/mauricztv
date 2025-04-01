@@ -113,7 +113,7 @@
                 <h2 class="text-62 text-center">Już ponad <span><?= $product_fields['ilosc_kursantow'] ?> kursantów </span>wykorzystało wiedzę z tego szkolenia</h2>
             </div>
             <div class="course-container__wrapper">
-                <div class="form">
+                <div class="form" id="uzyskaj-szkolenie">
                     <div class="form-container">
                         <div class="form-container__label">
                             <div class="wrapper">

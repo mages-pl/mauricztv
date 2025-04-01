@@ -89,27 +89,124 @@ color: $white;
 color: $black !important;
 }
 
-.text-19 {
-    font-size: 19px !important;
-    line-height: 120% !important;
-}
-.text-80 {
-    font-size: 80px !important;
-    line-height: 120% !important;
-}
-.text-27 {
-    font-size: 27px !important;
-    line-height: 120% !important;
-}
-.text-34 {
-    font-size: 34px !important;
-    line-height: 120% !important;
-}
-.text-46 {
-    font-size: 46px !important;
-    line-height: 120% !important;
-}
-.text-62 {
-    font-size: 62px !important;
-    line-height: 120% !important;
+.page {
+
+    .text-19 {
+        font-size: 19px !important;
+        line-height: 120% !important;
+    }
+    .text-80 {
+        font-size: 80px !important;
+        line-height: 120% !important;
+    
+        @include media($breakpoint-xl) {
+            font-size: 60px !important;
+        }
+        @include media($breakpoint-lg) {
+            font-size: 50px !important;
+        }
+        @include media($breakpoint-md) {
+            font-size: 40px !important;
+        }
+        @include media($breakpoint-sm) {
+            font-size: 30px !important;
+        }
+        @include media($breakpoint-xs) {
+            font-size: 25px !important;
+        }
+    }
+    .text-27 {
+        font-size: 27px !important;
+        line-height: 120% !important;
+        @include media($breakpoint-xl) {
+            font-size: 25px !important;
+        }
+        @include media($breakpoint-lg) {
+            font-size: 22px !important;
+        }
+        @include media($breakpoint-md) {
+            font-size: 20px !important;
+        }
+        @include media($breakpoint-sm) {
+            font-size: 18px !important;
+        }
+    
+    }
+    .text-34 {
+        font-size: 34px !important;
+        line-height: 120% !important;
+        @include media($breakpoint-xl) {
+            font-size: 30px !important;
+        }
+        @include media($breakpoint-lg) {
+            font-size: 28px !important;
+        }
+        @include media($breakpoint-md) {
+            font-size: 26px !important;
+        }
+        @include media($breakpoint-sm) {
+            font-size: 24px !important;
+        }
+        @include media($breakpoint-xs) {
+            font-size: 22px !important;
+        }
+    }
+    .text-46 {
+        font-size: 46px !important;
+        line-height: 120% !important;
+        @include media($breakpoint-xl) {
+            font-size: 40px !important;
+        }
+        @include media($breakpoint-lg) {
+            font-size: 36px !important;
+        }
+        @include media($breakpoint-md) {
+            font-size: 34px !important;
+        }
+        @include media($breakpoint-sm) {
+            font-size: 32px !important;
+        }
+        @include media($breakpoint-xs) {
+            font-size: 30px !important;
+        }
+    }
+    .text-62 {
+        font-size: 62px !important;
+        line-height: 120% !important;
+        @include media($breakpoint-xl) {
+            font-size: 50px !important;
+        }
+        @include media($breakpoint-lg) {
+            font-size: 46px !important;
+        }
+        @include media($breakpoint-md) {
+            font-size: 44px !important;
+        }
+        @include media($breakpoint-sm) {
+            font-size: 42px !important;
+        }
+        @include media($breakpoint-xs) {
+            font-size: 40px !important;
+        }
+    
+    }
+    .text-50 {
+        font-size: 50px !important;
+        line-height: 120% !important;
+        @include media($breakpoint-xl) {
+            font-size: 46px !important;
+        }
+        @include media($breakpoint-lg) {
+            font-size: 42px !important;
+        }
+        @include media($breakpoint-md) {
+            font-size: 40px !important;
+        }
+        @include media($breakpoint-sm) {
+            font-size: 38px !important;
+        }
+        @include media($breakpoint-xs) {
+            font-size: 36px !important;
+        }
+    }
 }

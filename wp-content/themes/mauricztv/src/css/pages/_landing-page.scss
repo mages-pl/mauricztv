@@ -29,6 +29,7 @@
                 }
             }
             &__button {
+                @extend %margin-top-30;
                 display: flex;
                 justify-content: center;
 
@@ -37,7 +38,7 @@
     }
 
     .learn {
-        @extend %margin-top-100;
+        // @extend %margin-top-100;
 
         &-container {
             &__title {
@@ -48,6 +49,13 @@
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 66px;
+
+                @include media($breakpoint-lg) {
+                    gap: 1rem;
+                }
+                @include media($breakpoint-md) {
+                    grid-template-columns: 1fr;
+                }
 
                 .box {
                     // border: 1px solid $black;
@@ -103,7 +111,9 @@
                             width: 67px;
                             aspect-ratio: 1/1;
                             display: block;
-                            
+                            background-position: center;
+                            background-size: cover;
+
                         }
                     }
                 }
@@ -112,6 +122,7 @@
     }
 
     .course {
+        @extend %margin-top-100;
         &-container {
             max-width: 1050px;
             margin: 0 auto;
@@ -122,6 +133,18 @@
                 background-color: $accent-2;
                 position: relative;
                 margin-bottom: 800px;
+                @include media($breakpoint-lg) {
+                    margin-bottom: 600px;
+                }
+                @include media($breakpoint-md) {
+                    margin-bottom: 540px;
+                }
+                @include media($breakpoint-sm) {
+                    margin-bottom: 450px;
+                }
+                @include media($breakpoint-xs) {
+                    margin-bottom: 0;
+                }
                 &::before {
                     content: '';
                     background: rgb(228,250,239);
@@ -147,6 +170,10 @@
                         position: relative;
                         z-index: 1;
                         padding: 130px 32px;
+
+                        @include media($breakpoint-md) {
+                            padding: 90px 32px;
+                        }
 
                         &__label {
                             position: absolute;
@@ -197,7 +224,7 @@
                         }
 
                         &__wrapper {
-                            @extend %margin-top-60;
+                            // @extend %margin-top-60;
                             @extend %padding-bottom-50;
                             border-bottom: 2px solid $white;
 
@@ -206,6 +233,9 @@
                                 grid-template-columns: repeat(2, 1fr);
                                 gap: 1rem;
                                 align-items: center;
+                                @include media($breakpoint-xs) {
+                                    grid-template-columns: 1fr;
+                                }
 
                                 p {
                                     background-position: left center;
@@ -292,7 +322,7 @@
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
-                margin-top: -300px;
+                // margin-top: -300px;
                 position: absolute;
                 z-index: 3;
                 width: 100vw;
@@ -300,19 +330,55 @@
                 transform: translateX(-50%);
                 bottom: -800px;
                 max-width: 2000px;
+
+                @include media($breakpoint-lg) {
+                    bottom: -600px;
+                }
+                @include media($breakpoint-sm) {
+                    bottom: -450px;
+                }
+                @include media($breakpoint-xs) {
+                    position: relative;
+                    bottom: 0;
+                    margin-top: -80px;
+                }
+
     
                 .signature {
                     display: flex;
                     justify-content: flex-end;
                     position: absolute;
-                    left: 30%;
-                    top: 50%;
-                    transform: translate(-50%, -50%);
+                    right: 900px;
+                    top: 60%;
+                    transform: translateY(-50%);
+
+                    @include media($breakpoint-lg) {
+                        right: 700px;
+                        // left: 200px;
+                    }
+                    @include media($breakpoint-md) {
+                        right: auto;
+                        left: 0;
+                        z-index: 5;
+                    }
+                    @include media($breakpoint-xs) {
+                        width: 250px;
+                        transform: none;
+                        bottom: 0;
+                        top: auto;
+                    }
                 }
     
                 .person {
                     position: relative;
                     z-index: 4;
+
+                    @include media($breakpoint-lg) {
+                        width: 700px;
+                    }
+                    @include media($breakpoint-sm) {
+                        width: 500px;
+                    }
                 }
             }
         }

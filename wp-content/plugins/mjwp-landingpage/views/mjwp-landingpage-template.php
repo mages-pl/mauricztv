@@ -41,7 +41,7 @@
                 <?php endif; ?>
             </div>
             <div class="hero-container__button">
-                <a href="<?= $hero['przycisk']['link'] ?>" class="more"><?= $hero['przycisk']['title'] ?></a>
+                <a href="<?= $hero['przycisk']['url'] ?>" class="more"><?= $hero['przycisk']['title'] ?></a>
             </div>
         </div>
     </section>
@@ -82,7 +82,7 @@
                 <?php endforeach; ?>
             </div>
             <div class="learn-container__button">
-                <a href="<?= $learn['przycisk']['link'] ?>" class="more"><?= $learn['przycisk']['title'] ?></a>
+                <a href="<?= $learn['przycisk']['url'] ?>" class="more"><?= $learn['przycisk']['title'] ?></a>
             </div>
         </div>
     </section>

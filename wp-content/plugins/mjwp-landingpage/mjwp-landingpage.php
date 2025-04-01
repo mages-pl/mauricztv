@@ -136,23 +136,23 @@ function createUser($name, $password, $email) {
        ));
 
 
-        if( is_numeric( $user ) ) {
-            $user = get_userdata( $user );
-        } elseif ( is_email( $user ) ) {
-            $user = get_user_by( 'email', $user );
-        } elseif ( is_string( $user ) ) {
-            $user = get_user_by( 'login', $user );
-        } else {
-            return;
-        }
+        // if( is_numeric( $user ) ) {
+        //     $user = get_userdata( $user );
+        // } elseif ( is_email( $user ) ) {
+        //     $user = get_user_by( 'email', $user );
+        // } elseif ( is_string( $user ) ) {
+        //     $user = get_user_by( 'login', $user );
+        // } else {
+        //     return;
+        // }
         
-        try {
-            add_action('user_register', function($user) {
-                wp_new_user_notification($user->ID, null, 'user');
-            });
-        } catch(\Exception $e) {
+        // try {
+        //     add_action('user_register', function($user) {
+        //         wp_new_user_notification($user->ID, null, 'user');
+        //     });
+        // } catch(\Exception $e) {
 
-        }
+        // }
 
        return $user;
 }
@@ -182,7 +182,7 @@ function landingpage_form_post_request() {
                  * Jesli nie mozna odtworzyc obiektu usera na podstawie emaila, stwórz obiekt
                  */
                 if(!get_user_by('email', $email)) {
-                    $generatePassword =  wp_generate_password( 8, true, false ); // 1
+                    $generatePassword =  wp_generate_password(8);//1;//wp_generate_password( 8, true, false ); // 1
                     /**
                      * Stworz obiekt uzytkownika
                      */
@@ -191,9 +191,9 @@ function landingpage_form_post_request() {
                     // Zainicjuj event do Klavyio
                     createKlavyioEventSubscription($email);
 
-                    $creadetUser = 1;
+                    $createdUser = 1;
                 } else {
-                    $creadetUser = 0;
+                    $createdUser = 0;
                     $user = $email;
                 }
 
@@ -241,8 +241,7 @@ function landingpage_form_post_request() {
                     #createOrder($user_id, $user);
 
 
-                    if($creadetUser == 1) { 
-                        
+                    if($createdUser == 1) { 
                         set_transient('mjwp_landingpage_flash_message_success', 'Dziękujemy za rejestrację na naszej platformie. Szkolenie zostało przypisane do Twojego konta. Zresetuj hasło, zaloguj się do konta i ciesz się szkoleniem!', 30); 
                     } else {
                         set_transient('mjwp_landingpage_flash_message_success', 'Szkolenie zostało przypisane do Twojego konta.', 30); 
@@ -250,7 +249,7 @@ function landingpage_form_post_request() {
                     wp_redirect(wp_get_referer());
                 }
             } catch(\Exception $e) { 
-                //echo $e->getMessage();
+                #echo $e->getMessage();
             }
         } else {      
             set_transient('mjwp_landingpage_flash_message_error', 'Błąd recaptcha', 30); // Przechowa wiadomość na 30 sekund

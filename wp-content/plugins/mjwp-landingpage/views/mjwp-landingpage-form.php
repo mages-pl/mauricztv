@@ -5,11 +5,11 @@ $user_id = get_current_user_id();
 
 if(!$user_id) {
     //<!-- Sprawdź czy user jest zalogowany jeśli nie, zwróć pusty formularz -->
-    echo "Niezalogowany";
+    // echo "Niezalogowany";
     $current_user = 0;
 } else {
    // <!-- User jest zalogowany, odnieś się do jego sesji -->
-    echo "Zalogowany";
+    // echo "Zalogowany";
     $current_user = wp_get_current_user();
 }
 ?>

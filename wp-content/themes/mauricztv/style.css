@@ -2677,3 +2677,30 @@ Placeholder loading text
 	font-size: 16px;
     color: #323739;
   }
+
+  /* Poprawki na koszyku */
+@media(max-width: 1200px) {
+    .checkout_cart_price_button {
+        /* padding-bottom: 50px; */
+        position: relative;
+    }
+    .cart_price {
+        display: flex;
+        flex-direction: column;
+    }
+    .checkout .checkout_cart_price_button .discount {
+        bottom: 0 !important;
+        top: auto !important;
+        right: auto !important;
+        left:  0;
+        position: relative !important;
+        transform: none !important;
+        order: 3;
+    }
+    .checkout .cart_button_remove {
+        width: 20% !important;
+    }
+    .checkout .cart_price {
+        width: 80% !important;
+    }
+}

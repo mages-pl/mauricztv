@@ -41,7 +41,10 @@
 <script type="text/javascript" async=""
 src="https://static.klaviyo.com/onsite/js/<?=get_option('mauricz_klavyio_api_public_key')?>/klaviyo.js"></script>
 <!-- end integracja klaviyo -->
-
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
 
 </head>
 

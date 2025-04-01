@@ -241,7 +241,6 @@ function wp_bootstrap_starter_scripts() {
 add_action( 'wp_enqueue_scripts', 'wp_bootstrap_starter_scripts' );
 
 
-
 /**
  * Add Preload for CDN scripts and stylesheet
  */
@@ -1184,3 +1183,5 @@ function save_gdpr_checkbox_on_registration( $user_id ) {
 	}
 }
 add_action( 'user_register', 'save_gdpr_checkbox_on_registration' );
+
+require_once('slwn_functions.php');

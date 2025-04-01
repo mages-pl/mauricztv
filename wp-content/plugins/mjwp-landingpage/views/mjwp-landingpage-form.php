@@ -17,19 +17,20 @@ if(!$user_id) {
 
 <form method="POST">
 
-imie
-    <input type="text" name="imie" value="<?= $current_user->display_name ?>">
-    email
-    <input type="text" name="email" value="<?= $current_user->user_email ?>">
+    <input type="text" name="imie" placeholder="Imię" value="<?= $current_user->display_name ?>">
+    
+    <input type="text" name="email" placeholder="Adrese-mail" value="<?= $current_user->user_email ?>">
 
-    <label>
-    <input type="checkbox"  value="1" required name="confirm" style="display: inline-block;width: auto;vertical-align: middle;">
-    Wyrażam zgodę na otrzymywanie drogą elektroniczną na wskazany przeze mnie adres email informacji handlowej w rozumieniu art. 10 ust. 1 ustawy z dnia 18 lipca 2002 roku o świadczeniu usług drogą elektroniczną od Mauricz.tv
+    <label class="term-label">
+        <input type="checkbox" class="term-checkbox" value="1" required name="confirm" style="display: inline-block;width: auto;vertical-align: middle;">
+        <p>Akceptuję <a href="/regulamin">Regulamin</a> serwisu oraz wyrażam zgodę na otrzymywanie drogą elektroniczną na wskazany przeze mnie adres email informacji handlowej w rozumieniu art. 10 ust. 1 ustawy z dnia 18 lipca 2002 roku o świadczeniu usług drogą elektroniczną od Mauricz.tv.</p>
     </label>
     <div class="g-recaptcha" data-sitekey="6LfInJcqAAAAADmqtMHbyrSkLMNBorJpQQ3Stq9a"></div>
 
-    <button type="submit" type="submit" name="submit_form">Uzyskaj bezpłatny dostęp</button>
- 
+    <div class="button-wrapper">
+        <button type="submit" type="submit" name="submit_form" class="more">Uzyskaj bezpłatny dostęp</button>
+
+    </div>
 </form>
 
  

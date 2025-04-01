@@ -182,7 +182,7 @@ function landingpage_form_post_request() {
                  * Jesli nie mozna odtworzyc obiektu usera na podstawie emaila, stwórz obiekt
                  */
                 if(!get_user_by('email', $email)) {
-                    $generatePassword = 1;// wp_generate_password( 8, true, false );
+                    $generatePassword =  wp_generate_password( 8, true, false ); // 1
                     /**
                      * Stworz obiekt uzytkownika
                      */

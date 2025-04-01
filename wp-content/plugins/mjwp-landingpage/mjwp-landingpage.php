@@ -135,6 +135,25 @@ function createUser($name, $password, $email) {
         'role' => 'subscriber'
        ));
 
+
+        if( is_numeric( $user ) ) {
+            $user = get_userdata( $user );
+        } elseif ( is_email( $user ) ) {
+            $user = get_user_by( 'email', $user );
+        } elseif ( is_string( $user ) ) {
+            $user = get_user_by( 'login', $user );
+        } else {
+            return;
+        }
+        
+        try {
+            add_action('user_register', function($user) {
+                wp_new_user_notification($user->ID, null, 'user');
+            });
+        } catch(\Exception $e) {
+
+        }
+
        return $user;
 }
 
@@ -150,9 +169,9 @@ function landingpage_form_post_request() {
             $name = $_POST['imie'];
             $email = $_POST['email'];
 
-            echo $name;
-            echo "<br/>";
-            echo $email;
+            // echo $name;
+            // echo "<br/>";
+            // echo $email;
             // exit();
 
             /**

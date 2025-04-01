@@ -1,4 +1,4 @@
-
+<div class="mjwp-landingpage">
 <?php
 
 
@@ -277,6 +277,8 @@
 
 
 </div> -->
+
 <?php
 get_footer();
 ?>
+</div>

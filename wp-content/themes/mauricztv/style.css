@@ -2655,28 +2655,28 @@ Placeholder loading text
 	transform: scale(1, 1) !important;
 }
 
-  @media(max-width: 768px) {
-	#cartPopup,
-	#customPopup {
-		width: 90vw;
-	}
-	.buttons {
-		flex-direction: column;
-		
-	}
-	.buttons a,
-	.buttons button {
-		width: 100%;
-	}
-  }
- #checkbox_register_klavyio {
-	display: inline-block;
-	width: auto;
-  }
+@media(max-width: 768px) {
+    #cartPopup,
+    #customPopup {
+        width: 90vw;
+    }
+    .buttons {
+        flex-direction: column;
+        
+    }
+    .buttons a,
+    .buttons button {
+        width: 100%;
+    }
+}
+#checkbox_register_klavyio {
+    display: inline-block;
+    width: auto;
+}
 .tml-checkbox_register_klavyio-wrap .tml-label {
-	font-size: 16px;
+    font-size: 16px;
     color: #323739;
-  }
+}
 
   /* Poprawki na koszyku */
 @media(max-width: 1200px) {

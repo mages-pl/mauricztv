@@ -165,6 +165,7 @@
                     position: relative;
                     @extend %margin-top-150;
                     z-index: 4;
+                    scroll-margin-top: 180px;
 
                     &-container {
                         position: relative;
@@ -260,6 +261,9 @@
                             .inner p.inner07-malgorzata{background-image:url('../img/small-icon07-malgorzata.png');}
 
                             
+                        }
+
+                        #uzyskaj-szkolenie {
                         }
 
                         &__form {

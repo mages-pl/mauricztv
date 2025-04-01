@@ -3,14 +3,14 @@
 
 
     get_header();
-    $acf_fields = get_fields();
+    $acf_fields = get_fields('options');
     $product = get_query_var('product');
 
     $regular_price = get_query_var('regular_price');
     $sale_price = get_query_var('sale_price');
 
     $product_fields = get_fields($product->ID);
-        
+    
 // print_r($acf_fields);
 
 // // Add custom class to body

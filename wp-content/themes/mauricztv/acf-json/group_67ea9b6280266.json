@@ -71,7 +71,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "Jak jedząc smacznie i zdrowo\r\nuniknąć chorób cywilizacyjnych\r\noraz efektu jo-jo",
+                    "default_value": "<h1 class=\"text-80 color-black\" style=\"text-align: center;\">Jak jedząc smacznie i zdrowo\r\n<span class=\"color-accent\">uniknąć chorób<\/span> cywilizacyjnych\r\noraz efektu jo-jo<\/h1>",
                     "allow_in_bindings": 0,
                     "tabs": "all",
                     "toolbar": "full",
@@ -145,7 +145,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
+                    "default_value": "[opinie_slider]",
                     "maxlength": "",
                     "allow_in_bindings": 0,
                     "placeholder": "",
@@ -202,7 +202,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "Czego dowiesz się\r\nze szkolenia?",
+                    "default_value": "<h2 style=\"text-align: center;\">Czego <span class=\"color-accent\">dowiesz się<\/span>\r\nze szkolenia?<\/h2>",
                     "allow_in_bindings": 0,
                     "tabs": "all",
                     "toolbar": "full",
@@ -349,7 +349,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "To szkolenie jest\r\ndla Ciebie jeśli...",
+                    "default_value": "<h2 class=\"text-80\" style=\"text-align: center;\">To szkolenie jest\r\n<span class=\"color-accent\">dla Ciebie<\/span> jeśli...<\/h2>",
                     "allow_in_bindings": 0,
                     "tabs": "all",
                     "toolbar": "full",
@@ -427,7 +427,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
+                    "default_value": "<h3 style=\"text-align: center;\"><span class=\"color-accent\">Gdzie wysłać<\/span> Twój\r\ndostęp do szkolenia?<\/h3>",
                     "allow_in_bindings": 0,
                     "tabs": "all",
                     "toolbar": "full",
@@ -492,9 +492,9 @@
     "location": [
         [
             {
-                "param": "page",
+                "param": "options_page",
                 "operator": "==",
-                "value": "51681"
+                "value": "tresci-landingpage"
             }
         ]
     ],
@@ -507,5 +507,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1743436187
+    "modified": 1743500131
 }

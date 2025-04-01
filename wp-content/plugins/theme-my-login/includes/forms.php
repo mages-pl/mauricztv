@@ -176,6 +176,19 @@ function tml_register_registration_form() {
 		) );
 	}
 
+	// checbox for klavyio
+
+	tml_add_form_field( 'register', 'checkbox_register_klavyio', array(
+		'type'     => 'checkbox',
+		'label'    => __( 'Wyrażam zgodę na otrzymywanie drogą elektroniczną na wskazany przeze mnie adres email informacji handlowej w rozumieniu art. 10 ust. 1 ustawy z dnia 18 lipca 2002 roku o świadczeniu usług drogą elektroniczną od Mauricz.tv'),
+		'value' => '1',
+		//'value'    => tml_get_request_value( 'checkbox_register_klavyio', 'post' ),
+		'id'       => 'checkbox_register_klavyio',
+		'priority' => 30,
+	) );
+
+	// end checbkox for klavyio
+
 	tml_add_form_field( 'register', 'register_form', array(
 		'type'     => 'action',
 		'priority' => 25,

@@ -219,6 +219,8 @@ jQuery( document ).ready(function() {
 });
 
 		</script>
-<script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RAAZX9'></script>
+<script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=<?=get_option('mauricz_klavyio_api_public_key')?>'></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,14 @@
+@use 'abstracts' as *;
+
+.checkout {
+    .checkout_cart_price_button {
+        @include media($breakpoint-lg) {
+            margin-bottom: 50px;
+        }
+        .discount {
+            @include media($breakpoint-lg) {
+                
+            }
+        }
+    }
+}

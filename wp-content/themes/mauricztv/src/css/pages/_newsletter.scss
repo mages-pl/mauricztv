@@ -1,0 +1,68 @@
+@use 'abstracts' as *;
+@use 'base/typography';
+
+.page-template-template-newsletter {
+    .newsletter {
+        width: 100%;
+        height: 100%;
+        &-container {
+            position: relative;
+            height: 100%;
+            &__wrapper {
+                max-width: 760px;
+                position: relative;
+                z-index: 2;
+                display: flex;
+                // align-items: center;
+                height: 100%;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            &__top {
+                .green-top {
+                    background-color: $accent;
+                    color: $white;
+                    padding: .5rem;
+                    @extend .text-27;
+                    width: fit-content;
+                }
+                .title {
+                    h1 {
+                        padding-top: 0 !important;
+                    }
+                }
+            }
+            &__image {
+                // position: relative;
+                position: absolute;
+                width: 100vw;
+                height: 100%;
+                left: 50%;
+                bottom: 0;
+                transform: translateX(-50%);
+                z-index: 0;
+                .image {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                }
+            }
+        }
+    }
+
+    #content {
+        display: flex;
+        .container {
+            // height: 100%;
+            width: 100%;
+            .row {
+                height: 100%;
+            }
+        }
+    }
+
+    .footer {
+        margin-top: 0;
+    }
+}

@@ -644,6 +644,67 @@ function tml_registration_handler() {
 			$redirect_to = ! empty( $_POST['redirect_to'] ) ? $_POST['redirect_to'] : site_url( 'wp-login.php?checkemail=registered' );
 
 			/**
+			 * Sprawdź czy klient wyraza zgody marketingowe
+			 */
+
+			 if($_POST['checkbox_register_klavyio'] == '1')  { 
+
+				try { 
+					// 		curl --request POST \
+					//      --url https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/ \
+
+					$c = curl_init();
+					curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/');//.trim(($id_event)));
+		
+					// date revision
+					$revision = get_option('mauricz_klavyio_api_revision');//'2025-01-15';
+		
+					$KlaviyoPrivateKey = get_option('mauricz_klavyio_api_private_key'); //'pk_788d358870622e5f3ba8afcea7d675dd02';
+					$head[] ='Authorization: Klaviyo-API-Key '.$KlaviyoPrivateKey.'';
+					$head[] ='Content-Type:application/json';
+					$head[] ='accept: application/json';
+					$head[] ='revision: '.$revision;
+					curl_setopt($c, CURLOPT_HTTPHEADER, $head);
+					curl_setopt($c, CURLOPT_POST, true);
+					curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+					
+					$json_request = [
+						"data" => [
+							"type" => "profile-subscription-bulk-create-job",
+							"attributes" => [
+								"profiles" => [
+									"data" => [
+										[
+											"type" => "profile",
+											"attributes" => [
+												"email" => $user_email,
+												"subscriptions" => [
+													"email" => [
+														"marketing" => [
+															"consent" => "SUBSCRIBED"
+														]
+													],
+												]
+											]
+										]
+									]
+								]
+							]
+						]
+					];
+
+						
+					curl_setopt($c, CURLOPT_POSTFIELDS, json_encode($json_request));
+
+					$result =  @json_decode(curl_exec($c), 1);
+		
+				} catch(\Exception $e) {
+					#return false;
+				}
+
+			}
+
+			/**
 			 * Filter the registration redirect.
 			 *
 			 * @since 7.0.10

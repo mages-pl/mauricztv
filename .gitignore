@@ -1,5 +1,6 @@
 /wp-admin
 /wp-includes
+/node_modules
 /awstats/
 index.php
 wp-config.php

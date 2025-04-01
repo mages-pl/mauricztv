@@ -34,8 +34,7 @@ use bpmj\wpidea\modules\app_view\api\App_View_API_Static_Helper;
     <?php 
     // private key pk_788d358870622e5f3ba8afcea7d675dd02 
     ?>
-    <script type="text/javascript" async=""
-    src="https://static.klaviyo.com/onsite/js/RAAZX9/klaviyo.js"></script>
+    <script type="text/javascript" async="" src="https://static.klaviyo.com/onsite/js/<?=get_option('mauricz_klavyio_api_public_key')?>/klaviyo.js"></script>
     <!-- end integracja klaviyo -->
 
 

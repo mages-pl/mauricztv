@@ -1,0 +1,117 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Lista wartości
+$xl-min-values: (180, 150, 140, 130, 120, 110, 100, 90, 80, 70, 60, 50, 40, 30);
+$scale-factors: (
+    xl-max: calc(1 / 1.25),
+    // 75% wartości poprzedniej
+    md-max: calc(1 / 1.5625),
+    // 75% wartości poprzedniej
+    sm-max: calc(1 / 1.953125) // 75% wartości poprzedniej,,,,
+);
+
+// Tworzenie mapy spacing-values
+$spacing-values: ();
+
+@each $size in $xl-min-values {
+    $breakpoints: (
+        xl-min: #{$size}px,
+    );
+
+    @each $bp, $factor in $scale-factors {
+        // Warunki dla wykluczania md-max i sm-max
+        @if not(
+            ($size == 30 or $size == 40) and
+                ($bp == md-max or $bp == sm-max) or
+                ($size == 50 or $size == 60) and
+                ($bp == sm-max)
+        )
+        {
+            $breakpoints: map-merge(
+                $breakpoints,
+                (
+                    $bp: round($size * $factor) + px,
+                )
+            );
+        }
+    }
+
+    $spacing-values: map-merge(
+        $spacing-values,
+        (
+            $size: $breakpoints,
+        )
+    );
+}
+
+// Mixiny do generowania klas
+@mixin generate-spacing($property) {
+    @each $size, $breakpoints in $spacing-values {
+        %#{$property}-#{$size} {
+            @each $bp, $value in $breakpoints {
+                @if $bp == xl-min {
+                    @include media($breakpoint-xl, min) {
+                        #{$property}: $value;
+                    }
+                } @else if $bp == xl-max {
+                    @include media($breakpoint-xl, max) {
+                        #{$property}: $value;
+                    }
+                } @else if $bp == md-max {
+                    @include media($breakpoint-md, max) {
+                        #{$property}: $value;
+                    }
+                } @else if $bp == sm-max {
+                    @include media($breakpoint-sm, max) {
+                        #{$property}: $value;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Generowanie klas dla paddingów i marginesów
+@include generate-spacing("padding-top");
+@include generate-spacing("padding-bottom");
+@include generate-spacing("margin-top");
+@include generate-spacing("margin-bottom");
+
+.mb-30 {
+    @extend %margin-bottom-30;
+}
+.mb-40 {
+    @extend %margin-bottom-40;
+}
+.mb-50 {
+    @extend %margin-bottom-50;
+}
+.mb-60 {
+    @extend %margin-bottom-60;
+}
+.mb-90 {
+    @extend %margin-bottom-90;
+}
+.mb-120 {
+    @extend %margin-bottom-120;
+}
+
+.mt-30 {
+    @extend %margin-top-30;
+}
+.mt-40 {
+    @extend %margin-top-40;
+}
+.mt-50 {
+    @extend %margin-top-50;
+}
+.mt-60 {
+    @extend %margin-top-60;
+}
+.mt-90 {
+    @extend %margin-top-90;
+}
+.mt-120 {
+    @extend %margin-top-120;
+}

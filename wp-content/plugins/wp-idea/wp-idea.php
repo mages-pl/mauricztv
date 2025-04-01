@@ -982,6 +982,40 @@ class MauriczCrosselingFileds {
             register_setting( 'general', 'mauricz_myaccount', 'esc_attr' );
 
             add_settings_field('mauricz_myaccount', '<label for="mauricz_myaccount">'.__('Wybierz stronę z informacją o koncie klienta (Moje konto)' , 'mauricz_myaccount' ).'</label>' , array(&$this, 'fields_mauricz_myaccount_pages') , 'general' );
+
+            /**
+             * Integracja klavyio - private api key
+             */
+
+             register_setting( 'general', 'mauricz_klavyio_api_private_key', 'esc_attr' );
+
+             add_settings_field('mauricz_klavyio_api_private_key', '<label for="mauricz_klavyio_api_private_key">'.__('Podaj klucz prywatny API Klavyio' , 'mauricz_klavyio_api_private_key' ).'</label>' , array(&$this, 'mauricz_klavyio_api_private_key') , 'general' );
+ 
+            /**
+             * Integracja klavyio - public api key
+             */
+
+             register_setting( 'general', 'mauricz_klavyio_api_public_key', 'esc_attr' );
+
+             add_settings_field('mauricz_klavyio_api_public_key', '<label for="mauricz_klavyio_api_public_key">'.__('Podaj klucz publiczny API Klavyio' , 'mauricz_klavyio_api_public_key' ).'</label>' , array(&$this, 'mauricz_klavyio_api_public_key') , 'general' );
+ 
+            /**
+             * Integracja klavyio - revision
+             */
+
+             register_setting( 'general', 'mauricz_klavyio_api_revision', 'esc_attr' );
+
+             add_settings_field('mauricz_klavyio_api_revision', '<label for="mauricz_klavyio_api_revision">'.__('Podaj revision dla API Klavyio' , 'mauricz_klavyio_api_revision' ).'</label>' , array(&$this, 'mauricz_klavyio_api_revision') , 'general' );
+             
+            /**
+             * Mauricz - darmowy kurs
+             */
+
+             register_setting( 'general', 'mauricz_product_free_course', 'esc_attr' );
+
+             add_settings_field('mauricz_product_free_course', '<label for="mauricz_product_free_course">'.__('Wybierz darmowy kurs który ma być oferowany klientom' , 'mauricz_product_free_course' ).'</label>' , array(&$this, 'mauricz_product_free_course') , 'general' );
+
+
     }
     function fields_html() {
         $getDiscounts = edd_get_discounts(); // opcjonalnie dodaj  array( 'posts_per_page' => $per_page, 'paged' => $paged
@@ -1063,6 +1097,65 @@ class MauriczCrosselingFileds {
 
         echo '<select id="'.$instance.'" name="'.$instance.'">';
             echo $optionsPages;
+        echo '</select>';
+    }
+
+    /**
+     * Private api key klavyio
+     */
+    function mauricz_klavyio_api_private_key() { 
+        $value = get_option('mauricz_klavyio_api_private_key');
+
+        echo "<input type='text' id='mauricz_klavyio_api_private_key' name='mauricz_klavyio_api_private_key' class='regular-text' value='".$value."'/>";
+    }
+
+    /**
+     * Public api key klavyio
+     */
+    function mauricz_klavyio_api_public_key() { 
+        $value = get_option('mauricz_klavyio_api_public_key');
+
+        echo "<input type='text' id='mauricz_klavyio_api_public_key' name='mauricz_klavyio_api_public_key' class='regular-text' value='".$value."'/>";
+    }
+
+    /**
+     * Revision dla api klavyio
+     */
+    function mauricz_klavyio_api_revision() { 
+        $value = get_option('mauricz_klavyio_api_revision');
+
+        echo "<input type='text' id='mauricz_klavyio_api_revision' name='mauricz_klavyio_api_revision' class='regular-text' value='".$value."'/>";
+    }
+
+    /**
+     * Produkt darmowe kursy do mapowania
+     */
+    function mauricz_product_free_course() { 
+        $instance = 'mauricz_product_free_course';
+
+        $args = array(
+            'post_type'      => 'download',
+            'posts_per_page' => 9999,
+            'orderby'          => 'date',
+            'order'            => 'DESC',
+        );
+        
+        $getProducts = get_posts( $args );
+
+        $value = get_option($instance);
+
+        $optionsProducts = '';
+        
+        foreach ($getProducts as $key => $product) {
+            if($value == $product->ID) { 
+                $optionsProducts .= '<option selected="selected" value="'.$product->ID.'">'.$product->post_title.'</option>';  
+            } else { 
+                $optionsProducts .= '<option value="'.$product->ID.'">'.$product->post_title.'</option>';   
+            }
+        }
+
+        echo '<select id="'.$instance.'" name="'.$instance.'">';
+            echo $optionsProducts;
         echo '</select>';
     }
 

@@ -18,6 +18,7 @@ html {
 	--stage-text-color: #1cd779;
 	--lesson-icon-color:var(--main-color);
 	--display-mode-active-icon-color: var(--main-color);
+    scroll-behavior: smooth;
 }
 
 body{margin:0;-webkit-font-smoothing:auto;}

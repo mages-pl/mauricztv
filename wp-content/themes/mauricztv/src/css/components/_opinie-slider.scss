@@ -1,0 +1,85 @@
+@use 'base/typography' as *;
+@use 'abstracts' as *;
+
+.opinie-slider-container {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    @extend %margin-top-90;
+    @extend %margin-bottom-90;
+    .swiper-button-next,
+    .swiper-button-prev {
+        &::after {
+            color: $accent;
+        }
+    }
+    .swiper-button-next {
+        right: 1rem;
+    }
+    .swiper-button-prev {
+        left: 1rem;
+    }
+
+    .swiper {
+        padding: 1rem;
+
+    }
+
+    .swiper-wrapper {
+        height: auto;
+
+        .swiper-slide {
+            display: flex;
+            height: auto;
+        }
+
+        .opinia-item {
+            box-shadow: $shadow;
+            
+            display: flex;
+
+            &__container {
+                position: relative;
+
+                &::before {
+                    content: '';
+                    background: rgb(228,250,239);
+                    background: -moz-linear-gradient(148deg, rgba(228,250,239,1) 0%, rgba(45,208,118,1) 100%);
+                    background: -webkit-linear-gradient(148deg, rgba(228,250,239,1) 0%, rgba(45,208,118,1) 100%);
+                    background: linear-gradient(148deg, rgba(228,250,239,1) 0%, rgba(45,208,118,1) 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e4faef",endColorstr="#2dd076",GradientType=1);
+                    position: absolute;
+                    top: -2px;
+                    left: -2px;
+                    width: calc(100% + 4px);
+                    height: calc(100% + 4px);
+                    z-index: -1;
+                    display: block;
+                }
+            }
+            &__content {
+                background-color: $white;
+                padding: 45px;
+                height: 100%;
+            }
+
+            &__rating {
+                color: $accent;
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+
+            &__author {
+                margin-bottom: 14px;
+            }
+            &__verified {
+                margin-top: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                p {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

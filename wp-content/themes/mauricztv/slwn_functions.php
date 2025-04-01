@@ -205,45 +205,49 @@ function opinie_slider_shortcode() {
                         $imie_nazwisko = get_field('imie_nazwisko');
                         ?>
                         <div class="swiper-slide opinie-slide">
-                            <div class="opinie-content">
-                                <!-- <?php if ($zdjecie) : ?>
-                                    <div class="opinie-image">
-                                        <img src="<?php echo esc_url($zdjecie['url']); ?>" alt="<?php echo esc_attr($imie_nazwisko); ?>">
+                            <div class="opinia-item">
+                                <div class="opinia-item__container">
+                                    <div class="opinia-item__content">
+                                        <!-- <?php if ($zdjecie) : ?>
+                                            <div class="opinie-image">
+                                                <img src="<?php echo esc_url($zdjecie['url']); ?>" alt="<?php echo esc_attr($imie_nazwisko); ?>">
+                                            </div>
+                                        <?php endif; ?> -->
+                                        
+                                        <div class="opinia-item__rating">
+                                            <div class="stars">
+                                                <span class="star">★</span>
+                                                <span class="star">★</span>
+                                                <span class="star">★</span>
+                                                <span class="star">★</span>
+                                                <span class="star">★</span>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <?php if ($imie_nazwisko) : ?>
+                                            <div class="opinia-item__author text-34 text-bold">
+                                                <?php echo esc_html($imie_nazwisko); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if ($tresc) : ?>
+                                            <div class="opinia-item__text">
+                                                <?php echo wp_kses_post($tresc); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <div class="opinia-item__verified">
+                                            <img src="<?= get_template_directory_uri(  ) ?>/img/verified.png" alt=""><p>Zweryfikowany zakup</p>
+                                        </div>
                                     </div>
-                                <?php endif; ?> -->
-                                
-                                <div class="opinie-rating">
-                                    <div class="stars">
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                    </div>
-                                </div>
-                                
-                                
-                                <?php if ($imie_nazwisko) : ?>
-                                    <div class="opinie-author">
-                                        <?php echo esc_html($imie_nazwisko); ?>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if ($tresc) : ?>
-                                    <div class="opinie-text">
-                                        <?php echo wp_kses_post($tresc); ?>
-                                    </div>
-                                <?php endif; ?>
-                                <div class="opinie-verified">
-                                    <p>Zweryfikowany zakup</p>
                                 </div>
                             </div>
                         </div>
                     <?php endwhile; ?>
                 </div>
                 
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
             </div>
+            <div class="swiper-button-next opinie-slider-next"></div>
+            <div class="swiper-button-prev opinie-slider-prev"></div>
         </div>
         
     <?php endif;

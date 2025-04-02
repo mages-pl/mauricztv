@@ -64,6 +64,14 @@
                         right: auto;
                     }
                 }
+
+                @include media($breakpoint-xs) {
+                    .image {
+                        width: 150%;
+                        height: auto;
+                        right: 50%;
+                    }
+                }
             }
         }
     }

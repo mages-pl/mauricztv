@@ -152,7 +152,11 @@ function tml_register_registration_form() {
 			),
 			'priority'   => 20,
 		) );
-
+        tml_add_form_field( 'register', 'indicator_hint', array(
+			'type'     => 'custom',
+			'content'  => '<p class="description indicator-hint">' . wp_get_password_hint() . '</p>',
+			'priority' => 20,
+		) );
 		// google recaptcha v2
 
 		tml_add_form_field( 'register', 'g-recaptcha', array(
@@ -169,11 +173,7 @@ function tml_register_registration_form() {
 			'priority' => 20,
 		) );
 
-		tml_add_form_field( 'register', 'indicator_hint', array(
-			'type'     => 'custom',
-			'content'  => '<p class="description indicator-hint">' . wp_get_password_hint() . '</p>',
-			'priority' => 20,
-		) );
+		
 	}
 
 	// checbox for klavyio
@@ -201,6 +201,12 @@ function tml_register_registration_form() {
 			'priority' => 30,
 		) );
 	}
+	
+    tml_add_form_field( 'register', 'info_required_field', array(
+        'type'     => 'custom',
+        'content'  => '<p id="info_required_field"><span class="text-red">*</span> Pole wymagane</p>',
+        'priority' => 31,
+    ) );
 
 	tml_add_form_field( 'register', 'submit', array(
 		'type'     => 'submit',

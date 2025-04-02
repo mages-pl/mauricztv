@@ -1161,7 +1161,7 @@ function set_cart_popup_cookie() {
   function add_gdpr_checkbox_to_tml_register_form() {
 	tml_add_form_field( 'register', 'accept_terms', array(
 		'type' => 'checkbox',
-		'label' => 'Zapoznałem/-łam się z <a href="/regulamin">Regulaminem</a> serwisu i akceptuję jego treść.',
+		'label' => 'Zapoznałem/-łam się z <a href="/regulamin">Regulaminem</a> serwisu i akceptuję jego treść.<span class="text-red">*</span>',
 		'value' => '1',
 		'checked' => tml_get_request_value( 'accept_terms', 'post' ),
 		'priority' => 30,

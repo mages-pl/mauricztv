@@ -136,25 +136,27 @@ function createUser($name, $password, $email) {
        ));
 
 
-        // if( is_numeric( $user ) ) {
-        //     $user = get_userdata( $user );
-        // } elseif ( is_email( $user ) ) {
-        //     $user = get_user_by( 'email', $user );
-        // } elseif ( is_string( $user ) ) {
-        //     $user = get_user_by( 'login', $user );
-        // } else {
-        //     return;
-        // }
+        if( is_numeric( $user ) ) {
+            $getUser = get_userdata( $user );
+        } elseif ( is_email( $user ) ) {
+            $getUser = get_user_by( 'email', $user );
+        } elseif ( is_string( $user ) ) {
+            $getUser = get_user_by( 'login', $user );
+        } else {
+            return;
+        }
         
-        // try {
-        //     add_action('user_register', function($user) {
-        //         wp_new_user_notification($user->ID, null, 'user');
-        //     });
-        // } catch(\Exception $e) {
+        try {
+            // echo "id".$getUser->ID;
+            // exit();
+            tml_send_new_user_notifications( $getUser->ID, $notify = 'both' );
+            // add_action('user_register', function($user) {
+            //     wp_new_user_notification($user->ID, null, 'user');
+            // });
+        } catch(\Exception $e) {
 
-        // }
-
-       return $user;
+        }
+        return $getUser;
 }
 
 // Przechwytywanie i obsługa danych z formularza
@@ -196,7 +198,7 @@ function landingpage_form_post_request() {
                     $createdUser = 0;
                     $user = $email;
                 }
-
+               
                 /**
                  * Pobierz obiekt usera
                  */
@@ -207,7 +209,6 @@ function landingpage_form_post_request() {
                 } elseif ( is_string( $user ) ) {
                     $user = get_user_by( 'login', $user );
                 } else {
-                    return;
                 }
 
                 /**
@@ -228,7 +229,6 @@ function landingpage_form_post_request() {
                     /**
                      * User nie posiada szkolenia stwórz obiekt zamówienia, powiaz z userem i zwróć komunikat
                      */
-
                     /**
                     * Dodaj kurs dla usera
                     */
@@ -240,11 +240,19 @@ function landingpage_form_post_request() {
                     // Stworz obiekt zamówienia
                     #createOrder($user_id, $user);
 
-
+               
                     if($createdUser == 1) { 
-                        set_transient('mjwp_landingpage_flash_message_success', 'Dziękujemy za rejestrację na naszej platformie. Szkolenie zostało przypisane do Twojego konta. Zresetuj hasło, zaloguj się do konta i ciesz się szkoleniem!', 30); 
+                        set_transient('mjwp_landingpage_flash_message_success', 'Dziękujemy za rejestrację na naszej platformie. Szkolenie zostało przypisane do Twojego konta. <a href="'.get_permalink(596).'">Zresetuj hasło</a>, zaloguj się do konta i ciesz się szkoleniem!', 30); 
                     } else {
-                        set_transient('mjwp_landingpage_flash_message_success', 'Szkolenie zostało przypisane do Twojego konta.', 30); 
+                        $logged = get_current_user_id();
+                        if($logged) {
+                            // Przejdź do szkolenia
+                            set_transient('mjwp_landingpage_flash_message_success', 'Szkolenie zostało przypisane do Twojego konta. <br/> <a href="'.get_permalink(get_option()).'">Przejdź do szkolenia</a>', 30); 
+
+                        } else{
+                            //Zaloguj się
+                            set_transient('mjwp_landingpage_flash_message_success', 'Szkolenie zostało przypisane do Twojego konta. <br/> <a href="'.get_permalink(560).'">Zaloguj się</a>', 30); 
+                        }
                     }
                     wp_redirect(wp_get_referer());
                 }

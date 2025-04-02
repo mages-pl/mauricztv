@@ -171,11 +171,11 @@
                                 $message_error = get_transient('mjwp_landingpage_flash_message_error');
                                 $message_success = get_transient('mjwp_landingpage_flash_message_success');
                                 if ($message_error) {
-                                    echo '<div class="alert alert-danger"><p>' . esc_html($message_error) . '</p></div>';
+                                    echo '<div class="alert alert-danger"><p>' . ($message_error) . '</p></div>';
                                     delete_transient('mjwp_landingpage_flash_message_error');
                                 }
                                 if ($message_success) {
-                                    echo '<div class="alert alert-success"><p>' . esc_html($message_success) . '</p></div>';
+                                    echo '<div class="alert alert-success"><p>' . ($message_success) . '</p></div>';
                                     delete_transient('mjwp_landingpage_flash_message_success');
                                 }
                                 echo '<div class="button-wrapper">';

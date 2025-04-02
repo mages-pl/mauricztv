@@ -2705,3 +2705,10 @@ Placeholder loading text
         width: 80% !important;
     }
 }
+
+.tml .tml-field {
+    margin-bottom: 0 !important;
+}
+.text-red {
+    color: #d50000;
+}

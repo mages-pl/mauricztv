@@ -697,8 +697,8 @@ footer.entry-meta, footer.entry-footer{display:none;}
 .tml-register ul.tml-links{display:none;}
 .tml-lostpassword ul.tml-links{display:none;}
 .tml-accept_terms-wrap {
-    display: flex;
-    gap: 1rem;
+    /* display: flex;
+    gap: 1rem; */
 }
 .tml-accept_terms-wrap .tml-checkbox {
     width: fit-content;
@@ -2711,4 +2711,8 @@ Placeholder loading text
 }
 .text-red {
     color: #d50000;
+}
+
+.mt-10 {
+    margin-top: 50px;
 }

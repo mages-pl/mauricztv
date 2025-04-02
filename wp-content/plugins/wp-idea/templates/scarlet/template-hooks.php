@@ -1189,6 +1189,16 @@ function bpmj_eddcm_scarlet_item_price_discount_after($label, $item_id, $options
                 $label = str_replace('</ins>', '</p>', $label);
                 $label = str_replace('<del>', '<p class="podsumowanie_koszyk_promo_price">', $label);
                 $label .= '</p>';
+
+                /**
+                 *  Jeśli produkt jest w promocji ale nie obejmuje go rabat
+                 */
+                $salePrice = number_format(get_post_meta($item_id,  'edd_sale_price', true),2,'.','');
+                if($salePrice > 0) {
+                    $regularPrice = number_format(get_post_meta($item_id,  'edd_price', true),2,'.','');
+                    $diff = $regularPrice - $salePrice;
+                    $label .=  '<div class="discount" style="background: #1CD779;color: #fff;position: absolute;right: 0;top: 50%;padding: 0 15px;transform: translateX(50%) translateY(-50%)">Oszczędzasz '.$diff.' PLN</div>';
+                }
               }
         } else {
             /**

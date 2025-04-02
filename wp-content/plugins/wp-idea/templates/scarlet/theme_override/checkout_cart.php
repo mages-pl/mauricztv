@@ -382,12 +382,27 @@ echo "<a href='".get_permalink($product->ID)."'>";
 			$sale_price_from_date = get_post_meta($product->ID,  'sale_price_from_date', true);
 			$sale_price_to_date = get_post_meta($product->ID,  'sale_price_to_date', true);
 
+			$salePrice = get_post_meta($product->ID,  'sale_price', true);
+			$regularPrice = get_post_meta($product->ID,  'edd_price', true);
+
 			if((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) { 
-				echo number_format(get_post_meta($product->ID,  'sale_price', true),2,'.',''); 
+				echo number_format($salePrice,2,'.',''); 
+				echo " PLN";
 			} else {
-			 echo number_format(get_post_meta($product->ID,  'edd_price', true),2,'.',''); 
+				if(($salePrice>0) && ($salePrice != $regularPrice)) { 
+					echo number_format($salePrice,2,'.',''); 
+					echo " PLN";
+					echo "<br/>";
+					echo "<del>";
+					echo number_format($regularPrice,2,'.',''); 
+					echo " PLN";
+					echo "</del>";
+				} else {
+					 echo number_format($regularPrice,2,'.',''); 
+					 echo " PLN";
+				}
 			}
-			 ?> PLN
+			 ?>  
 
 		</p>            
 	</div>                            

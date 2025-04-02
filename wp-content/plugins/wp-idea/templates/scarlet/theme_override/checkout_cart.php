@@ -389,7 +389,7 @@ echo "<a href='".get_permalink($product->ID)."'>";
 				echo number_format($salePrice,2,'.',''); 
 				echo " PLN";
 			} else {
-				if(($salePrice>0) && ($salePrice != $regularPrice)) { 
+				if(($salePrice>0) && ($salePrice != $regularPrice) &&  (empty($sale_price_to_date))) { 
 					echo number_format($salePrice,2,'.',''); 
 					echo " PLN";
 					echo "<br/>";

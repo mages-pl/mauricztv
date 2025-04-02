@@ -247,7 +247,7 @@ function landingpage_form_post_request() {
                         $logged = get_current_user_id();
                         if($logged) {
                             // Przejdź do szkolenia
-                            set_transient('mjwp_landingpage_flash_message_success', 'Szkolenie zostało przypisane do Twojego konta. <br/> <a href="'.get_permalink(get_option()).'">Przejdź do szkolenia</a>', 30); 
+                            set_transient('mjwp_landingpage_flash_message_success', 'Szkolenie zostało przypisane do Twojego konta.', 30); 
 
                         } else{
                             //Zaloguj się

@@ -20,12 +20,19 @@
  }
  
 get_header();
- 
+    if (isset($_GET['checkemail']) && $_GET['checkemail'] == 'registered') : ?>
+        <div class="alert alert-success col-12 mt-10" role="alert">
+        <strong>Rejestracja zakończona pomyślnie!</strong> Sprawdź swoją skrzynkę e-mail, aby aktywować konto.
+        </div>
+    <?php endif; ?>
+    <?php
  if(!$user_ID) { 
     // Niezalogowany
+        // Check if registration confirmation parameter is present
+        
     ?>
 
-
+    
 
     <div class="row login-section tml">
 

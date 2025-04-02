@@ -324,40 +324,40 @@ function mjtest_shortcode() {
 add_shortcode('mjloginpage', 'mjloginpage');
 function mjloginpage() {
     $output = '<div class="container">';
+    
     $output .= '<div class="row login-section">';
 
-    $output .= '<div class="col-md-6">';
-    
-    $output .= wp_login_form( ['echo' =>false] );
-    $output .= "</div>";
+        $output .= '<div class="col-md-6">';
+        
+        $output .= wp_login_form( ['echo' =>false] );
+        $output .= "</div>";
 
-    $output .= '<div class="col-md-6">';
-    $output .= '<div>';
-    $output .=  '<h1>Zarejestruj się</h1>';
-    $output .=  '<h3>Otrzymasz liczne dodatkowe korzyści</h3>';
-    $output .=  '<ul>';
+        $output .= '<div class="col-md-6">';
+            $output .= '<div>';
+                $output .=  '<h1>Zarejestruj się</h1>';
+                $output .=  '<h3>Otrzymasz liczne dodatkowe korzyści</h3>';
+                $output .=  '<ul>';
 
-    $output .=  '<li>';
-    $output .=  'dostęp do Twoich szkoleń';
-    $output .=  '</li>';
-    $output .=  '<li>';
-    $output .=  'podgląd historii zakupów';
-    $output .=  '</li>';
-    $output .=  '<li>';
-    $output .=  'brak konieczności wprowadzania swoich danych w kolejnych zakupach';
-    $output .=  '</li>';
-    $output .=  '<li>';
-    $output .=  'mozliwość otrzymania rabatów i kuponów promocyjnych';
-    $output .=  '</li>';
+                    $output .=  '<li>';
+                        $output .=  'dostęp do Twoich szkoleń';
+                    $output .=  '</li>';
+                    $output .=  '<li>';
+                        $output .=  'podgląd historii zakupów';
+                    $output .=  '</li>';
+                    $output .=  '<li>';
+                        $output .=  'brak konieczności wprowadzania swoich danych w kolejnych zakupach';
+                    $output .=  '</li>';
+                    $output .=  '<li>';
+                        $output .=  'mozliwość otrzymania rabatów i kuponów promocyjnych';
+                    $output .=  '</li>';
 
-    $output .=  '</ul>';
+                $output .=  '</ul>';
 
+                $output .= "<a href='wp-login.php?action=register' class='more btn btn-secondary register'>Zarejestruj się</a>";
 
-    $output .= "<a href='wp-login.php?action=register' class='more btn btn-secondary register'>Zarejestruj się</a>";
+            $output .= '</div>';
 
-    $output .= '</div>';
-
-    $output .= "</div>";
+        $output .= "</div>";
     $output .= "</div>";
     $output .= "</div>";
     return $output;

@@ -157,6 +157,12 @@ function createUser($name, $password, $email) {
         } catch(\Exception $e) {
 
         }
+
+        try {
+            createEvent("Klienci", "Zarejestrowani", $getUser->email);
+        } catch(\Exception $e) { 
+
+        }
         return $getUser;
 }
 

@@ -1209,7 +1209,7 @@ function bpmj_eddcm_scarlet_item_price_discount_after($label, $item_id, $options
               * Jeśli na pozycję ma działać rabat (zweryfikuj z aktywnym rabatem i jego regułami względem pozycji)
               */
                 if(checkIfIsDiscounted($item_id)) { 
-                    $label = '<p class="podsumowanie_koszyk_price" style="text-decoration:line-through;">' . $label . '</p>';
+                    $label = '<p class="podsumowanie_koszyk_promo_price" style="text-decoration:line-through;">' . $label . '</p>';
                     //edd_get_discount_amount(10)
 
       

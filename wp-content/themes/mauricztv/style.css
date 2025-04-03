@@ -2720,18 +2720,23 @@ Placeholder loading text
 .checkout_cart_price_button .cart_price {
     display: flex;
     flex-direction: column;
+}
 
-    ins {
-        text-decoration: line-through;
-        order: 2;
-        font-weight: 900;
+.checkout_cart_price_button .cart_price ins {
+    text-decoration: line-through;
+    order: 2;
+    font-weight: 900;
 
-    }
-    del {
-        order: 1;
-        font-weight: 900;
-    }
-    .podsumowanie_koszyk_price {
-        order: 3;
-    }
+}
+.checkout_cart_price_button .cart_price del {
+    order: 1;
+    font-weight: 900;
+}
+.checkout_cart_price_button .cart_price .podsumowanie_koszyk_price {
+    order: 3;
+    color:#16d778;
+}
+.checkout_cart_price_button .cart_price .podsumowanie_koszyk_promo_price {
+    
+    font-weight: 900;
 }

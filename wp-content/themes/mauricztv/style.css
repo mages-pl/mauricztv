@@ -2716,3 +2716,22 @@ Placeholder loading text
 .mt-10 {
     margin-top: 50px;
 }
+
+.checkout_cart_price_button .cart_price {
+    display: flex;
+    flex-direction: column;
+
+    ins {
+        text-decoration: line-through;
+        order: 2;
+        font-weight: 900;
+
+    }
+    del {
+        order: 1;
+        font-weight: 900;
+    }
+    .podsumowanie_koszyk_price {
+        order: 3;
+    }
+}

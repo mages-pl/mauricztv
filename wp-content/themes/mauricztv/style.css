@@ -2696,7 +2696,7 @@ Placeholder loading text
         left:  0;
         position: relative !important;
         transform: none !important;
-        order: 3;
+        order: 4;
     }
     .checkout .cart_button_remove {
         width: 20% !important;

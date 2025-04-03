@@ -2740,3 +2740,33 @@ Placeholder loading text
     
     font-weight: 900;
 }
+
+
+@media(max-width: 690px) {
+    .checkout_cart_img {
+        width: 20% !important;
+    }
+}
+@media(max-width: 500px) {
+    .checkout_cart_img {
+        width: 25% !important;
+    }
+}
+@media(max-width: 400px) {
+    .checkout_cart_img {
+        width: 30% !important;
+    }
+}
+
+@media (max-width: 901px) {
+.checkout {
+        .wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column[style*=flex-basis] {
+            flex-basis: 100% !important;
+        }
+        .wp-block-columns {
+            flex-wrap: wrap !important;
+        }
+    }
+
+}
+

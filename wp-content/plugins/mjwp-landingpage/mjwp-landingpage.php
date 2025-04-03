@@ -126,7 +126,7 @@ function recaptchaVerify($request) {
  */
 function createUser($name, $password, $email) { 
     $user = wp_insert_user( array(
-        'user_login' => $name,
+        'user_login' => $email,
         'user_pass' => $password,
         'user_email' => $email,
         'first_name' => $name,
@@ -149,7 +149,8 @@ function createUser($name, $password, $email) {
         try {
             // echo "id".$getUser->ID;
             // exit();
-            tml_send_new_user_notifications( $getUser->ID, $notify = 'both' );
+            tml_send_new_user_notifications( $getUser->ID, $notify = 'user' );
+            #wp_new_user_notification($getUser->ID, null, 'user');
             // add_action('user_register', function($user) {
             //     wp_new_user_notification($user->ID, null, 'user');
             // });

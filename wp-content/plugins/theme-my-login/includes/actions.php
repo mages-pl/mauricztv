@@ -705,6 +705,15 @@ function tml_registration_handler() {
 			}
 
 			/**
+			 * Zainicjuj event z kluczem Klienci i wartością Zarejestrowani
+			 */
+			try {
+				createEvent("Klienci", "Zarejestrowani", $user_email);
+			} catch(\Exception $e) { 
+
+			}
+
+			/**
 			 * Filter the registration redirect.
 			 *
 			 * @since 7.0.10

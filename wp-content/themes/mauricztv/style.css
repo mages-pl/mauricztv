@@ -2770,3 +2770,7 @@ Placeholder loading text
 
 }
 
+#edd_purchase_submit .required+label:after {
+    content: "*";
+    color: red;
+}

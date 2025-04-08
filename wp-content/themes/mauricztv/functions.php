@@ -1184,4 +1184,108 @@ function save_gdpr_checkbox_on_registration( $user_id ) {
 }
 add_action( 'user_register', 'save_gdpr_checkbox_on_registration' );
 
+/**
+ * Dodanie customowego pola do checkoutu mauricz.tv
+ */
+
+ function addCustomChecboxToCheckoutMauricz() { 
+//  <fieldset id="edd_agree_marketing_klavyio">
+    $output = '';
+    $output .= '
+  
+            <div class="edd_agree_marketing_klavyio">
+                <input name="edd_agree_marketing_klavyio"  type="checkbox" id="edd_agree_marketing_klavyio" value="1">
+                <label for="edd_agree_marketing_klavyio"> Wyrażam zgodę na otrzymywanie drogą elektroniczną na wskazany przeze mnie adres email informacji handlowej w rozumieniu art. 10 ust. 1 ustawy z dnia 18 lipca 2002 roku o świadczeniu usług drogą elektroniczną od Mauricz.tv</label>
+            </div>
+    ';
+    //</fieldset>'
+
+    echo $output;
+   
+ }
+
+add_action('edd_purchase_form_before_submit', 'addCustomChecboxToCheckoutMauricz', 1);
+
+function addCustomFooterInfoToCheckoutMauricz() {
+    echo '<div class="tml-field-wrap tml-info_required_field-wrap"><p id="info_required_field"><span class="text-red">*</span> Pole wymagane</p></div>';
+
+}
+ add_action('edd_purchase_form_before_submit', 'addCustomFooterInfoToCheckoutMauricz', 9992);
+
+
+
+/**
+ * Hook action processCheckboxKlavyioCheckout
+ * @return bool
+ */
+function processCheckboxKlavyioCheckout() {
+    try {   
+        if(@$_POST['edd_agree_marketing_klavyio'] == '1') { 
+            /**
+             * Zasubskrybuj w klavyio
+             */
+            try { 
+                // 		curl --request POST \
+                //      --url https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/ \
+
+                $c = curl_init();
+                curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/');//.trim(($id_event)));
+    
+                // date revision
+                $revision = get_option('mauricz_klavyio_api_revision');//'2025-01-15';
+    
+                $KlaviyoPrivateKey = get_option('mauricz_klavyio_api_private_key'); //'pk_788d358870622e5f3ba8afcea7d675dd02';
+                $head[] ='Authorization: Klaviyo-API-Key '.$KlaviyoPrivateKey.'';
+                $head[] ='Content-Type:application/json';
+                $head[] ='accept: application/json';
+                $head[] ='revision: '.$revision;
+                curl_setopt($c, CURLOPT_HTTPHEADER, $head);
+                curl_setopt($c, CURLOPT_POST, true);
+                curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+                
+                $json_request = [
+                    "data" => [
+                        "type" => "profile-subscription-bulk-create-job",
+                        "attributes" => [
+                            "profiles" => [
+                                "data" => [
+                                    [
+                                        "type" => "profile",
+                                        "attributes" => [
+                                            "email" => $_POST['edd_email'],
+                                            "subscriptions" => [
+                                                "email" => [
+                                                    "marketing" => [
+                                                        "consent" => "SUBSCRIBED"
+                                                    ]
+                                                ],
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ];
+
+                    
+                curl_setopt($c, CURLOPT_POSTFIELDS, json_encode($json_request));
+
+                $result =  @json_decode(curl_exec($c), 1);
+    
+            } catch(\Exception $e) {
+            }
+        } else { 
+            /**
+             * Nic nie rób
+             */
+        }
+            // print_r($_POST);
+            // exit();
+    } catch(\Exception $e) {
+
+    }
+}
+add_action('edd_checkout_before_gateway', 'processCheckboxKlavyioCheckout');
+ //edd_checkout_before_gateway
 require_once('slwn_functions.php');

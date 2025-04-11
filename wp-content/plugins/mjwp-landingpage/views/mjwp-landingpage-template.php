@@ -35,7 +35,34 @@
             </div>
             <div class="hero-container__video">
                 <?php if($product_fields['filmik']) : ?>
-                    <?= $product_fields['filmik'] ?>
+                    <?php
+
+                    // Load value.
+                    $iframe = $product_fields['filmik'];
+
+                    // Use preg_match to find iframe src.
+                    preg_match('/src="(.+?)"/', $iframe, $matches);
+                    $src = $matches[1];
+
+                    // Add extra parameters to src and replace HTML.
+                    $params = array(
+                        'autoplay' => 1,
+                        'loop' => 1,
+                        'muted' => 1,
+                        // 'controls'  => 1,
+                        // 'hd'        => 1,
+                        // 'autohide'  => 1,
+                    );
+                    $new_src = add_query_arg($params, $src);
+                    $iframe = str_replace($src, $new_src, $iframe);
+
+                    // Add extra attributes to iframe HTML.
+                    $attributes = 'frameborder="0"';
+                    $iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $iframe);
+
+                    // Display customized HTML.
+                    echo $iframe;
+                    ?>
                 <?php else : ?>
                     <img src="<?php echo $product_fields['grafika_zamiast_filmu']; ?>" />
                 <?php endif; ?>

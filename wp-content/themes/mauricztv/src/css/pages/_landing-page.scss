@@ -240,7 +240,7 @@
                                 p {
                                     background-position: left center;
                                     background-repeat: no-repeat;
-                                    background-size: 45px;
+                                    background-size: 30px;
                                     padding-left: 60px;
                                     @extend .text-27;
                                     // vertical-align: middle;
@@ -249,13 +249,13 @@
                                     align-items: center;
                                 }
                             }
-                            .inner p.inner01{background-image:url('../img/small-icon01.png');}
-                            .inner p.inner02{background-image:url('../img/small-icon02.png');}
-                            .inner p.inner03{background-image:url('../img/small-icon03.png');}
-                            .inner p.inner04{background-image:url('../img/small-icon04.png');}
-                            .inner p.inner05{background-image:url('../img/small-icon05.png');}
-                            .inner p.inner06{background-image:url('../img/small-icon06.png');}
-                            .inner p.inner07-jakub{background-image:url('../img/small-icon07.png');}
+                            .inner p.inner01{background-image:url('../img/icon01.svg');}
+                            .inner p.inner02{background-image:url('../img/icon02.svg');}
+                            .inner p.inner03{background-image:url('../img/icon03.svg');}
+                            .inner p.inner04{background-image:url('../img/icon04.svg');}
+                            .inner p.inner05{background-image:url('../img/icon05.svg');}
+                            .inner p.inner06{background-image:url('../img/icon06.svg');}
+                            .inner p.inner07-jakub{background-image:url('../img/icon07.svg');}
                             .inner p.inner07-patrycja{background-image:url('../img/small-icon07-patrycja.png');}
                             .inner p.inner07-malgorzata{background-image:url('../img/small-icon07-malgorzata.png');}
 

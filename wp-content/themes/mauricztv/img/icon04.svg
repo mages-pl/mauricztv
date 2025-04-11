@@ -1,0 +1,13 @@
+<svg id="Group_218" data-name="Group 218" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18.241" height="20.684" viewBox="0 0 18.241 20.684">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_131" data-name="Rectangle 131" width="18.241" height="20.684" fill="none" stroke="#013317" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Group_217" data-name="Group 217" transform="translate(0 0)" clip-path="url(#clip-path)">
+    <path id="Path_197" data-name="Path 197" d="M33,5.22h3.114V19.9h-1.78" transform="translate(-18.318 -2.898)" fill="none" stroke="#013317" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="Path_198" data-name="Path 198" d="M15.682,13.232l-1.335-.89V1.22L1,3.889V17.237L15.682,20.8Z" transform="translate(-0.555 -0.677)" fill="none" stroke="#013317" stroke-miterlimit="10" stroke-width="1"/>
+    <ellipse id="Ellipse_30" data-name="Ellipse 30" cx="4.449" cy="4.449" rx="4.449" ry="4.449" transform="translate(2.669 5.437)" fill="none" stroke="#013317" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="Path_199" data-name="Path 199" d="M13,17.35l3.61,2.2L13,21.741Z" transform="translate(-7.216 -9.631)" fill="none" stroke="#013317" stroke-miterlimit="10" stroke-width="1"/>
+  </g>
+</svg>

@@ -535,15 +535,15 @@ article.post .entry-content h2{font-size:32px;line-height:34px;font-weight:800;m
 .top-kursy h6.price{margin-bottom:0;}
 
 .top-kursy .inner{margin-bottom:23px;}
-.top-kursy p{font-size:18px!important;line-height:32px!important;font-weight:600!important;background-position:left center;background-repeat:no-repeat;padding-left:40px;margin-bottom:4px;}
+.top-kursy p{font-size:18px!important;line-height:32px!important;font-weight:600!important;background-position:left center;background-repeat:no-repeat;padding-left:40px;margin-bottom:4px;background-size: 23px;}
 .top-kursy p b{font-weight:800!important;}
-.top-kursy p.inner01{background-image:url('./img/small-icon01.png');}
-.top-kursy p.inner02{background-image:url('./img/small-icon02.png');}
-.top-kursy p.inner03{background-image:url('./img/small-icon03.png');}
-.top-kursy p.inner04{background-image:url('./img/small-icon04.png');}
-.top-kursy p.inner05{background-image:url('./img/small-icon05.png');}
-.top-kursy p.inner06{background-image:url('./img/small-icon06.png');}
-.top-kursy p.inner07-jakub{background-image:url('./img/small-icon07.png');}
+.top-kursy p.inner01{background-image:url('./img/icon01.svg');}
+.top-kursy p.inner02{background-image:url('./img/icon02.svg');}
+.top-kursy p.inner03{background-image:url('./img/icon03.svg');}
+.top-kursy p.inner04{background-image:url('./img/icon04.svg');}
+.top-kursy p.inner05{background-image:url('./img/icon05.svg');}
+.top-kursy p.inner06{background-image:url('./img/icon06.svg');}
+.top-kursy p.inner07-jakub{background-image:url('./img/icon07.svg');}
 .top-kursy p.inner07-patrycja{background-image:url('./img/small-icon07-patrycja.png');}
 .top-kursy p.inner07-malgorzata{background-image:url('./img/small-icon07-malgorzata.png');}
 

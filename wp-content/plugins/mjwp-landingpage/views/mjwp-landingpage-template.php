@@ -121,32 +121,6 @@
                                 <div class="free color-accent text-uppercase text-46 text-center">bezpłatnie</div>
                             </div>
                         </div>
-                        <div class="form-container__wrapper">
-                            <div class="info inner">
-                                <?php if ( get_field( 'nieograniczony_dostep', $product->ID ) ): ?>
-                                    <p class="inner01">Nieograniczony dostęp</p>
-                                <?php else: ?>	
-                                    <p class="inner01">Dostęp na 365 dni</p>
-                                <?php endif; ?>
-                                <p class="inner04">Liczba lekcji: <?php the_field('liczba_lekcji', $product->ID); ?></p>
-                                <?php if ( get_field( 'imienny_certyfikat', $product->ID ) ): ?>
-                                    <p class="inner02">Imienny certyfikat</p>
-                                <?php endif; ?>
-                                
-                                <p class="inner05">Czas kursu: <?php the_field('czas_kursu', $product->ID); ?>min</p>
-                                <?php if ( get_field( 'materialy_dydaktyczne', $product->ID ) ): ?>
-                                    <p class="inner03">Dodatkowe materiały PDF</p>
-                                <?php endif; ?>
-                                
-                                
-                                
-                                <p class="inner07<?php if (get_field('prowadzacy', $product->ID) == 'Jakub Mauricz') { ?>-jakub
-                                <?php } elseif (get_field('prowadzacy', $product->ID) == 'Patrycja Szachta') { ?>-patrycja
-                                <?php } elseif (get_field('prowadzacy', $product->ID) == 'Małgorzata Ostrowska') { ?>-malgorzata
-                                <?php } ?>
-                                ">Prowadzący: <?php the_field('prowadzacy', $product->ID); ?></p>
-                            </div>
-                        </div>
                         <div class="form-container__form">
                             <div class="title">
                                 <?= $course['gdzie_wyslac'] ?>
@@ -219,6 +193,33 @@
                                 echo '</div>';
                             ?>
                         </div>
+                        <div class="form-container__wrapper">
+                            <div class="info inner">
+                                <?php if ( get_field( 'nieograniczony_dostep', $product->ID ) ): ?>
+                                    <p class="inner01">Nieograniczony dostęp</p>
+                                <?php else: ?>	
+                                    <p class="inner01">Dostęp na 365 dni</p>
+                                <?php endif; ?>
+                                <p class="inner04">Liczba lekcji: <?php the_field('liczba_lekcji', $product->ID); ?></p>
+                                <?php if ( get_field( 'imienny_certyfikat', $product->ID ) ): ?>
+                                    <p class="inner02">Imienny certyfikat</p>
+                                <?php endif; ?>
+                                
+                                <p class="inner05">Czas kursu: <?php the_field('czas_kursu', $product->ID); ?>min</p>
+                                <?php if ( get_field( 'materialy_dydaktyczne', $product->ID ) ): ?>
+                                    <p class="inner03">Dodatkowe materiały PDF</p>
+                                <?php endif; ?>
+                                
+                                
+                                
+                                <p class="inner07<?php if (get_field('prowadzacy', $product->ID) == 'Jakub Mauricz') { ?>-jakub
+                                <?php } elseif (get_field('prowadzacy', $product->ID) == 'Patrycja Szachta') { ?>-patrycja
+                                <?php } elseif (get_field('prowadzacy', $product->ID) == 'Małgorzata Ostrowska') { ?>-malgorzata
+                                <?php } ?>
+                                ">Prowadzący: <?php the_field('prowadzacy', $product->ID); ?></p>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

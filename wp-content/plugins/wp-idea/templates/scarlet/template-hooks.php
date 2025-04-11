@@ -1173,19 +1173,13 @@ function bpmj_eddcm_scarlet_item_price_discount_after($label, $item_id, $options
 
                 if($discount_type == 'percent') {
                     $salePrice = (number_format(get_post_meta($item_id,  'edd_sale_price', true)*(1-((int)$discount_value/100)),2,'.',''));
-                    $label .= '<p class="podsumowanie_koszyk_price" style="color:#16d778;">'.(number_format(get_post_meta($item_id,  'edd_sale_price', true)*(1-((int)$discount_value/100)),2,'.','')).' PLN</p>';
+                $label .= '<p class="podsumowanie_koszyk_price" style="color:#16d778;">'.(number_format(get_post_meta($item_id,  'edd_sale_price', true)*(1-((int)$discount_value/100)),2,'.','')).' PLN</p>';
                 } else {
                     $salePrice = (number_format(get_post_meta($item_id,  'edd_sale_price', true)*(1-((int)$discount_value/edd_get_cart_total( true ))),2,'.',''));
                     $label .= '<p class="podsumowanie_koszyk_price" style="color:#16d778;">'.(number_format(get_post_meta($item_id,  'edd_sale_price', true)*(1-((int)$discount_value/edd_get_cart_total( true ))),2,'.','')).' PLN</p>';
                 }
                 
                 $diff = (float)$regularPrice-(float)$salePrice;
-                $salePriceProduct = $salePrice;
-                $salePrice = number_format(get_post_meta($item_id,  'edd_sale_price', true),2,'.','');
-                if($salePrice > 0) {
-                    $regularPrice = number_format(get_post_meta($item_id,  'edd_price', true),2,'.','');
-                    $diff = $regularPrice - $salePriceProduct;
-                } 
                 $label .= '<div class="discount" style="background: #1CD779;color: #fff;position: absolute;right: 0;top: 50%;padding: 0 15px;transform: translateX(50%) translateY(-50%)">Oszczędzasz '.$diff.' PLN</div>';
               } else {
                 /**

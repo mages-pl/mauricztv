@@ -157,6 +157,12 @@ function createUser($name, $password, $email) {
         } catch(\Exception $e) {
 
         }
+
+        try {
+            createEvent("Klienci", "Zarejestrowani", $getUser->user_email);
+        } catch(\Exception $e) { 
+
+        }
         return $getUser;
 }
 
@@ -224,7 +230,7 @@ function landingpage_form_post_request() {
                     /**
                      * User posiada szkolenie zwróć komunikat
                      */
-                    set_transient('mjwp_landingpage_flash_message_error', 'To konto posiada już te szkolenie.', 30); 
+                    set_transient('mjwp_landingpage_flash_message_error', 'To konto posiada już te szkolenie, <a href="'.get_permalink(560).'">zaloguj się</a>, aby je obejrzeć', 30); 
                     wp_redirect(wp_get_referer());
                 } else {
                     /**
@@ -236,8 +242,14 @@ function landingpage_form_post_request() {
                     $user_id = $user ? $user->ID : 0;
                     
                     // Dodaj kurs dla danego usera
-                    addCourseToUser(get_option('mauricz_product_free_course'), $user_id);
+                    addCourseToUser(get_option('mauricz_product_free_course'), $user_id, $user);
 
+                    try {
+                        if($user) {
+                            createEvent("Szkolenie", "OdebrałSzkoleniePŻ", $user->user_email);
+                        }
+                    } catch(\Exception $e) {
+                    }
                     // Stworz obiekt zamówienia
                     #createOrder($user_id, $user);
 
@@ -248,7 +260,7 @@ function landingpage_form_post_request() {
                         $logged = get_current_user_id();
                         if($logged) {
                             // Przejdź do szkolenia
-                            set_transient('mjwp_landingpage_flash_message_success', 'Szkolenie zostało przypisane do Twojego konta.', 30); 
+                            set_transient('mjwp_landingpage_flash_message_success', 'Szkolenie zostało przypisane do Twojego konta. <br/> <a href="'.get_permalink(get_option()).'">Przejdź do szkolenia</a>', 30); 
 
                         } else{
                             //Zaloguj się
@@ -356,7 +368,7 @@ function landingpage_form_post_request() {
  * @param int $user_id
  * @return bool
  */
-function addCourseToUser($product_id,$user_id) { 
+function addCourseToUser($product_id,$user_id, $user = null) { 
     
     $user_id = (int)$user_id;
     $product_id = (int)$product_id;
@@ -576,7 +588,8 @@ $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
-print_r($httpCode);
+#print_r($httpCode);
+#print_r($response);
         // $c = curl_init();
         // curl_setopt($c, CURLOPT_URL, 'https://a.klaviyo.com/api/events');//.trim(($id_event)));
 

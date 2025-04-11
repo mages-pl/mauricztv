@@ -225,9 +225,8 @@
                         }
 
                         &__wrapper {
-                            // @extend %margin-top-60;
-                            @extend %padding-bottom-50;
-                            border-bottom: 2px solid $white;
+                            @extend %margin-top-30;
+                            
 
                             .inner {
                                 display: grid;
@@ -268,9 +267,10 @@
 
                         &__form {
                             @extend %margin-top-60;
+                            @extend %padding-bottom-40;
                             position: relative;
                             z-index: 222;
-
+                            border-bottom: 2px solid $white;
                             form {
                                 input {
                                     margin-bottom: 20px;

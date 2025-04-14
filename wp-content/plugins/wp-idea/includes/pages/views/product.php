@@ -348,8 +348,8 @@ if(!empty(get_the_post_thumbnail_url($item['id']))) {
  * Product price
  */
 
- if(((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) && (!is_numeric(get_post_meta($product_id,  'sale_price', true)))) {
-   
+ if((((date('Y-m-d') >= $sale_price_from_date) && (date('Y-m-d') < $sale_price_to_date)) && (!is_numeric(get_post_meta($product_id,  'sale_price', true)))) || (get_post_meta($product_id,  'sale_price', true) != get_post_meta($product_id,  'edd_price', true) )) {
+
     $productPrice = number_format($sale_price,2,'.','');
  } else { 
     $productPrice = $product_price;

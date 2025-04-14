@@ -74,7 +74,7 @@ class Note_Repository implements Interface_Note_Repository
             new User_ID((int)$row['user_id']),
             $row['lesson_id'] ? new Lesson_ID((int)$row['lesson_id']) : null,
             $row['module_id'] ? new Module_ID((int)$row['module_id']) : null,
-            $row['contents']
+            strip_tags($row['contents'])
         );
     }
 

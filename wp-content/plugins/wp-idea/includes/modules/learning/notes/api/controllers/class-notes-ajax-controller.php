@@ -73,6 +73,7 @@ class Notes_Ajax_Controller extends Ajax_Controller
 
     public function save_action(Current_Request $current_request): string
     {
+        
         $id = $current_request->get_body_arg('id');
         $contents = str_replace(array("\r\n", "&", "&amp;", "&nbsp;", "\r", "\n"), '', strip_tags(($current_request->get_body_arg('contents'))));
         $id_lesson = $current_request->get_body_arg('id_lesson');

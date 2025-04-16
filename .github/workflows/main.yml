@@ -1,8 +1,8 @@
 on: 
   push:
-    branches: [ "master" ]
+    branches: [ "master", "dev" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master", "dev" ]
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
@@ -12,7 +12,8 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
     
-    - name: 📂 Sync files
+    - name: 📂 Deploy to production (master)
+      if: github.ref == 'refs/heads/master'
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: mauricztv.ftp.dhosting.pl
@@ -102,3 +103,62 @@ jobs:
           **/wp-content/plugins/wp-idea/vendor/symfony/**
           **/wp-content/plugins/wp-idea/vendor/voku/**
           **/wp-content/themes/twentytwentythree/**
+
+    - name: 🛠 Deploy to development (dev)
+      if: github.ref == 'refs/heads/dev'
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: mauricztv.ftp.dhosting.pl
+        username: doos7s_virtual
+        password: ${{ secrets.ftp_password }}
+        server-dir: /dev.mauricz.tv/public_html/
+        exclude: |
+          **/.git*/**
+          **/modules/autoupgrade/**
+          **/app/**
+          **/node_modules/**
+          **/vendor/**
+          **/img/**
+          **/docs/**
+          **/localization/**
+          **/modules/_mjcountdownpromo/**
+          **/modules/creativeelements/**
+          **/modules/ps_mbo/**
+          **/modules/-x13carttopdf/**
+          **/modules/+ps_accounts/**
+          **/modules/-x13pdfoffer/**
+          **/themes/_backup/**
+          **/themes/_libraries/**
+          **/themes/AngarTheme/**
+          **/modules/sensbitdpd/**
+          **/modules/sensbitgls/**
+          **/modules/x13blocklogin/**
+          **/modules/x13carttopdf/**
+          **/modules/x13gusdata/**
+          **/modules/x13internallinks/**
+          **/modules/x13lazyload/**
+          **/modules/x13limitpaymentmethods/**
+          **/modules/x13loginascustomer/**
+          **/modules/x13pdfoffer/**
+          **/modules/x13pricehistory/**
+          **/modules/x13privacymanager/**
+          **/modules/ps_eventbus/**
+          **/modules/ps_facebook/**
+          **/themes/PixelStore/**
+          **/themes/classic/**
+          **/modules/imoje_wersja 1.4/**
+          **/modules/imoje_wersja 1.9 nie działająca - błąd statusów/**
+          **/modules/ps_facetedsearch__/**
+          **/modules/angarfacebook-org/**
+          **/modules/creativeelements/**
+          **/modules/ps_mbo/**
+          **/.htaccess
+          **/src/**
+          **/js/**
+          **/var/**
+          **/tmp/**
+          **/upload/**
+          **/bo/**
+          **/tools/**
+          **/.DS_Store
+          **/*.DS_Store

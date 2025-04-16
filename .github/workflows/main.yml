@@ -1,8 +1,8 @@
 on: 
   push:
-    branches: [ "master" ]
+    branches: [ "master", "dev" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master", "dev" ]
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
@@ -12,13 +12,106 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
     
-    - name: 📂 Sync files
+    - name: 📂 Deploy to production (master)
+      if: github.ref == 'refs/heads/master'
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: mauricztv.ftp.dhosting.pl
         username: doos7s_virtual
         password: ${{ secrets.ftp_password }}
         server-dir: /mauricz.tv/public_html/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/wp-includes/**
+          **/wp-admin/**
+          **/wp-content/plugins/to-top/**
+          **/wp-content/plugins/wpfront-notification-bar/**
+          **/wp-content/plugins/add-logo-to-admin/**
+          **/wp-content/plugins/breadcrumb-navxt/**
+          **/wp-content/plugins/contact-form-7/**
+          **/wp-content/plugins/countdown-builder/**
+          **/wp-content/plugins/duplicate-page/**
+          **/wp-content/plugins/breadcrumb-navxtOLD/**
+          **/wp-content/plugins/contact-form-7OLD/**
+          **/wp-content/themes/mauricztvOLD/**
+          **/wp-content/plugins/all-in-one-wp-migration-unlimited-extension/**
+          **/wp-content/plugins/countdown-builderOLD/**
+          **/wp-content/plugins/easy-accordion-free/**
+          **/wp-content/plugins/facebook-messenger-customer-chat/**
+          **/wp-content/plugins/megamenu/**
+          **/wp-content/plugins/mystickymenu/**
+          **/wp-content/plugins/page-scroll-to-id/**
+          **/wp-content/plugins/posts-in-page/**
+          **/wp-content/plugins/bnfw/**
+          **/wp-content/plugins/user-menus/**
+          **/wp-content/plugins/classic-editor/**
+          **/wp-content/plugins/classic-widgets/**
+          **/wp-content/plugins/cb-change-mail-sender/**
+          **/wp-content/plugins/block-specific-plugin-updates/**
+          **/wp-content/plugins/duplicate-page/**
+          **/wp-content/plugins/google-analytics-for-wordpress/**
+          **/wp-content/ai1wm-backups/**
+          **/wp-content/cache/**
+          **/wp-content/languages/**
+          **/wp-content/lms-data/**
+          **/wp-content/uploads/**
+          **/wp-content/plugins/regenerate-thumbnails/**
+          **/wp-content/plugins/rollback-update-failure/**
+          **/wp-content/plugins/simple-social-buttons/**
+          **/wp-content/plugins/wordpress-seo/**
+          **/wp-content/plugins/advanced-custom-fields/**
+          **/wp-content/plugins/advanced-custom-fields-pro/**
+          **/wp-content/plugins/maintenance/**
+          **/wp-content/plugins/smtp-mailer/**
+          **/wp-content/plugins/wp-maintenance/**
+          **/wp-content/plugins/cookie-law-info/**
+          **/wp-content/plugins/complianz-gdpr/**
+          **/wp-content/plugins/gutenberg/**
+          **/wp-content/plugins/better-search-replace/**
+          **/wp-content/plugins/media-sync/**
+          **/wp-content/plugins/webp-converter-for-media/**
+          **/wp-content/plugins/wp-rocket/**
+          **/wp-content/plugins/all-in-one-wp-migration/**
+          **/wp-content/plugins/wp-idea/includes/admin/**
+          **/wp-content/plugins/wp-idea/includes/modules/**
+          **/wp-content/plugins/wp-idea/includes/infrastructure/**
+          **/wp-content/plugins/wp-idea/dependencies/**
+          **/wp-content/plugins/wp-idea/vendor/airbrake/**
+          **/wp-content/plugins/wp-idea/vendor/aws/**
+          **/wp-content/plugins/wp-idea/vendor/bin/**
+          **/wp-content/plugins/wp-idea/vendor/cash/**
+          **/wp-content/plugins/wp-idea/vendor/composer/**
+          **/wp-content/plugins/wp-idea/vendor/dompdf/**
+          **/wp-content/plugins/wp-idea/vendor/facebook/**
+          **/wp-content/plugins/wp-idea/vendor/guzzlehttp/**
+          **/wp-content/plugins/wp-idea/vendor/italystrap/**
+          **/wp-content/plugins/wp-idea/vendor/laravel/**
+          **/wp-content/plugins/wp-idea/vendor/mark-gerarts/**
+          **/wp-content/plugins/wp-idea/vendor/matthiasmullie/**
+          **/wp-content/plugins/wp-idea/vendor/mexitek/**
+          **/wp-content/plugins/wp-idea/vendor/monolog/**
+          **/wp-content/plugins/wp-idea/vendor/mtdowling/**
+          **/wp-content/plugins/wp-idea/vendor/nyholm/**
+          **/wp-content/plugins/wp-idea/vendor/pay-now/**
+          **/wp-content/plugins/wp-idea/vendor/php-di/**          
+          **/wp-content/plugins/wp-idea/vendor/php-http/**
+          **/wp-content/plugins/wp-idea/vendor/psr/**
+          **/wp-content/plugins/wp-idea/vendor/ralouphie/**
+          **/wp-content/plugins/wp-idea/vendor/sabberworm/**
+          **/wp-content/plugins/wp-idea/vendor/symfony/**
+          **/wp-content/plugins/wp-idea/vendor/voku/**
+          **/wp-content/themes/twentytwentythree/**
+
+    - name: 🛠 Deploy to development (dev)
+      if: github.ref == 'refs/heads/dev'
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: mauricztv.ftp.dhosting.pl
+        username: doos7s_virtual
+        password: ${{ secrets.ftp_password }}
+        server-dir: /dev.mauricz.tv/public_html/
         exclude: |
           **/.git*
           **/.git*/**

@@ -75,7 +75,6 @@ jobs:
           **/wp-content/plugins/wp-rocket/**
           **/wp-content/plugins/all-in-one-wp-migration/**
           **/wp-content/plugins/wp-idea/includes/admin/**
-          **/wp-content/plugins/wp-idea/includes/modules/**
           **/wp-content/plugins/wp-idea/includes/infrastructure/**
           **/wp-content/plugins/wp-idea/dependencies/**
           **/wp-content/plugins/wp-idea/vendor/airbrake/**
@@ -167,7 +166,6 @@ jobs:
           **/wp-content/plugins/wp-rocket/**
           **/wp-content/plugins/all-in-one-wp-migration/**
           **/wp-content/plugins/wp-idea/includes/admin/**
-          **/wp-content/plugins/wp-idea/includes/modules/**
           **/wp-content/plugins/wp-idea/includes/infrastructure/**
           **/wp-content/plugins/wp-idea/dependencies/**
           **/wp-content/plugins/wp-idea/vendor/airbrake/**

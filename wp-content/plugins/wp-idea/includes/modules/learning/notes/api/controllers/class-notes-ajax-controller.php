@@ -66,7 +66,7 @@ class Notes_Ajax_Controller extends Ajax_Controller
         return $this->success(
             [
                 'note_id' => $note ? $note->get_id()->to_int() : null,
-                'note_content' => $note ? $this->fix_new_lines($note->get_content()) : null
+                'note_content' => $note ? $note->get_content() : null
             ]
         );
     }
@@ -75,7 +75,7 @@ class Notes_Ajax_Controller extends Ajax_Controller
     {
         
         $id = $current_request->get_body_arg('id');
-        $contents = str_replace(array("\r\n", "&", "&amp;", "&nbsp;", "\r", "\n"), '', strip_tags(($current_request->get_body_arg('contents'))));
+        $contents = str_replace(array("\r\n", "'", "", "&amp;", "&nbsp;", "\r", "\n"), ' ', strip_tags(($current_request->get_body_arg('contents'))));
         $id_lesson = $current_request->get_body_arg('id_lesson');
         $id_module = $current_request->get_body_arg('id_module');
 

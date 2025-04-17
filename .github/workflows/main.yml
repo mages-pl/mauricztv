@@ -77,21 +77,21 @@ jobs:
           **/wp-content/plugins/wp-idea/includes/admin/**
           **/wp-content/plugins/wp-idea/includes/infrastructure/**
           **/wp-content/plugins/wp-idea/dependencies/**
-          **/wp-content/plugins/wp-idea/includes/active-sessions-limiter/**
-          **/wp-content/plugins/wp-idea/includes/affiliate-program/**
-          **/wp-content/plugins/wp-idea/includes/app-view/**
-          **/wp-content/plugins/wp-idea/includes/captcha/**
-          **/wp-content/plugins/wp-idea/includes/cart/**
-          **/wp-content/plugins/wp-idea/includes/conflicting-plugins-detector/**
-          **/wp-content/plugins/wp-idea/includes/gallery-block-lightbox/**
-          **/wp-content/plugins/wp-idea/includes/google-analytics/**
-          **/wp-content/plugins/wp-idea/includes/gus-api/**
-          **/wp-content/plugins/wp-idea/includes/increasing-sales/**
-          **/wp-content/plugins/wp-idea/includes/logs/**
-          **/wp-content/plugins/wp-idea/includes/meta-conversion-api/**
-          **/wp-content/plugins/wp-idea/includes/search-engine/**
-          **/wp-content/plugins/wp-idea/includes/videos/**
-          **/wp-content/plugins/wp-idea/includes/webhooks/**
+          **/wp-content/plugins/wp-idea/includes/modules/active-sessions-limiter/**
+          **/wp-content/plugins/wp-idea/includes/modules/affiliate-program/**
+          **/wp-content/plugins/wp-idea/includes/modules/app-view/**
+          **/wp-content/plugins/wp-idea/includes/modules/captcha/**
+          **/wp-content/plugins/wp-idea/includes/modules/cart/**
+          **/wp-content/plugins/wp-idea/includes/modules/conflicting-plugins-detector/**
+          **/wp-content/plugins/wp-idea/includes/modules/gallery-block-lightbox/**
+          **/wp-content/plugins/wp-idea/includes/modules/google-analytics/**
+          **/wp-content/plugins/wp-idea/includes/modules/gus-api/**
+          **/wp-content/plugins/wp-idea/includes/modules/increasing-sales/**
+          **/wp-content/plugins/wp-idea/includes/modules/logs/**
+          **/wp-content/plugins/wp-idea/includes/modules/meta-conversion-api/**
+          **/wp-content/plugins/wp-idea/includes/modules/search-engine/**
+          **/wp-content/plugins/wp-idea/includes/modules/videos/**
+          **/wp-content/plugins/wp-idea/includes/modules/webhooks/**
           **/wp-content/plugins/wp-idea/vendor/airbrake/**
           **/wp-content/plugins/wp-idea/vendor/aws/**
           **/wp-content/plugins/wp-idea/vendor/bin/**
@@ -183,21 +183,21 @@ jobs:
           **/wp-content/plugins/wp-idea/includes/admin/**
           **/wp-content/plugins/wp-idea/includes/infrastructure/**
           **/wp-content/plugins/wp-idea/dependencies/**
-          **/wp-content/plugins/wp-idea/includes/active-sessions-limiter/**
-          **/wp-content/plugins/wp-idea/includes/affiliate-program/**
-          **/wp-content/plugins/wp-idea/includes/app-view/**
-          **/wp-content/plugins/wp-idea/includes/captcha/**
-          **/wp-content/plugins/wp-idea/includes/cart/**
-          **/wp-content/plugins/wp-idea/includes/conflicting-plugins-detector/**
-          **/wp-content/plugins/wp-idea/includes/gallery-block-lightbox/**
-          **/wp-content/plugins/wp-idea/includes/google-analytics/**
-          **/wp-content/plugins/wp-idea/includes/gus-api/**
-          **/wp-content/plugins/wp-idea/includes/increasing-sales/**
-          **/wp-content/plugins/wp-idea/includes/logs/**
-          **/wp-content/plugins/wp-idea/includes/meta-conversion-api/**
-          **/wp-content/plugins/wp-idea/includes/search-engine/**
-          **/wp-content/plugins/wp-idea/includes/videos/**
-          **/wp-content/plugins/wp-idea/includes/webhooks/**
+          **/wp-content/plugins/wp-idea/includes/modules/active-sessions-limiter/**
+          **/wp-content/plugins/wp-idea/includes/modules/affiliate-program/**
+          **/wp-content/plugins/wp-idea/includes/modules/app-view/**
+          **/wp-content/plugins/wp-idea/includes/modules/captcha/**
+          **/wp-content/plugins/wp-idea/includes/modules/cart/**
+          **/wp-content/plugins/wp-idea/includes/modules/conflicting-plugins-detector/**
+          **/wp-content/plugins/wp-idea/includes/modules/gallery-block-lightbox/**
+          **/wp-content/plugins/wp-idea/includes/modules/google-analytics/**
+          **/wp-content/plugins/wp-idea/includes/modules/gus-api/**
+          **/wp-content/plugins/wp-idea/includes/modules/increasing-sales/**
+          **/wp-content/plugins/wp-idea/includes/modules/logs/**
+          **/wp-content/plugins/wp-idea/includes/modules/meta-conversion-api/**
+          **/wp-content/plugins/wp-idea/includes/modules/search-engine/**
+          **/wp-content/plugins/wp-idea/includes/modules/videos/**
+          **/wp-content/plugins/wp-idea/includes/modules/webhooks/**
           **/wp-content/plugins/wp-idea/vendor/airbrake/**
           **/wp-content/plugins/wp-idea/vendor/aws/**
           **/wp-content/plugins/wp-idea/vendor/bin/**

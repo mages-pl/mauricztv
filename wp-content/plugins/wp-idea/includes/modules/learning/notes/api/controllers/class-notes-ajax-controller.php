@@ -75,7 +75,7 @@ class Notes_Ajax_Controller extends Ajax_Controller
     {
         
         $id = $current_request->get_body_arg('id');
-        $contents = str_replace(array("\r\n", "'", "", "&amp;", "&nbsp;", "\r", "\n"), ' ', strip_tags(($current_request->get_body_arg('contents'))));
+        $contents = str_replace(array("\r\n", "'", "", "&amp;", "&nbsp;", "\r"), ' ', strip_tags(($current_request->get_body_arg('contents'))));
         $id_lesson = $current_request->get_body_arg('id_lesson');
         $id_module = $current_request->get_body_arg('id_module');
 

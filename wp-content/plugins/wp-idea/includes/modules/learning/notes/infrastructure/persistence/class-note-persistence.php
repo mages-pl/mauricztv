@@ -34,7 +34,7 @@ class Note_Persistence implements Interface_Note_Persistence
             ['user_id', $note->get_user_id()->to_int()],
             ['lesson_id', $note->get_lesson_id() ? $note->get_lesson_id()->to_int() : null],
             ['module_id', $note->get_module_id() ? $note->get_module_id()->to_int() : null],
-            ['contents', strip_tags($note->get_content())]
+            ['contents', strip_tags($note->get_content(), "\n")]
         ];
 
         $where = [
